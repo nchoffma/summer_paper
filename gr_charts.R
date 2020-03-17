@@ -20,7 +20,6 @@ curve(fig1_payoff(x, a = 1), from = 0, to = 2)
 curve(fig1_payoff(x, a = 1), from = 0, to = 2)
 curve(fig1_payoff(x, a = 1.25), from = 0, to = 2, add = T)
 
-
 # Figure 2: Costs and Benefits --------------------------------------------
 
 rho <- 1.01
@@ -30,7 +29,6 @@ fig2_cost <- function(y, z){
   util(y) - util(y - finv(z))
 }
 fig2_cost <- Vectorize(fig2_cost, vectorize.args = "z")
-
 layout(matrix(1:1))
 curve(fig2_cost(y = 2, x), from = 0, to = 2, ylim = c(0, 3), xlab = "z",
       ylab = "Payoffs and Costs", main = "Fig 2")
@@ -39,7 +37,7 @@ curve(fig1_payoff(x, a = 1), from = 0, to = 2, add = T)
 
 # Fig 3: Wealth and Aspirations -------------------------------------------
 
-# First-order conditions
+# Derivatives
 util_p <- function(c) {(1 - sig) * c ^ -sig}
 w0_p <- function(z) {del * (1 - sig) * z ^ -sig}
 w1_p <- function(e) {del * pi * (1 - sig) * e ^ -sig}
