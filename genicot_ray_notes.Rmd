@@ -4,7 +4,9 @@ author: "Nick Hoffman"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: 
   html_document:
-    mathjax: default
+    toc: true
+  pdf_document:
+    keep_tex: true
 ---
 
 ## Introduction
@@ -73,7 +75,7 @@ where $y$ is an individual's income and $F$ is the society-wide distribution of 
 
 ### Consumption-Savings Decision with Aspirations
 
-To formalize the problem of a representative parent in this model, define $f(k) = \rhok$, the production function that turns investment $k$ into next-period wealth. Let $k(z) = f^{-1}(z)$ be the inverse, which maps desired next-period wealth into current investment. The parent's problem is now
+To formalize the problem of a representative parent in this model, define $f(k) = \rho k$, the production function that turns investment $k$ into next-period wealth. Let $k(z) = f^{-1}(z)$ be the inverse, which maps desired next-period wealth into current investment. The parent's problem is now
 \[\max_z u(y - k(z)) + w_0(z) + w_1(\max\{z - a, 0\})\]
 I again use the authors' example, where $f(k) = \rho k$, with $\rho > 1$. 
 
@@ -143,12 +145,44 @@ find_z <- function(z, y, a){
 
 x <- seq(0, 1.5, length.out = 1000)
 opt_z <- lapply(x, function(x) find_z(y = 2, a = x))
-plot(x, unlist(opt_z), ylim = c(0, 2), type = "l", 
+opt_z <- unlist(opt_z)
+plot(x, opt_z, ylim = c(0, 2), type = "l", 
      main = "Satisfied and Frustrated Aspirations",
      xlab = "a", ylab = "z"
 )
+a_ind <- max(which(opt_z > tail(opt_z, 1)))
+a_star <- x[a_ind]
+abline(v = a_star, lty = "dashed")
 ```
 
+The chart matches Figure 3 in the paper. The authors demonstrate that, up to a threshold $a^*$, aspirations will be _satisfied_; that is, the chosen $z$ will be greater than aspirations $a$. For aspirations $a>a^*$, however, aspirations will be _frustrated_, with $z<a$. Note that above $a^*$, chosen wealth is insensitive to aspirations. This feature of the model will lead to divergence in growth, between those whose aspirations are frustrated and those whose are satisfied.^[The authors also discuss an extension in which investment _declines_ in aspirations when aspirations are frustrated.]
 
-### Dynastic Equilibrium with Aspirations
+## Aspirations and Growth
 
+The examples chosen so far for payoff and production functions ($u, w_0, w_1, f$) form the authors' _constant elasticity growth model_, and are chosen such that without aspirations, bequests will be proportional to wealth, and growth will be constant across the wealth distribution. The upshot of this framework is that if growth rates vary across the cross-section of wealth, the variance will be due to aspirations alone.
+
+### Growth Incidence Curve
+
+In order to study the relationship between initial income/wealth distributions and subsequent growth, the authors derive what they term the "growth incidence curve."
+
+The problem for an individual with wealth $y$ and aspirations $a$ is
+
+\[\max_z \left(y - \frac{z}{\rho}\right)^{1 - \sigma} + \delta\left[z^{1 - \sigma} + \pi \left(\max\{z - a, 0\}\right)^{1 - \sigma}\right]\]
+
+Equivalently, let $r\equiv a/y$ (the "aspirations ratio") and $g\equiv z/y$ be the growth rate, and the problem becomes
+
+\[\max_g \left(1 - \frac{g}{\rho}\right)^{1 - \sigma} + \delta\left[g^{1 - \sigma} + \pi \left(\max\{g - r, 0\}\right)^{1 - \sigma}\right]\]
+
+With first-order condition
+
+\[\left(1 - \frac{g(r)}{\rho}\right)^{- \sigma} = \delta\rho\left[g(r)^{- \sigma} + \pi \left(g(r) - r\right)^{-\sigma}\right]\]
+
+so long as $g\geq r$. The result of this derivation is that there is a unique solution $g(r)$, which is strictly increasing in $r$, and thus as long as aspirations are satisfied, they will lead to growth. As in the previous formulation of the problem, we can also take the first-order condition without aspirations:
+
+\[\left(1 - \frac{\underline{g}}{\rho}\right)^{-\sigma} = \delta\rho \underline{g}^{-\sigma} \]
+
+In the case where $\underline{g}< r$, the individual will again choose between $g(r)$ and $\underline{g}$ based on their payoffs. This construction will lead to divergence in growth. 
+
+## Joint Evolution of Aspirations and Wealth Inequality
+
+## Opportunities for Advancement
