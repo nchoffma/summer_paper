@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/Nick/Documents/Research/summer_paper/julia"
 		}
 	],
 	"settings": {}

@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{subcaption} % caption the subfigures
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+
+\begin{document}
+\begin{flushleft}
+    Summary of Genicot and Ray (2017): Aspirations and Inequality \\
+    Nick Hoffman \\
+\end{flushleft}
+    \section{Introduction}
+    The goal of this study is to determine the role that \textit{aspirations} play in economic growth and inequality. The authors define aspirations, generally, as goals against which agents measure their current socioeconomic position. % threshold values of income above which agents derive higher utility. They aim to answer three questions:
+    \begin{enumerate}
+        \item How do individuals \textit{form} aspirations?
+        \item How do individuals \textit{react to} aspirations?
+        \item How does the behavior of individuals, with reference to aspirations, effect aggregate income and growth?
+    \end{enumerate}
+    In this model, aspirations take the form of endogeneous wealth thresholds, which agents derive additional utility upon crossing. They then embed the optimization of these payoffs into a model of growth (similar to an AK model). In this model, when incomes are bounded, aspirations will reach a steady-state level, in which each dynasty replicates its wealth from generation to generation in perpetuity. This steady state cannot involve perfect equality. With sustained (and unbounded) income growth, asymptotic distribution will depend on the initial distribution: if there is sufficient equality, then incomes converge over time to a single level. If the initial distribution exhibits a sufficient degree of inequality, meanwhile, incomes will converge to a bimodal distribution. 
+    \section{Model}
+    In this model, a dynasty is made up of a parent and child, each of whom lives for one period. Parents receive lifetime income \( y_t \), which they allocate between lifetime consumption \( c_t \) and bequest \( k_t \). Thus, the problem of a parent at time \( t \) is 
+    \[\max_{c, k} u(c) + w_0(z) + w_1(\max\{z - a, 0\})\]
+    subject to 
+    \[y_t = c_t + k_t\]
+    Here, \( z \) is the wealth of the child, and is produced from the bequest \( k_t \) by the production technology \( f(k_t) \). \( w_0 \) is the intrinsic payoff to the parent from the child's wealth, while \( w_1 \) is the additional payoff received by the parent when the child's wealth crosses the \textit{aspiration} \( a \). The aspiration \( a \) is formed according to the function
+    \[a = \Psi(y, F(y))\]
+    Where \( F(y) \) is the society-wide distribution of income. Thus, individual aspirations are functions of both individual circumstances and the general income distribution. The authors make a few assumptions about \( \Psi \), namely, that the function is 
+    \begin{itemize}
+        \item Regularity: \( \Psi \) is continuous and nondecreasing in \( y \). 
+        \item Scale invariance: \(\Psi(\lambda y, F^\lambda) = \lambda\Psi(y, F) \)
+        \item  Range-boundedness: $\min\{y, \min F\} \leq \Psi(y, F) \leq \max(y, \max F)$ 
+        \item  Social monotonicity: $\forall y$, $\Psi(y,F) \leq \Psi(y, F^\prime)$ if $F \leq F^\prime$ in the sense of first-order stochasic dominance. 
+    \end{itemize}
+        \subsection{Equilibrium}
+        % Definition of equilibrium
+        % Steady and stationary state
+        % Evolution of distribution (definition)
+        To define an equilibrium in this model, the authors begin by defining \( \Phi(a, F(y)) \), the set of maximizers \( z \) to the problem
+        \begin{equation}
+            \max_k u\left( y - k(z) \right) + w_0(z) + w_1(\max\{z - a, 0\}) \label{problem}
+        \end{equation}
+        where \( k(z) = f^{-1}(z) \) is the function that maps childrens' wealth \( z \) back to parental bequest \( k \). The next-period generation \( F_{t + 1}(z) \) is generated as follows:
+        \[F_{t + 1}(z) = \int_{0}^{z}p_t(y_t, [0, z])dF_t(z)\]
+        where \( p(y, \cdot) \) \textit{agrees with} \( F \) and \( \Phi \), in the sense that 
+        \[\text{Supp } p_t(y_t, \cdot) \subseteq \Phi\left( \Psi(y, F(y)), F(y) \right)\]
+        The intuition is that, because the set \( \Phi \) may contain multiple maximizing \( z \) values--between which the agent is indifferent--the function \( p \) defines how the agent in question randomizes over these values of \( z \).
+    \section{Static Choices}
+    % FOCs
+    To solve for the optimal choice of \( z \), the parent's problem in \ref{problem} is 
+    \[\max_k u\left( y - k(z) \right) + w_0(z) + w_1(\max\{z - a, 0\})\]
+    The authors depict this choice as follows:
+    % Payoff and cost chart
+    Here, the upper curves showing \( w_0(z) + w_1(\max\{z - a, 0\}) \) illustrate the benefit of bequest \( z \) relative to aspiration \( a \), while the lower curve \( u(y) - u\left( y - k(z) \right) \) illustrates the cost. The objective of the parent is to maximize the distance between these curves. This chart illustrates that for every \( a \), the parent's problem is concave on either side of \( a \). Thus, the parent has at most two first-order conditions to solve: for \( z > a \), 
+    \begin{equation}
+        w_0^\prime(z) + w_1^\prime(z - a) = \frac{u^\prime(y - k(z))}{f^\prime(k(z))} \label{zopt0}  
+    \end{equation}
+    and for \( z < a \), 
+    \begin{equation}
+        w_0^\prime(z) = \frac{u^\prime(y - k(z))}{f^\prime(k(z))} \label{zopt1}
+    \end{equation}
+    Note that the maximum feasible value for \( z \) is equal to \( f(y) \), and occurs if \( c = 0 \). Thus, if \( a < f(y) \), the aspiration can be feasibly satisfied (even if it is not optimal), and thus the parent considers the values of \( z \) that solve (\ref{zopt0}) and (\ref{zopt1}), and chooses the \( z \) with a higher payoff. If, on the other hand, \( a > f(y) \), the parent's aspiration will be frustrated regardless of their choice of \( k \), and thus they will choose the value of \( z \) which solves (\ref{zopt0}). 
+    % Threshold a
+    Thus, for a given value of \( y \), the authors show that up to a given level of aspiration \( a^* \), parents will select \( z_1 \) solving (\ref{zopt1}), which will increase with \( y \). These parents will have aspirations that are \textit{satisfied}. Above \( a^* \),meanwhile, the parents will select a constant \( z_0 \), which is insensitive to their aspiration \( a \). These parents' aspirations will be \textit{frustrated}. 
+    \section{Growth}
+    % Constant elasticity growth model
+    \subsection{Constant Elasticity Growth Model}
+    In order to illustrate the effect of aspirations on income growth and inequality, the authors introduce the \textit{constant elasicity growth model}, which is parametrized as follows:
+    \begin{align*}
+        u(c) &= c^{1 - \sigma} & w_0(z) &= \delta z^{1 - \sigma} & w_1(e) &= \delta \pi e^{1 - \sigma}
+    \end{align*}
+    with curvature parameter \( \sigma = 0.8 \), discount factor \( \delta = 0.8 \), excess child wealth \( e = \max\{z - a, 0\} \), and threshold payoff \( \pi > 0 \). The benefit of this setup is that all differences in income growth will come from aspirations \( a \). To derive the growth rate, begin with the parent's problem:
+    \[\max_z \left(y - \frac{z}{\rho}\right)^{1 - \sigma} + \delta\left[z^{1 - \sigma} + \pi \left(\max\{z - a, 0\}\right)^{1 - \sigma}\right]\]
+    Equivalently, define the growth rate \( g\equiv z / y \), and the \textit{aspirations ratio} \( r\equiv a / y \), and the problem becomes 
+    \[\max_g \left(1 - \frac{g}{\rho}\right)^{1 - \sigma} + \delta\left[g^{1 - \sigma} + \pi \left(\max\{g - r, 0\}\right)^{1 - \sigma}\right]\]
+    Once again, the parents have at most two first-order conditions to solve. First, if \( g > r \), the parents select \( g(r) \) to solve 
+    \[\left(1 - \frac{g(r)}{\rho}\right)^{- \sigma} = \delta\rho\left[g(r)^{- \sigma} + \pi \left(g(r) - r\right)^{-\sigma}\right]\]
+    Meanwhile \( \underline{g} \) solves
+    \[\left(1 - \frac{\underline{g}}{\rho}\right)^{-\sigma} = \delta\rho \underline{g}^{-\sigma} \]
+    % Threshold r
+    % Threshold y
+    The result is similar to the static case: up to a threshold aspirations ratio \( r^* \), aspirations will be \textit{frustrated}, and the parents will choose \( \underline{g} \) irrespective of \( a \). Above \( r^* \), meanwhile, they will choose \( g(r) \), which decreases in \( r \) but asymptotically approaches a growth rate above \( \underline{g} \) (\( \lim_{r\to\infty} g(r) > \underline{g} \)): 
+    The authors note that given an aspirations function \( \Psi \) that exhibits social monotonicity and scale invariance, 
+    \[r(y) = \frac{\Psi(y, F(y))}{y}\]
+    will be decreasing in \( y \) for all \( y \). Thus, there will be a unique threshold \( y^* \) corresponding to \( r^* \) above which aspirations will be satisfied, and below which they will be frustrated:
+    % Figure
+    As a result, in the constant-elasicity growth model, the incomes of the ``frustrated poor'' will grow at a lower rate than those of the ``satisfied rich,'' leading to forever-increasing inequality. 
+    \section{Aspirations and Inequality}
+    The authors begin with an example in which incomes are bounded. In order to impose such a bound, they define a new production function for bequests,
+    \[f(k) = \frac{A}{\beta}k^\beta\]
+    with \( A = 4 \) and \( \beta = 0.55 \), which ensures that \( f(k) < k \) for \( k \) sufficiently large. The remaining parameters are the same as in the constant-elasicity growth model. They then find a steady state distribution \( F \) by simulating the model until convergence. There are two possibilities: either \( F \) collapses to a single income, or \( F \) becomes bimodal, and collapses to two income levels. Which of the two steady-state distribution occurs depends on the degree of inequality exhibited by the initial distribution \( F_0(y) \). 
+    % Figure: different values of p
+    \section{Questions Moving Forward}
+    % Value function?
+    % Can this match the distribution of wealth? Mobility?
+    % How to implement in optimal tax framework
+    I identify a few questions to address going forward. To begin, the authors note that to find a value function
+    
+    I wonder whether there is support in the data for preferences. 
+\end{document}
