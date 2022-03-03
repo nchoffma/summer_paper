@@ -1,6 +1,6 @@
-using DifferentialEquations, Distributions, LinearAlgebra, Plots, 
-    NLsolve, ForwardDiff, Optim, LaTeXStrings, Roots, FastGaussQuadrature, 
-    Printf, DelimitedFiles, ApproxFun
+using DifferentialEquations, Distributions, LinearAlgebra, Plots, NLsolve, 
+    ForwardDiff, Optim, LaTeXStrings, Roots, 
+    FastGaussQuadrature, Printf, DelimitedFiles, ApproxFun
 
 gr()
 println("******** cpp_inf_horizon.jl ********")
@@ -43,8 +43,8 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-# pH = 0.8  # yes 
-pH = 0.9  # does not work here
+pH = 0.8  # yes 
+# pH = 0.9  # does not work here
 
 m_cheb = 5
 S0 = Chebyshev(pL..pH)
@@ -574,7 +574,41 @@ pw = plot(tgrid, wsol_c,
 
 figpath = "julia/complementarities/results/"
 display(plot(plot(ppb, pat1), pU, layout = (2,1)))
-savefig(figpath * "inf_soln.png")
+# savefig(figpath * "inf_soln.png")
 
-# display(plot(plot(pc, pk), pw, layout = (2, 1)))
+display(plot(plot(pc, pk), pw, layout = (2, 1)))
 # savefig(figpath * "inf_allocs.png")
+
+# Additional plots 
+
+# Rates of return 
+p_hat(t, k) = (t * k) ^ (-1. / ϵ)
+
+RoRs = [p0[j] * tgrid[i] * p_hat(tgrid[i], ksol_c[i, j]) 
+    for i in 1:nt, j in 1:m_cheb] # p̄p̂θ
+
+pR = plot(tgrid, RoRs,
+    title = L"\bar{p}\hat{p}(\theta)\theta",
+    xlab = L"\theta",
+    legend = false);
+savefig(figpath * "inf_rors.png")
+
+# Wedges and allocations with w≠0
+wgrid = range(-10., 10., length = 201)
+pfix = 1 # fix pbar at p0[3]
+
+# τ_b (savings wedge)
+taub = [1. - csol_c[j, pfix] * exp(shft * wsol_c[j, pfix]) / (β * R * csol_c[i, pfix])
+    for i in 1:nt, j in 1:nt]
+
+surface(tgrid, tgrid, taub, legend = false,
+    xlab = L"\theta_t",
+    ylab = L"\theta_{t+1}",
+    zlab = "Wedge")
+
+# τ_k (investing wedge)
+# Fixed pbar
+
+# Fixed θ_t 
+
+# Fixed θ_t+1 
