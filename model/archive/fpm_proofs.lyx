@@ -1,0 +1,674 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Fixed Probability Model: Proofs (Scratch)
+\end_layout
+
+\begin_layout Standard
+FOCs that the algorithm solves for:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & R=\frac{c_{1}^{y}}{\beta c_{0}}-\frac{\mu k}{\lambda_{1}\theta c_{0}^{2}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}\\
+c_{1}^{0}: & 1=\frac{c_{1}^{y}}{c_{1}^{0}}-\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)c_{1}^{0}}\\
+k: & R=\alpha\theta+\frac{\mu}{\lambda_{1}\theta c_{0}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}\\
+\eta: & \mathcal{U}=\log c_{0}+\beta\left(\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right)\\
+\phi: & \mathcal{U}\left(\underline{\theta}\right)=\log\left(c_{0}+k\right)+\beta\log\left(c_{1}^{0}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First thing: computationally, it is the case that 
+\begin_inset Formula $k=0$
+\end_inset
+
+ if 
+\begin_inset Formula $\alpha\theta<R$
+\end_inset
+
+.
+ Why?
+\end_layout
+
+\begin_layout Standard
+A couple of things to note: 
+\begin_inset Formula 
+\[
+c_{1}^{y}=c_{1}^{0}+\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)}
+\]
+
+\end_inset
+
+ So, 
+\begin_inset Formula $\phi$
+\end_inset
+
+ (plus some parameters) describes how incentives are provided.
+ If 
+\begin_inset Formula $k>0$
+\end_inset
+
+, 
+\begin_inset Formula $\phi>0$
+\end_inset
+
+, so 
+\begin_inset Formula $\phi$
+\end_inset
+
+ describes how risky investment is incentivized.
+ if 
+\begin_inset Formula $k=0$
+\end_inset
+
+, then 
+\begin_inset Formula $c_{1}^{y}=c_{1}^{0}$
+\end_inset
+
+; these types do not need to be incentivized.
+ 
+\end_layout
+
+\begin_layout Standard
+WTS: 
+\begin_inset Formula $k\left(\theta\right)>0\iff\alpha\theta>R$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\implies$
+\end_inset
+
+: assume 
+\begin_inset Formula $k>0$
+\end_inset
+
+, but 
+\begin_inset Formula $\alpha\theta<R$
+\end_inset
+
+.
+ From FOC for 
+\begin_inset Formula $k$
+\end_inset
+
+: if 
+\begin_inset Formula $\alpha\theta<R$
+\end_inset
+
+, then 
+\begin_inset Formula 
+\begin{align*}
+R-\alpha\theta=\frac{\mu}{\lambda_{1}\theta c_{0}}- & \frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}>0\\
+\frac{\mu}{\lambda_{1}\theta c_{0}}> & \frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}>0\text{ by definition}
+\end{align*}
+
+\end_inset
+
+ which implies that if these two hold, 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Rearranging the FOCs for 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}= & \frac{c_{1}^{y}}{\beta c_{0}}-\frac{\mu k}{\lambda_{1}\theta c_{0}^{2}}\\
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}= & \alpha\theta+\frac{\mu}{\lambda_{1}\theta c_{0}}
+\end{align*}
+
+\end_inset
+
+which gives
+\begin_inset Formula 
+\[
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}=\frac{c_{1}^{y}}{\beta c_{0}}-\frac{k}{c_{0}}\left(\underbrace{R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}-\alpha\theta}_{\ge0?}\right)
+\]
+
+\end_inset
+
+ The bracketed term is equal to 
+\begin_inset Formula $\frac{\mu}{\lambda_{1}\theta c_{0}}$
+\end_inset
+
+, which as shown above, is positive (if both assumptions hold).
+ This implies that 
+\begin_inset Formula 
+\[
+\frac{c_{1}^{y}}{\beta c_{0}}>R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}
+\]
+
+\end_inset
+
+ which implies that 
+\begin_inset Formula $\mu<0$
+\end_inset
+
+, a contradiction.
+ Thus, 
+\begin_inset Formula $k>0\implies\alpha\theta>R$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\impliedby$
+\end_inset
+
+: Assume 
+\begin_inset Formula $\alpha\theta>R$
+\end_inset
+
+, but 
+\begin_inset Formula $k=0$
+\end_inset
+
+.
+ Then, the FOC for 
+\begin_inset Formula $k$
+\end_inset
+
+ does not hold, which makes this difficult.
+ This also means that 
+\begin_inset Formula $\phi=0$
+\end_inset
+
+.
+ In that case, we get the following allocations:
+\begin_inset Formula 
+\begin{align*}
+R= & \frac{c_{1}^{y}}{\beta c_{0}}\\
+c_{1}^{y}= & c_{1}^{0}\\
+\mathcal{U}= & \log c_{0}+\beta\log c_{1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I think this is the issue: it IS the case that 
+\begin_inset Formula $k>0\implies\alpha\theta>R$
+\end_inset
+
+.
+ But, it does 
+\series bold
+not
+\series default
+ go the other way.
+ Computationally, the cutoff is 
+\series bold
+at least
+\series default
+ 
+\begin_inset Formula $R/\alpha$
+\end_inset
+
+, but in practice, it can be higher depending on 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Next: what can we say about the remaining allocations? Intuitively (prove/dispro
+ve):
+\end_layout
+
+\begin_layout Enumerate
+The larger the optimal 
+\begin_inset Formula $k$
+\end_inset
+
+, the larger the distance must be between 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+.
+ This would imply that 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is increasing in 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The logical pattern is that (at the optimum): 
+\begin_inset Formula $k,c_{1}^{y}$
+\end_inset
+
+ increasing in 
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+ decreasing in 
+\begin_inset Formula $\theta$
+\end_inset
+
+ (must be the case if 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ is increasing, in order to balance out the final constraint).
+ 
+\end_layout
+
+\begin_layout Enumerate
+What is less clear is the pattern of 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+: in some of the Matlab examples, 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+ is decreasing in 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Furthermore, the wedges are
+\begin_inset Formula 
+\begin{align*}
+\tau_{k}\left(\theta\right)= & 1-\frac{c_{1}^{y}}{\alpha\beta\theta c_{0}}\\
+\tau_{b}\left(\theta\right)= & 1-\frac{\frac{1}{c_{0}}}{\beta R\left(\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\right)}
+\end{align*}
+
+\end_inset
+
+ What are the patterns in these?
+\end_layout
+
+\begin_layout Enumerate
+Computationally: it looks like 
+\begin_inset Formula $\mu$
+\end_inset
+
+ decreases in 
+\begin_inset Formula $\theta$
+\end_inset
+
+ until it hits the investment cutoff
+\end_layout
+
+\begin_layout Standard
+Working through:
+\begin_inset Formula 
+\[
+\tau_{k}=\frac{\mu}{\lambda_{1}\alpha\theta^{2}c_{0}}\left(\frac{-k}{c_{0}}-1\right)
+\]
+
+\end_inset
+
+ This would suggest that 
+\begin_inset Formula $\tau$
+\end_inset
+
+ is positive: if 
+\begin_inset Formula $k>0$
+\end_inset
+
+, 
+\begin_inset Formula $\mu<0$
+\end_inset
+
+ (by proof above), and so 
+\begin_inset Formula $\tau_{k}$
+\end_inset
+
+ should be 
+\begin_inset Formula $>0$
+\end_inset
+
+.
+ Whether this is increasing, or not, depends on 
+\begin_inset Formula $\mu^{\prime},c_{0}^{\prime},k^{\prime}$
+\end_inset
+
+.
+ This also implies the 
+\begin_inset Quotes eld
+\end_inset
+
+zero top marginal rate
+\begin_inset Quotes erd
+\end_inset
+
+ result, as 
+\begin_inset Formula $\mu\left(\underline{\theta}\right)=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The complication here is that each of these equations has multiple unknowns
+ in 
+\begin_inset Formula $\theta$
+\end_inset
+
+, so the derivatives are somewhat intertwined.
+ The place to start, it seems, is this:
+\begin_inset Formula 
+\[
+c_{1}^{y}\left(\theta\right)=c_{1}^{0}\left(\theta\right)+\frac{\beta\phi\left(\theta\right)}{\lambda_{1}\left(1-\alpha\right)}
+\]
+
+\end_inset
+
+ So intuitively, 
+\begin_inset Formula $\phi$
+\end_inset
+
+ represents the spread between 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+.
+ It also represents the shadow value of relaxing the 
+\begin_inset Formula $\mathcal{U}\left(\underline{\theta}\right)$
+\end_inset
+
+ constraint, which intuitively I think would increase in 
+\begin_inset Formula $\theta$
+\end_inset
+
+: for higher values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, there is more to gain from relaxing this constraint, allowing them to
+ invest more.
+ 
+\end_layout
+
+\begin_layout Standard
+Other issue: from computational results, it's not obvious that any of these
+ are monotonic.
+\end_layout
+
+\begin_layout Standard
+What about the wedge for those who do not invest? Their FOCs are
+\begin_inset Formula 
+\begin{align*}
+R= & \frac{c_{1}}{\beta c_{0}}\\
+\mathcal{U}= & \log c_{0}+\beta\log\left(c_{1}\right)\\
+= & \log c_{0}+\beta\log\left(R\beta c_{0}\right)\\
+= & \log\left(R\beta c_{0}^{\beta+1}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wedge on risk-free asset:
+\begin_inset Formula 
+\begin{align*}
+\tau_{b}\left(\theta\right)= & 1-\frac{1}{c_{0}}\left(\frac{c_{1}}{\beta R}\right)\\
+= & 1-\frac{c_{1}}{\beta Rc_{0}}\\
+= & 0
+\end{align*}
+
+\end_inset
+
+This checks out computationally.
+ 
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $k>0$
+\end_inset
+
+, all of the following hold: 
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & R=\frac{c_{1}^{y}}{\beta c_{0}}-\frac{\mu k}{\lambda_{1}\theta c_{0}^{2}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}\\
+c_{1}^{0}: & 1=\frac{c_{1}^{y}}{c_{1}^{0}}-\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)c_{1}^{0}}\\
+k: & R=\alpha\theta+\frac{\mu}{\lambda_{1}\theta c_{0}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}\\
+\eta: & \mathcal{U}=\log c_{0}+\beta\left(\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right)\\
+\phi: & \mathcal{U}\left(\underline{\theta}\right)=\log\left(c_{0}+k\right)+\beta\log\left(c_{1}^{0}\right)
+\end{align*}
+
+\end_inset
+
+ Idea: higher 
+\begin_inset Formula $k$
+\end_inset
+
+ means higher variance in second-period consumption, measured by the spread
+ between 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+.
+ This in turn depends on 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+\phi=\frac{\lambda_{1}}{\beta}\left(1-\alpha\right)\left(c_{1}^{y}-c_{1}^{0}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Risk-free wedge:
+\begin_inset Formula 
+\[
+\tau_{b}\left(\theta\right)=1-\frac{\frac{1}{c_{0}}}{\beta R\left(\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\right)}
+\]
+
+\end_inset
+
+ If 
+\begin_inset Formula $k>0$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ is a random variable:
+\begin_inset Formula 
+\[
+\mathbb{E}\left[\frac{1}{c_{1}}\right]=\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\ge\frac{1}{\mathbb{E}\left[c_{1}\right]}=\frac{1}{\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0}}
+\]
+
+\end_inset
+
+ by Jensen's inequality.
+ 
+\end_layout
+
+\begin_layout Standard
+What else would we like to prove about this?
+\end_layout
+
+\begin_layout Enumerate
+Still would like to show 
+\begin_inset Formula $\phi$
+\end_inset
+
+ increasing in 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Ideally, we would like to show that types 
+\begin_inset Formula $\theta<\overline{\theta}$
+\end_inset
+
+ invest 
+\begin_inset Formula $k>0$
+\end_inset
+
+, for the right value of 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Possible steps:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+What is the limit on how much capital one can invest? It seems like such
+ a limit is introduced by the final constraint
+\end_layout
+
+\begin_layout Enumerate
+Given this limit, it seems like we can improve on the 
+\begin_inset Quotes eld
+\end_inset
+
+only one type invests
+\begin_inset Quotes erd
+\end_inset
+
+ allocations by bumping up 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

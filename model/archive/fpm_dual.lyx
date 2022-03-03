@@ -1,0 +1,573 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Dual Problem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\min & \int\left[c_{0}+k-w+\frac{1}{R}\left[\alpha\left(c_{1}^{y}-\theta k\right)+\left(1-\alpha\right)c_{1}^{0}\right]\right]f\left(\theta\right)d\theta\\
+\text{s.t.}\\
+U^{*} & \le\int Ufd\theta\\
+U & =u\left(c_{0}\right)+\beta\left[\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right]\\
+U^{\prime} & =u\left(c_{0}\right)\frac{k}{\theta}\\
+U\left(\underline{\theta}\right) & \ge u\left(c_{0}+k\right)+\beta u\left(c_{1}^{0}\right)
+\end{align*}
+
+\end_inset
+
+Lagrangean after IBP:
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int\left[c_{0}+k-w+\frac{1}{R}\left[\alpha\left(c_{1}^{y}-\theta k\right)+\left(1-\alpha\right)c_{1}^{0}\right]\right]fd\theta+\gamma\left(U^{*}-\int Ufd\theta\right)+\\
+\int\left[u\left(c_{0}\right)+\beta\left[\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right]-U\right]\eta fd\theta+\\
+\int u^{\prime}\left(c_{0}\right)\frac{k}{\theta}\mu fd\theta+\int Uf^{\prime}\mu d\theta+\int Uf\mu^{\prime}d\theta-U\mu f\Big|_{\underline{\theta}}^{\overline{\theta}}+\\
+\int\left[u\left(c_{0}+k\right)+\beta u\left(c_{1}^{0}\right)-U\left(\underline{\theta}\right)\right]\phi fd\theta
+\end{multline*}
+
+\end_inset
+
+FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & f+u^{\prime}\left(c_{0}\right)\eta f+u^{\prime\prime}\left(c_{0}\right)\frac{k}{\theta}\mu f+u^{\prime}\left(c_{0}+k\right)\phi f=0\\
+k: & f-\frac{\alpha\theta}{R}f+u^{\prime}\left(c_{0}\right)\frac{\mu}{\theta}f+u^{\prime}\left(c_{0}+k\right)\phi f=0\\
+c_{1}^{y}: & \frac{\alpha}{R}f+\alpha\beta u^{\prime}\left(c_{1}^{y}\right)\eta f=0\\
+c_{1}^{0}: & \frac{1-\alpha}{R}f+\beta\left(1-\alpha\right)u^{\prime}\left(c_{1}^{0}\right)\eta f+\beta u^{\prime}\left(c_{1}^{0}\right)\phi f=0\\
+U: & -\gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f=0\\
+U\left(\underline{\theta}\right): & -\gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f-\phi f=0
+\end{align*}
+
+\end_inset
+
+Solving for 
+\begin_inset Formula $\eta$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+-\frac{1}{R} & =\beta u^{\prime}\left(c_{1}^{y}\right)\eta\\
+-\frac{1}{\beta Ru^{\prime}\left(c_{1}^{y}\right)} & =\eta
+\end{align*}
+
+\end_inset
+
+Substituting for 
+\begin_inset Formula $\eta$
+\end_inset
+
+ and cleaning up:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{u^{\prime}\left(c_{0}\right)}{\beta Ru^{\prime}\left(c_{1}^{y}\right)}+u^{\prime\prime}\left(c_{0}\right)\frac{k}{\theta}\mu+u^{\prime}\left(c_{0}+k\right)\phi=0\\
+k: & 1-\frac{\alpha\theta}{R}+u^{\prime}\left(c_{0}\right)\frac{\mu}{\theta}+u^{\prime}\left(c_{0}+k\right)\phi=0\\
+c_{1}^{0}: & \frac{1}{R}-\frac{u^{\prime}\left(c_{1}^{0}\right)}{Ru^{\prime}\left(c_{1}^{y}\right)}+\frac{\beta u^{\prime}\left(c_{1}^{0}\right)\phi}{1-\alpha}=0\\
+U: & -\gamma+\frac{1}{\beta Ru^{\prime}\left(c_{1}^{y}\right)}+\mu\frac{f^{\prime}}{f}+\mu^{\prime}=0\\
+U\left(\underline{\theta}\right): & -\gamma+\frac{1}{\beta Ru^{\prime}\left(c_{1}^{y}\right)}+\mu\frac{f^{\prime}}{f}+\mu^{\prime}-\phi=0
+\end{align*}
+
+\end_inset
+
+With log preferences:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k}=0\\
+k: & 1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k}=0\\
+c_{1}^{0}: & 1-\frac{c_{1}^{y}}{c_{1}^{0}}+\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}}=0\\
+U: & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}\\
+U\left(\underline{\theta}\right): & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}+\phi
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\mathcal{U}^{\prime}\left(\theta\right) & =\frac{k\left(\theta\right)}{\theta c_{0}\left(\theta\right)}\\
+\mu^{\prime}\left(\theta\right) & =\begin{cases}
+\gamma-\frac{c_{1}\left(\theta,y\right)}{\beta R}-\mu\left(\theta\right)\frac{f^{\prime}\left(\theta\right)}{f\left(\theta\right)} & \theta>\underline{\theta}\\
+\gamma-\frac{c_{1}\left(\theta,y\right)}{\beta R}-\mu\left(\theta\right)\frac{f^{\prime}\left(\theta\right)}{f\left(\theta\right)}+\phi\left(\theta\right) & \theta=\underline{\theta}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+such that
+\begin_inset Formula 
+\begin{align*}
+1-\frac{c_{1}\left(\theta,y\right)}{\beta Rc_{0}\left(\theta\right)}-\frac{\mu\left(\theta\right)k\left(\theta\right)}{\theta c_{0}\left(\theta\right)^{2}}+\frac{\phi\left(\theta\right)}{c_{0}\left(\theta\right)+k\left(\theta\right)} & =0\\
+1-\frac{\alpha\theta}{R}+\frac{\mu\left(\theta\right)}{\theta c_{0}\left(\theta\right)}++\frac{\phi\left(\theta\right)}{c_{0}\left(\theta\right)+k\left(\theta\right)} & =0\\
+1-\frac{c_{1}\left(\theta,y\right)}{c_{1}\left(\theta,0\right)}+\frac{\beta R\phi\left(\theta\right)}{\left(1-\alpha\right)c_{1}\left(\theta,0\right)} & =0\\
+\log c_{0}\left(\theta\right)+\beta\left[\alpha\log c_{1}\left(\theta,y\right)+\left(1-\alpha\right)\log c_{1}\left(\theta,0\right)\right] & =\mathcal{U}\left(\theta\right)\\
+\log\left(c_{0}\left(\theta\right)+k\left(\theta\right)\right)+\beta\log c_{1}\left(\theta,0\right) & =\mathcal{U}\left(\underline{\theta}\right)
+\end{align*}
+
+\end_inset
+
+or
+\begin_inset Formula 
+\begin{align*}
+\log c_{0}\left(\theta\right)+\beta\log c_{1}\left(\theta\right) & =\mathcal{U}\left(\theta\right)\\
+1-\frac{c_{1}\left(\theta,y\right)}{\beta Rc_{0}\left(\theta\right)} & =0
+\end{align*}
+
+\end_inset
+
+Risk and return:
+\begin_inset Formula 
+\begin{align*}
+1-\frac{c_{1}^{y}}{c_{1}^{0}}+\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}} & =0\\
+\frac{c_{1}^{y}}{c_{1}^{0}}-\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}} & =1\\
+c_{1}^{y}-\frac{\beta R\phi}{\left(1-\alpha\right)} & =c_{1}^{0}
+\end{align*}
+
+\end_inset
+
+As before, if 
+\begin_inset Formula $k>0$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}^{y}>c_{1}^{0}$
+\end_inset
+
+ must be the case to incentivize, which implies 
+\begin_inset Formula $\phi>0$
+\end_inset
+
+, which implies that this constraint binds.
+ Meanwhile, if 
+\begin_inset Formula $k=0$
+\end_inset
+
+, 
+\begin_inset Formula $\phi=0$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}^{y}=c_{1}^{0}\equiv c_{1}$
+\end_inset
+
+, and the FOCs reduce to 
+\begin_inset Formula 
+\begin{align*}
+1 & =\frac{c_{1}}{\beta Rc_{0}}\\
+U & =\log c_{0}+\beta\log c_{1}
+\end{align*}
+
+\end_inset
+
+For 
+\begin_inset Formula $\underline{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+, 
+\begin_inset Formula $\mu=0$
+\end_inset
+
+, which gives
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{c_{1}^{y}}{\beta Rc_{0}}+\frac{\phi}{c_{0}+k}=0\\
+k: & 1-\frac{\alpha\theta}{R}+\frac{\phi}{c_{0}+k}=0\\
+c_{1}^{0}: & 1-\frac{c_{1}^{y}}{c_{1}^{0}}+\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}}=0
+\end{align*}
+
+\end_inset
+
+So question is: given these, why is 
+\begin_inset Formula $k\left(\underline{\theta}\right)>k\left(\overline{\theta}\right)$
+\end_inset
+
+? 
+\begin_inset Formula 
+\[
+\frac{\phi}{c_{0}+k}=\frac{\alpha\theta}{R}-1
+\]
+
+\end_inset
+
+For 
+\begin_inset Formula $\underline{\theta}$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha\theta/R-1$
+\end_inset
+
+ is small, so 
+\begin_inset Formula $\phi/\left(c_{0}+k\right)$
+\end_inset
+
+ is close to zero.
+ For 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+, 
+\begin_inset Formula $\phi/\left(c_{0}+k\right)$
+\end_inset
+
+ is large.
+ If 
+\begin_inset Formula $\phi/\left(c_{0}+k\right)$
+\end_inset
+
+ is close to zero, then 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is small relative to first-period allocations, and 
+\begin_inset Formula $c_{1}^{y}-c_{1}^{0}$
+\end_inset
+
+ is small relative to first-period allocations.
+ What this means is that these types do not need to be incentivized as much
+ to invest more.
+ Why is that? 
+\end_layout
+
+\begin_layout Standard
+In the dual, it seems like what is happening is that the planner sees that
+ these guys who are low 
+\begin_inset Formula $\theta$
+\end_inset
+
+ types are cheap to incentivize–they don't need as much of a gap between
+ 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+, because their expected return is not much above 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Does this happen in UMP? FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & R=\frac{c_{1}^{y}}{\beta c_{0}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}\\
+c_{1}^{0}: & c_{1}^{0}=c_{1}^{y}-\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)}\\
+k: & R=\alpha\theta-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}
+\end{align*}
+
+\end_inset
+
+Again consider 
+\begin_inset Formula $\underline{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+, where 
+\begin_inset Formula $\mu=0$
+\end_inset
+
+.
+ So for 
+\begin_inset Formula $\underline{\theta}$
+\end_inset
+
+, 
+\begin_inset Formula 
+\[
+\alpha\theta-R=\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}
+\]
+
+\end_inset
+
+is quite low, meaning 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is low relative to 
+\begin_inset Formula $\lambda_{1}\left(c_{0}+k\right)$
+\end_inset
+
+.
+ This in turn means that 
+\begin_inset Formula $c_{1}^{y}/\beta c_{0}$
+\end_inset
+
+ is quite close to 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ I think this shows a similar incentive dynamic: these types don't need
+ to be incentivised as much with second-period consumption.
+ 
+\end_layout
+
+\begin_layout Subsection
+Wedges
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\tau_{k}=1-\frac{1/c_{0}}{\alpha\beta\theta\left(1/c_{1}^{y}\right)}=1-\frac{c_{1}^{y}}{\alpha\beta\theta c_{0}}
+\]
+
+\end_inset
+
+As before, combine FOCs for 
+\begin_inset Formula $k$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}}+\frac{\mu k}{\theta c_{0}^{2}} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}\\
+\frac{\alpha\theta}{R}-\frac{c_{1}^{y}}{\beta Rc_{0}} & =\frac{\mu}{\theta c_{0}}\left(\frac{k}{c_{0}}+1\right)\\
+\alpha\theta-\frac{c_{1}^{y}}{\beta c_{0}} & =\frac{R\mu}{\theta c_{0}}\left(\frac{k}{c_{0}}+1\right)\\
+1-\frac{c_{1}^{y}}{\alpha\beta\theta c_{0}} & =\frac{R\mu}{\alpha\theta^{2}c_{0}}\left(\frac{k}{c_{0}}+1\right)
+\end{align*}
+
+\end_inset
+
+In this example, 
+\begin_inset Formula $\mu<0$
+\end_inset
+
+, and thus the tax on capital is negative.
+ Is it the same in the original problem?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mu<0$
+\end_inset
+
+: assume not, and that 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k}=0\\
+k: & 1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k}=0
+\end{align*}
+
+\end_inset
+
+Rearranging: 
+\begin_inset Formula 
+\begin{align*}
+1+\frac{\phi}{c_{0}+k} & =\frac{c_{1}^{y}}{\beta Rc_{0}}+\frac{\mu k}{\theta c_{0}^{2}}\\
+1+\frac{\phi}{c_{0}+k} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}
+\end{align*}
+
+\end_inset
+
+Which implies that if 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}} & <1+\frac{\phi}{c_{0}+k}\\
+\frac{\alpha\theta}{R} & >1+\frac{\phi}{c_{0}+k}\\
+\frac{\alpha\theta}{R} & >\frac{c_{1}^{y}}{\beta Rc_{0}}
+\end{align*}
+
+\end_inset
+
+However,
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}}+\frac{\mu k}{\theta c_{0}^{2}} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}\\
+\frac{c_{1}^{y}}{\beta Rc_{0}} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}\left(1+\frac{k}{c_{0}}\right)
+\end{align*}
+
+\end_inset
+
+This is not contradictory...
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $\mu<0$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}} & >1+\frac{\phi}{c_{0}+k}\\
+\frac{\alpha\theta}{R} & <1+\frac{\phi}{c_{0}+k}\\
+\frac{\alpha\theta}{R} & <\frac{c_{1}^{y}}{\beta Rc_{0}}
+\end{align*}
+
+\end_inset
+
+And then
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}\left(1+\frac{k}{c_{0}}\right)\implies\\
+\frac{c_{1}^{y}}{\beta Rc_{0}} & >\frac{\alpha\theta}{R}
+\end{align*}
+
+\end_inset
+
+Also not contradictory.
+ So it seems that either can be the case.
+ In practice, 
+\begin_inset Formula $\mu<0$
+\end_inset
+
+ in the dual, which means that 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+ in the regular problem.
+ 
+\end_layout
+
+\begin_layout Section
+Second-order conditions
+\end_layout
+
+\begin_layout Standard
+FOCs: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k}=0\\
+k: & 1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k}=0\\
+c_{1}^{y}: & \frac{\alpha}{R}+\frac{\alpha\beta\eta}{c_{1}^{y}}=0\\
+c_{1}^{0}: & 1-\frac{c_{1}^{y}}{c_{1}^{0}}+\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}}=0\\
+U: & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}\\
+U\left(\underline{\theta}\right): & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}+\phi
+\end{align*}
+
+\end_inset
+
+SOCs: Need PSD Hessian.
+ 
+\begin_inset Formula $\vec{x}=\left[c_{0},k,c_{1}^{y},c_{1}^{0},U\right]^{\prime}$
+\end_inset
+
+ , so the Hessian is 
+\begin_inset Formula 
+\[
+D^{2}\mathcal{L}=\begin{bmatrix}\frac{c_{1}^{y}}{\beta Rc_{0}^{2}}+\frac{2\mu k}{\theta c_{0}^{2}}-\frac{\phi}{\left(c_{0}+k\right)^{2}} & -\frac{\mu}{\theta c_{0}^{2}}-\frac{\phi}{\left(c_{0}+k\right)^{2}} & -\frac{1}{\beta Rc_{0}} & 0 & 0\\
+-\frac{\mu}{\theta c_{0}^{2}}-\frac{\phi}{\left(c_{0}+k\right)^{2}} & -\frac{\phi}{\left(c_{0}+k\right)^{2}} & 0 & 0 & 0\\
+0 & 0 & -\frac{\alpha\beta\eta}{\left(c_{1}^{y}\right)^{2}} & 0 & 0\\
+0 & 0 & -\frac{1}{c_{1}^{0}} & \frac{c_{1}^{y}}{\left(c_{1}^{0}\right)^{2}}-\frac{\beta R\phi}{\left(1-\alpha\right)\left(c_{1}^{0}\right)^{2}} & 0\\
+0 & 0 & 0 & -\frac{1}{\beta R} & 0
+\end{bmatrix}
+\]
+
+\end_inset
+
+Need this to be positive semidefinite.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left[\underline{\theta},\overline{\theta}\right]$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,156 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\onehalfspacing
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial #2}}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\begin{flushleft}
+    Progress on Model \\
+    \today
+\end{flushleft}
+
+\section{Deterministic Model}
+
+With borrowing and lending in the first period, the planner's problem is
+
+\begin{align}
+    \max &\int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta \label{s1prob} \\ 
+    &\text{s.t.} \notag \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}}[c_0(\theta) + k(\theta)]f(\theta)d\theta \leq w \label{rc0} \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} [c_1(\theta) - \theta k(\theta)]f(\theta)d\theta \leq 0 \label{rc1} \\
+    \U(\theta) &= u(c_0(\theta)) + \beta u(c_1(\theta)) \label{pkc} \\
+    \U^\p(\theta) &= u^\p(c_0(\theta))\frac{k}{\theta} \label{icc}
+\end{align}
+
+Denoting the multipliers on the resource constraints (\ref{rc0}) and (\ref{rc1}) as \( \lambda_0 \) and \( \lambda_1 \), I assume that households can borrow and lend in the first period at rate 
+\[R = \frac{\lambda_0}{\lambda_1}\]
+
+After integrating by parts to eliminate \( \U^\p \), the planner's Lagrangean is 
+\begin{multline}
+    \lagr = \int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta + \lambda_0\left( w - \int_{\ubar{\theta}}^{\bar{\theta}} [c_0(\theta) - k(\theta)]f(\theta)d\theta \right) + \lambda_1 \int_{\ubar{\theta}}^{\bar{\theta}}[\theta k(\theta) - c(\theta)]f(\theta)d\theta + \\ 
+    %
+    \int_{\ubar{\theta}}^{\bar{\theta}}[u(c_0(\theta)) + \beta u(c_1(\theta)) - \U(\theta)]\eta(\theta)f(\theta)d\theta +  \int_{\ubar{\theta}}^{\bar{\theta}} \mu(\theta)\frac{u^\p(c_0(\theta))k(\theta)}{\theta}f(\theta)d\theta + \\
+    %
+    \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)\mu(\theta)f^\p(\theta)d\theta + \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)f(\theta)\mu^\p(\theta)d\theta - \U(\theta)\mu(\theta)f(\theta)\big|_{\ubar{\theta}}^{\bar{\theta}}
+\end{multline}
+
+From the first-order condition for \( c_1(\theta) \), 
+\begin{equation}
+    \eta(\theta) = \frac{\lambda_1}{\beta u^\p(c_1(\theta))} \label{solve_eta}
+\end{equation}
+Substituting (\ref{solve_eta}) into the FOCs for \( c_0 \), \( k \), and \( \U \) gives the following identities:
+\begin{align}
+    \lambda_0 &= \lambda_1 \frac{u^\p(c_0(\theta))}{\beta u^\p(c_1(\theta))} + \frac{\mu(\theta)}{\theta} u^{\p\p}(c_0(\theta))k(\theta) \label{foc_c0} \\
+    \lambda_0 &= \theta\lambda_1 + \frac{\mu(\theta)}{\theta}u^\p(c(\theta)) \label{foc_k} \\
+    \frac{\lambda_1}{\beta u^\p(c_1(\theta))} &= 1 + \mu(\theta)\frac{f^\p(\theta)}{f(\theta)} + \mu^\p(\theta) \label{foc_U}
+\end{align}
+
+The solution is now given by the following system of equations in \( c_0(\theta), c_1(\theta), k(\theta), \lambda_1, \U(\theta) \), and \( \mu(\theta) \): 
+\begin{align}
+    \int_{\ubar{\theta}}^{\bar{\theta}}[c_0(\theta) + k(\theta)]f(\theta)d\theta &= w \\
+    \int_{\ubar{\theta}}^{\bar{\theta}} [c_1(\theta) - \theta k(\theta)]f(\theta)d\theta &= 0 \\
+    \frac{c_1(\theta)}{\beta c_0(\theta)} - \frac{\mu(\theta)}{\lambda_1 \theta}\frac{k(\theta)}{c_0(\theta)^2} - R &= 0 \label{foc_c0_par} \\
+    \theta + \frac{\mu(\theta)}{\lambda_1\theta c_0(\theta)} - R &= 0 \label{foc_k_par} \\
+    \mu^\p(\theta) + \mu(\theta)\frac{f^\p(\theta)}{f(\theta)} - \frac{\lambda_1}{\beta u^\p(c_1(\theta))} + 1 &= 0 \\
+    \log c_0(\theta) + \beta\log c_1(\theta) - \U(\theta) &= 0 \label{pkc_par} \\
+    u^\p \left( c_0(\theta) \right)\frac{k(\theta)}{\theta} - \U^\p(\theta) &= 0 \label{ic_par}
+\end{align}
+
+These solutions have a number of appealing features. For one, it can be shown that \( k(\theta) > 0 \) if and only if \( \theta > R \). While unsurprising, it is reassuring that this result falls out. Second, we see that the inverse Euler equation holds: from (\ref{foc_c0_par}), 
+\begin{equation}
+    \frac{c_1(\theta)}{\beta c_0(\theta)} - \frac{\mu(\theta)}{\lambda_1 \theta}\frac{k(\theta)}{c_0(\theta)^2} = R \label{inv_setup}
+\end{equation}
+If \( \theta > R \), then \( \mu(\theta) < 0 \), and so for those types for whom at the optimum \( k(\theta) > 0 \), (\ref{inv_setup}) becomes the inverse Euler:
+\begin{equation}
+    \frac{c_1(\theta)}{\beta c_0(\theta)} < \theta
+\end{equation}
+This implies a positive intertemporal wedge. 
+
+However, having tried various numerical techniques to solve the above system, a solution does not seem to exist. The issue is at the boundary: essentially, the planner wishes to set \( k(\bar{\theta}) = \infty \). The easiest way to see this is to solve \ref{foc_c0_par} for \( k(\theta) \):
+\begin{equation}
+    k(\theta) = \frac{\lambda_1\theta c_0^2}{\mu}\left( \frac{c_1}{\beta c_0} - R \right)
+\end{equation}
+However, the boundary condition requires that \( \mu(\bar{\theta}) = 0 \), making \( k(\bar{\theta}) \) undefined. 
+
+\section{Extensions}
+We have considered a number of fixes to remedy the above issue. Our two current candidates are to make output stochastic, and to add limited commitment. I have been working on the model with risk, as outlined below.
+
+\subsection{Stochastic Model}
+
+The economy is populated by a continuum of agents, indexed by \( i\in[0,1] \). Each agent has a privately-known type \( \theta\in\Theta=[\ubar{\theta},\bar{\theta}] \), distributed according to the C.D.F \( F(\theta) \). Time is discrete, and is given by \( t\in\{0,1\} \). Agents derive utility from consumption and discount the future at rate \( \beta \).
+where \( c_t \) denotes consumption at time \( t \). All agents are endowed with initial wealth \( w \), which they allocate at \( t = 0 \) between consumption and savings. There are two assets in which agents may save for future consumption: risk-free savings bonds \( b \), and investment into their private entrepreneurial production technology \( k \). The price of the risk-free bond is normalized to one, and the return is given by \( R > 0 \). If an agent of type \( \theta \) invests \( k \) into his entrepreneurial technology, his production at \( t = 1 \) is as follows:
+\begin{equation}
+    y = \begin{cases}
+        \theta k \varepsilon & \text{with probability }\alpha \\
+        0 & \text{with probability }1 - \alpha
+    \end{cases}
+\end{equation}
+\( \varepsilon \) is an idiosyncratic shock to productivity, drawn from a distribution with C.D.F. \( H(\varepsilon) \). 
+
+I assume that the government levies a tax on capital income, and is able to differentiate between income from risk-free saving and risky investment. Thus, the tax function has the form \( T(y,Rb) \), and the partial derivatives \( T_1 \) and \( T_2 \) give the marginal tax rates on the two types of investment income. The government is unable, however, to observe type \( \theta \), investment \( k \), or shock \( \varepsilon \). As noted in \cite{mirrlees1971exploration}, the government can be equivalently characterized as a benevolent social planner, who collects reports from agents on their type \( \theta \) and income \( y \), and allocates first-period consumption and investment \( \left( c_0(\theta),k(\theta) \right) \) and second-period consumption \( c_1(\theta,y) \). Henceforth, I use the terms ``government'' and ``planner'' interchangeably. 
+
+% Pick one: c1(t,y) or c1(t,e)
+
+The planner's objective, then, is to maximize
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)f(\theta)d\theta
+\end{equation}
+where 
+\begin{equation}
+    \U(\theta) = u\left( c_0(\theta) \right) + \beta\left( \alpha\int_{0}^{\infty}u\left( c_1(\theta,y) \right)dG(y|\theta k) + (1 - \alpha)u\left( c_1(\theta,0) \right)\right)
+\end{equation}
+by choosing allocations \( \left( c_0(\theta),k(\theta) ,c_1(\theta,y) \right)\) for \( \theta\in\Theta \) and \( y\in\R_+ \). An allocation is said to be \textit{feasible} if it satisfies the resource constraints for \( t=0,1 \):
+\begin{align}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \left[ c_0(\theta) + k(\theta) \right]f(\theta)d\theta &\le w \\
+    \alpha\int_{\ubar{\theta}}^{\bar{\theta}}\int_{0}^{\infty}\left[ \theta k(\theta)\varepsilon - c_1(\theta,\varepsilon) \right]h(\varepsilon)d\varepsilon f(\theta)d\theta + (1-\alpha)\int_{\ubar{\theta}}^{\bar{\theta}}c_1(\theta,0)f(\theta)d\theta &\le 0
+\end{align}
+
+Additionally, because the planner cannot observe \( \theta \) or \( k \), she must choose allocations that are \textit{incentive compatible}. Formally, the incentive constraints are formulated as follows: \( \forall \theta\in\Theta \),
+\begin{equation}
+    \theta, k(\theta)\in\arg\max_{\hat{\theta},\hat{k}}u\left( c_0(\hat{\theta}) + k(\hat{\theta}) - \hat{k} \right) + \beta\left( \alpha\int_{0}^{\infty}c_1(\hat{\theta},y)dH\left( \frac{y}{\theta k} \right) + (1 - \alpha)u\left( c_1\left( \theta,0 \right) \right) \right) \label{ics}
+\end{equation}
+The planner faces one additional constraint in formulating optimal allocations. As we will show, if \( R \) is the risk-free rate, then the planner finds it optimal to incentivize all types \( \theta > R \) to invest \( k(\theta)>0 \). The agents who do so will face risk, including the nonzero probability that their capital investment return will be zero. The planner must ensure that these types are not better off eating their entire first-period allotment \( c_0(\theta) + k(\theta) \), investing nothing (and thus producing \( y = 0 \) with certainty), and then claiming to have been unlucky. Formally, we require that \( \forall\theta\in\Theta \),
+\begin{equation}
+    \U(\theta)\geq \max_{\hat{\theta}} u\left( c_0(\hat{\theta}) + k(\hat{\theta}) \right) + \beta u\left( c_1(\hat{\theta},0) \right) \label{nolie}
+\end{equation}
+In order to simplify the double continuum of constraints in (\ref{nolie}) we make the following two assumptions, which will prove to be innocuous. The first is that if \( \theta > R \), \( \U^\p(\theta) > 0 \); that is, the utility from optimal allocations is increasing in \( \theta \). The second is that 
+\begin{equation}
+    \bar{\theta} = \arg \max_{\hat{\theta}} u\left( c_0(\hat{\theta}) + k(\hat{\theta}) \right) + \beta u\left( c_1(\hat{\theta},0) \right) 
+\end{equation}
+that is, if an agent plans on absconding with all of his allocated capital and claiming to have been unlucky, it is optimal for him to claim to be type \( \bar{\theta} \). With these assumptions in place, (\ref{nolie}) can be reduced to a single constraint:
+\begin{equation}
+    \U(R)\geq u\left( c_0(\bar{\theta}) + k(\bar{\theta}) \right) + \beta u\left( c_1(\bar{\theta},0) \right) \label{nolie1}
+\end{equation}
+
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

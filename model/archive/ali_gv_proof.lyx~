@@ -1,0 +1,332 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Component planner's problem (CPP):
+\begin_inset Formula 
+\begin{align}
+P_{t}\left(w\right)=\max_{c_{0},c_{1},k,w^{\prime},U} & \int_{\Theta}\left[\alpha q_{t}\kappa_{t+1}\theta k\left(\theta\right)-c_{0}\left(\theta\right)-k\left(\theta\right)+p_{t}+q_{t}\int_{0}^{\infty}\left[-c_{1}\left(\theta,y\right)+q_{t+1}P_{t+2}\left(w^{\prime}\left(\theta,y\right)\right)\right]dG\left(y|\theta,k\left(\theta\right)\right)\right]dF\left(\theta\right)\\
+\text{s.t.}\nonumber \\
+\int U\left(\theta\right)dF\left(\theta\right) & =w\nonumber \\
+u\left(c_{0}\left(\theta\right)\right)+ & \int\left[\beta u\left(c_{1}\left(\theta,y\right)\right)+\hat{\beta}w^{\prime}\left(\theta,y\right)\right]dG\left(y|\theta,k\right)=U\left(\theta\right)\nonumber \\
+u^{\prime}\left(c_{0}\left(\theta\right)\right) & =\int_{0}^{\infty}\left[\beta u\left(c_{1}\left(\theta,y\right)\right)+\hat{\beta}w^{\prime}\left(\theta,y\right)\right]g_{k}\left(y|\theta,k\right)dy\nonumber 
+\end{align}
+
+\end_inset
+
+ Observation: problem is homogeneous in 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ Claim: with log utility, for all 
+\begin_inset Formula $w$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{align*}
+P_{t}\left(w\right) & =-B_{t}\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)+H_{t}\\
+c_{0}\left(\theta,w\right) & =\underbrace{c_{0,t}\left(\theta\right)}_{\text{no }w}\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)\\
+c_{1}\left(\theta,y,w\right) & =c_{1,t}\left(\theta,y\right)\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)\\
+k\left(\theta,w\right) & =k_{t}\left(\theta\right)\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)\\
+w^{\prime}\left(\theta,y,w\right) & =\hat{w}_{t}\left(\theta,y\right)+w\\
+U\left(\theta,w\right) & =U_{t}\left(\theta\right)+w
+\end{align*}
+
+\end_inset
+
+ for some 
+\begin_inset Formula $B_{t},c_{0,t},c_{1,t},k_{t},\hat{w}_{t}$
+\end_inset
+
+, and 
+\begin_inset Formula $U_{t}$
+\end_inset
+
+.
+ Note that these policy functions, which appear on the RHS of each line
+ above, are 
+\emph on
+independent
+\emph default
+ of 
+\begin_inset Formula $w$
+\end_inset
+
+–they are the baseline.
+ 
+\begin_inset Formula $H_{t}$
+\end_inset
+
+ is the present discounted value of labor income (we will not have this).
+ 
+\end_layout
+
+\begin_layout Standard
+Proof: consider case where 
+\begin_inset Formula $\sigma=1$
+\end_inset
+
+ (log utility).
+ Guess:
+\begin_inset Formula 
+\[
+P_{t+2}\left(w\right)=-B_{t+2}\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)+H_{t+2}
+\]
+
+\end_inset
+
+ Now, consider policy functions 
+\begin_inset Formula $c_{0,t}\left(\theta,w\right),k_{t+1}\left(\theta,w\right),c_{1,t}\left(\theta,w,y\right),w_{t}^{\prime}\left(\theta,y,w\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $U_{t}\left(\theta,y,w\right)$
+\end_inset
+
+ (which solve the problem in (1)?) and define the following aumented policy
+ functions:
+\begin_inset Formula 
+\begin{align*}
+\hat{c}_{0,t}\left(\theta,w\right) & =c_{0,t}\left(\theta,w\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\\
+\hat{c}_{1,t}\left(\theta,y,w\right) & =c_{1,t}\left(\theta,y,w\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\\
+\hat{k}_{t+1}\left(\theta,w\right) & =k_{t+1}\left(\theta,w\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\\
+\hat{w}_{t}\left(\theta,y,w\right) & =w_{t}^{\prime}\left(\theta,y,w\right)-w\\
+\hat{U}_{t}\left(\theta,w\right) & =U_{t}\left(\theta,w\right)-w
+\end{align*}
+
+\end_inset
+
+ By construction, 
+\begin_inset Formula $\hat{c}_{0,t}\left(\theta,w\right),\hat{c}_{1,t}\left(\theta,y,w\right),\hat{k}_{t+1}\left(\theta,w\right),\hat{w}_{t}\left(\theta,y,w\right),$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{U}_{t}\left(\theta,w\right)$
+\end_inset
+
+ solve the 
+\emph on
+augmented
+\emph default
+ component planner's problem:
+\begin_inset Formula 
+\begin{align*}
+\max & \int_{\Theta}\left[q_{t}\kappa_{t+1}\theta\hat{k}_{1}\left(\theta\right)-\hat{c}_{0}\left(\theta\right)-\hat{k}_{1}\left(\theta\right)-q_{t}\int_{0}^{\infty}\left[\hat{c}_{1,t}\left(\theta,y\right)+q_{t+1}B_{t+2}\exp\left(\frac{1+\beta}{1-\hat{\beta}}\hat{w}\left(\theta,y\right)\right)\right]dG\left(y|\theta,k_{1}\left(\theta\right)\right)\right]dF\left(\theta\right)\\
+\text{s.t.}\\
+\int_{\Theta}\hat{U}\left(\theta\right)dF\left(\theta\right) & =0\\
+\log\left(\hat{c}_{0}\left(\theta\right)\right)+ & \int_{0}^{\infty}\left[\beta\log\left(\hat{c}_{1}\left(\theta,y\right)\right)+\hat{\beta}\hat{w}\left(\theta,y\right)\right]dG\left(y|\theta,k_{1}\left(\theta\right)\right)=\hat{U}\left(\theta\right)\\
+\hat{U}^{\prime}\left(\theta\right)= & \frac{\hat{k}_{1}\left(\theta\right)}{\theta\hat{c}_{0}\left(\theta\right)}\\
+\frac{1}{\hat{c}_{0}\left(\theta\right)}= & \int\left[\beta\log\left(\hat{c}_{1}\left(\theta,y\right)\right)+\hat{\beta}\hat{w}^{\prime}\left(\theta,y\right)\right]g_{k}\left(y|\theta,\hat{k}_{1}\left(\theta\right)\right)dy
+\end{align*}
+
+\end_inset
+
+ The question is: why do these augmented policy functions solve this augmented
+ problem?
+\end_layout
+
+\begin_layout Standard
+One thought: Working from the definitions, 
+\begin_inset Formula 
+\begin{align*}
+\hat{c}_{0,t}\left(\theta,w\right)= & c_{0,t}\left(\theta,w\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\\
+= & c_{0,t}\left(\theta\right)\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\\
+= & c_{0,t}\left(\theta\right)\exp\left(w\left(\underbrace{\frac{1-\hat{\beta}}{1+\beta}-\frac{1+\beta}{1-\hat{\beta}}}_{???}\right)\right)
+\end{align*}
+
+\end_inset
+
+ The problem is, the innermost term doesn't simplify to anything.
+\end_layout
+
+\begin_layout Standard
+Other thought: consider the first incentive constraint:
+\begin_inset Formula 
+\begin{align*}
+\log\left(\hat{c}_{0}\left(\theta\right)\right)+\int_{0}^{\infty}\left[\beta\log\left(\hat{c}_{1}\left(\theta,y\right)\right)+\hat{\beta}\hat{w}\left(\theta,y\right)\right]dG\left(y|\theta,k_{1}\left(\theta\right)\right) & =\\
+\log\left(c_{0}\left(\theta\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\right) & +\int_{0}^{\infty}\left[\beta\log\left(c_{1}\left(\theta,y\right)\exp\left(-\frac{1+\beta}{1-\hat{\beta}}w\right)\right)+\hat{\beta}\left(w_{t}^{\prime}\left(\theta,y\right)-w\right)\right]dG\left(y|\theta,k_{1}\left(\theta\right)\right)\\
+= & \log c_{0}\left(\theta\right)+\int\left[\beta u\left(c_{1}\left(\theta,y\right)\right)+\hat{\beta}w^{\prime}\left(\theta,y\right)\right]dG\left(y|\theta,k\right)\underbrace{-\frac{1+\beta}{1-\hat{\beta}}w-\beta\frac{1+\beta}{1-\hat{\beta}}w-\hat{\beta}w}_{???}
+\end{align*}
+
+\end_inset
+
+Once again, the bracketed term doesn't really simplify to anything.
+ In general, it is not clear why these augmented policy functions were construct
+ed in this way.
+ My thought is that the scalings would cancel out in some way–or lead to
+ just subtracting 
+\begin_inset Formula $w$
+\end_inset
+
+–but this does not seem to be the case.
+ 
+\end_layout
+
+\begin_layout Standard
+Other thought: think about 
+\begin_inset Formula $c_{0,t}\left(\theta\right)$
+\end_inset
+
+ from the proposition.
+ Not only is this independent of 
+\begin_inset Formula $w$
+\end_inset
+
+, it solves the CPP for a specific value of 
+\begin_inset Formula $w$
+\end_inset
+
+: specifically, 
+\begin_inset Formula $w=0$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+c_{0}\left(\theta,w\right)=c_{0,t}\left(\theta\right)\implies\exp\left(\frac{1-\hat{\beta}}{1+\beta}w\right)=1\implies w=0
+\]
+
+\end_inset
+
+ So it would make some sense if, instead of the above, for instance
+\begin_inset Formula 
+\[
+\hat{c}_{0,t}\left(\theta,w\right)=c_{0,t}\left(\theta,w\right)\exp\left(-\frac{1-\hat{\beta}}{1+\beta}w\right)
+\]
+
+\end_inset
+
+ But this just reverses the scaling, it doesn't show the need for the hat
+ allocations–why not just say that 
+\begin_inset Formula $B_{t}$
+\end_inset
+
+ is the solution at the independent policy functions (e.g.
+ 
+\begin_inset Formula $c_{0}\left(\theta\right)$
+\end_inset
+
+)? What is the function of the augmented problem?
+\end_layout
+
+\begin_layout Standard
+What about the case where 
+\begin_inset Formula $\sigma\ne1$
+\end_inset
+
+? 
+\begin_inset Formula 
+\begin{align*}
+\hat{c}_{0,t}\left(\theta,w\right) & =c_{0,t}\left(\theta,w\right)\left(\left(1-\sigma\right)w\right)^{-\frac{1}{1-\sigma}}\\
+ & =c_{0,t}\left(\theta\right)\left(\left(1-\sigma\right)w\right)^{\frac{1}{1-\sigma}}\left(\left(1-\sigma\right)w\right)^{-\frac{1}{1-\sigma}}\\
+ & =c_{0,t}\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+In this case, hat policy functions are equal to the 
+\begin_inset Quotes eld
+\end_inset
+
+baseline
+\begin_inset Quotes erd
+\end_inset
+
+ ones.
+ This makes somewhat more sense: the baseline solutions are fixed, and then
+ the solution for any 
+\begin_inset Formula $w$
+\end_inset
+
+ vary around these.
+ So the idea, I think, is this: the augmented (hat) policy functions solve
+ the version of the problem for which the scaling based on w has been somewhat
+ 
+\begin_inset Quotes eld
+\end_inset
+
+undone.
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,115 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Problem:
+\begin_inset Formula 
+\[
+C\left(w\right)=\text{\ensuremath{\min}}\int\left[c\left(\theta\right)+k\left(\theta\right)-\frac{\alpha\theta k\left(\theta\right)}{R}+\frac{1}{R}\alpha C\left(w_{1}'\left(\theta\right)\right)+\frac{1}{R}\left(1-\alpha\right)C\left(w_{0}'\left(\theta\right)\right)\right]
+\]
+
+\end_inset
+
+subject to
+\begin_inset Formula 
+\begin{align*}
+\int U\left(\theta\right)dF\left(\theta\right) & =w\\
+\log c\left(\theta\right)+\left[\beta\alpha w_{1}'\left(\theta\right)+\left(1-\alpha\right)w'_{0}\left(\theta\right)\right] & =U\left(\theta\right)\\
+\frac{\theta k\left(\theta\right)}{c\left(\theta\right)} & =U'\left(\theta\right)\\
+\log\left(c\left(\theta\right)+k\left(\theta\right)\right)+\beta w'_{0}\left(\theta\right) & =U\left(\underline{\theta}\right)
+\end{align*}
+
+\end_inset
+
+Conjecture
+\begin_inset Formula 
+\begin{align*}
+C\left(w\right) & =Ae^{\left(1-\beta\right)w}\\
+c\left(\theta,w\right) & =c\left(\theta\right)e^{\left(1-\beta\right)w}\\
+k\left(\theta,w\right) & =k\left(\theta\right)e^{\left(1-\beta\right)w}\\
+w_{1}'\left(\theta,w\right) & =w_{1}'\left(\theta\right)+w\\
+w_{0}'\left(\theta,w\right) & =w_{0}'\left(\theta\right)+w\\
+U\left(\theta,w\right) & =U\left(\theta\right)+w
+\end{align*}
+
+\end_inset
+
+Allocations
+\end_layout
+
+\end_body
+\end_document

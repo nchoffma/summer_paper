@@ -1,0 +1,390 @@
+%% LyX 2.2.0 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+  \theoremstyle{plain}
+  \newtheorem*{assumption*}{\protect\assumptionname}
+  \theoremstyle{remark}
+  \newtheorem*{note*}{\protect\notename}
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{geometry}
+\usepackage{multirow}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\setlength{\parskip}{0pt}
+\usepackage{setspace}
+\onehalfspacing
+\makeatletter
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage[bookmarks=false,colorlinks,citecolor=navy,linkcolor=maroon,urlcolor=maroon,backref]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{assumption}{Assumption}
+%\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}\\}
+\def\argmax{\mathop{\rm arg\,max}}
+\definecolor{Green}{rgb}{.3,.7,0}
+\definecolor{orange}{rgb}{.7,.3,0}
+\definecolor{maroon}{cmyk}{0,1,1,.3}
+\definecolor{navy}{cmyk}{1,1,0,.1}
+\usepackage[labelsep=colon,font={footnotesize},labelfont={sc},justification=justified]{caption} 
+
+\makeatother
+
+\makeatother
+
+\usepackage{babel}
+  \providecommand{\assumptionname}{Assumption}
+  \providecommand{\notename}{Note}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+
+\title{Solving Mirrleesian Optimal Taxation Problems with Infinitely Many
+Types Using Finite Element Method}
+
+\author{Roozbeh Hosseini}
+
+\date{\today}
+\maketitle
+
+\section{Static Model}
+
+Consider the following environment. Individual preferences are\footnote{There is nothing special about additive separability. All procedures
+can be extended to more general preferences. } 
+\[
+U\left(c,l\right)=u\left(c\right)-v\left(l\right)
+\]
+
+Technology
+\[
+y=\theta l.
+\]
+Here $l$ is hours worked (or effort), $\theta$ is labor ability
+(or productivity), and $y$ is effective labor services.
+\begin{assumption*}
+Only $y$ is observable by taxing authorities. Therefore, taxes cannot
+be functions of $\theta$ or $l$.
+\end{assumption*}
+Labor ability/productivity $\theta$ has CDF $F(\theta)$ (PDF $f(\theta)$)
+on $\left[\underline{\theta},\overline{\theta}\right]$ where $\bar{\theta}$
+can be infinity. In what follows, I refer to $\theta$ as individual's
+'type'.
+\begin{note*}
+In some of the derivations it is useful/convenient to use $y/\theta$
+to denote hours worked.
+
+Let $T\left(y\right)$ be a tax function. Then individual of type
+$\theta$ faces the following decision problem
+\begin{align*}
+U\left(\theta\right) & =\max_{c,l}u\left(c\right)-v\left(\frac{y}{\theta}\right)\\
+c & =y-T\left(y\right)
+\end{align*}
+Note that
+\[
+\theta u'\left(c\right)=\left(1-T'\left(y\right)\right)v'\left(\frac{y}{\theta}\right)
+\]
+Also, by envelope theorem
+\[
+\dot{U}\left(\theta\right)=\frac{y}{\theta^{2}}v'\left(\frac{y}{\theta}\right)
+\]
+Which we can rewrite as
+\begin{equation}
+U'\left(\theta\right)=\frac{l\left(\theta\right)}{\theta}v'\left(l\left(\theta\right)\right)\label{eq:Static-IC}
+\end{equation}
+Constraint \eqref{eq:Static-IC} is call \emph{implementability constraint
+}(or \emph{incentive} \emph{compatibility constraint}).
+
+Suppose there is government that has expenditure $G$. The government
+budget constraint is 
+\[
+G=\int_{\theta}T\left(y\left(\theta\right)\right)f\left(\theta\right)d\theta.
+\]
+Finally allocation in the economy is feasible if 
+\[
+\int_{\theta}c\left(\theta\right)f\left(\theta\right)d\theta+G=\int_{\theta}y\left(\theta\right)f\left(\theta\right)d\theta.
+\]
+\end{note*}
+\begin{thm}
+Any feasible allocation $\left(c\left(\theta\right),l\left(\theta\right)\right)$
+can be implemented via some income tax function $T\left(y\right)$
+iff it satisfy implementability constraint \eqref{eq:Static-IC}.
+\end{thm}
+\begin{proof}
+The necessity is obvious (outlined above). The sufficiency is by construction
+of a tax function.
+\end{proof}
+This theorem transforms the problem of finding optimal policy function,
+$T\left(y\right)$, (which is a very complicated problem) to a constrained
+maximization problem over allocations (which can be solved using standard
+methods).
+
+\subsection{Planning Problem}
+
+Consider the problem of a government who seeks to find policies that
+maximize weighted average of welfare in the economy. Suppose government
+assigns weight $g\left(\theta\right)$ to individual of type $\theta$.
+
+Instead of writing this maximization problem over the set of policy
+functions, we write the following maximization problem over the set
+of \emph{implementable allocations}.
+
+\[
+\max\int_{\underline{\theta}}^{\overline{\theta}}U\left(\theta\right)g\left(\theta\right)f(\theta)d\theta
+\]
+s.t.
+\[
+G+\int_{\underline{\theta}}^{\overline{\theta}}\left(c(\theta)-\theta l(\theta)\right)f(\theta)d\theta=0\quad;\lambda
+\]
+\[
+U(\theta)=u(c(\theta))-v\left(l(\theta)\right)\quad;f\left(\theta\right)\eta(\theta)
+\]
+\[
+U'=\frac{l(\theta)}{\theta}v'\left(l(\theta)\right)\quad;\mu(\theta)f\left(\theta\right)
+\]
+
+First order conditions:
+\begin{equation}
+-\lambda+u'(c(\theta))\eta(\theta)=0\label{eq:FOC-c}
+\end{equation}
+\begin{equation}
+\theta\lambda-\eta(\theta)v'\left(l(\theta)\right)+\frac{\mu(\theta)}{\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0\label{eq:FOC-l}
+\end{equation}
+
+Hamiltonian:
+\begin{equation}
+g(\theta)-\eta(\theta)+\mu'(\theta)+\frac{f'(\theta)}{f(\theta)}\mu(\theta)=0\label{eq:FOC-U}
+\end{equation}
+
+Boundary conditions:
+\[
+\mu(\overline{\theta})=\mu(\underline{\theta})=0
+\]
+Use \eqref{eq:FOC-c} to eliminate $\eta(\theta)$
+\[
+\theta-\frac{v'\left(l(\theta)\right)}{u'(c(\theta))}+\frac{\mu(\theta)}{\lambda\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0
+\]
+\[
+g(\theta)+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\frac{\lambda}{u'(c(\theta))}+\dot{\mu}(\theta)=0
+\]
+
+We need to solve the following system of equations:
+\begin{equation}
+G+\int_{\underline{\theta}}^{\overline{\theta}}\left(c(\theta)-\theta l(\theta)\right)f(\theta)d\theta=0\label{eq:PK}
+\end{equation}
+\begin{equation}
+U(\theta)=u(c(\theta))-v\left(l(\theta)\right)\label{eq:U}
+\end{equation}
+\begin{equation}
+U'(\theta)=\frac{l(\theta)}{\theta}v'\left(l(\theta)\right)\label{eq:IC}
+\end{equation}
+\begin{equation}
+\theta-\frac{v'\left(l(\theta)\right)}{u'(c(\theta))}+\frac{\mu(\theta)}{\lambda\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0\label{eq:FOC-lc}
+\end{equation}
+\begin{equation}
+g(\theta)+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\frac{\lambda}{u'(c(\theta))}+\mu'(\theta)=0\label{eq:FOC-mu}
+\end{equation}
+\begin{equation}
+\mu(\overline{\theta})=\mu(\underline{\theta})=0\label{eq:boundary}
+\end{equation}
+To solve for the following five: $c(\theta),l(\theta),U(\theta),\mu(\theta),\lambda$. 
+
+Note that this is in fact an ODE in $U\left(\theta\right)$ and $\mu\left(\theta\right)$
+with boundary conditions $\mu(\overline{\theta})=\mu(\underline{\theta})=0$.
+So we can use method of weighted residual to solve it.
+
+\subsection{Example:}
+
+Consider the following example
+\[
+U(c,l)=\frac{c^{1-\sigma}}{1-\sigma}-\psi\frac{l^{\gamma}}{\gamma}
+\]
+So equations \eqref{eq:IC}, \eqref{eq:FOC-lc} and \eqref{eq:FOC-mu}
+become
+\[
+U'\left(\theta\right)=\frac{\psi l\left(\theta\right)^{\gamma}}{\theta}
+\]
+\[
+\theta-\psi l\left(\theta\right)^{\gamma-1}c\left(\theta\right)^{\sigma}+\frac{\mu(\theta)}{\lambda\theta}\psi\gamma l\left(\theta\right)^{\gamma-1}=0
+\]
+\[
+g(\theta)+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\lambda c(\theta)^{\sigma}+\mu'(\theta)=0
+\]
+Take $\lambda$ as given. We want to solve the following system of
+equations
+\begin{eqnarray*}
+U' & = & \psi\frac{l^{\gamma}}{\theta}\\
+\mu' & = & \lambda c^{\sigma}-g-\frac{f'}{f}\mu
+\end{eqnarray*}
+where $l$ and $c$ are solutions to the following equation
+\begin{eqnarray*}
+\frac{c^{1-\sigma}}{1-\sigma}-\psi\frac{l^{\gamma}}{\gamma}-U & = & 0\\
+\theta-\psi l^{\gamma-1}c^{\sigma}+\frac{\mu}{\lambda\theta}\psi\gamma l^{\gamma-1} & = & 0
+\end{eqnarray*}
+
+We approximate $\mu$ and $U$ with
+\begin{eqnarray*}
+U\left(\theta\right) & = & \sum_{n=1}^{N}\alpha_{n}\psi_{n}\left(\theta\right)\\
+\mu\left(\theta\right) & = & \sum_{n=1}^{N}\beta_{n}\psi_{n}\left(\theta\right)
+\end{eqnarray*}
+where $\phi_{n}\left(\theta\right)$ is the tent function on $\left[\theta_{n-1},\theta_{n+1}\right]$. 
+
+Define 
+\begin{align*}
+R_{\alpha}\left(\theta\right) & =U'\left(\theta\right)-\psi\frac{l\left(\theta;U,\mu,\lambda\right)^{\gamma}}{\theta},\\
+R_{\beta}\left(\theta\right) & =\mu'\left(\theta\right)-\left(\lambda c\left(\theta;U,\mu,\lambda\right)^{\sigma}-g-\frac{f'}{f}\mu\right).
+\end{align*}
+We form the following system equations
+\begin{align*}
+\int_{\underline{\theta}}^{\bar{\theta}}\psi_{n}\left(\theta\right)R_{\alpha}\left(\theta\right)d\theta & =0\quad n=1,\dots,N\\
+\int_{\underline{\theta}}^{\bar{\theta}}\psi_{n}\left(\theta\right)R_{\beta}\left(\theta\right)d\theta & =0\quad n=1,\dots,N\\
+G+\int_{\underline{\theta}}^{\overline{\theta}}\left(c\left(\theta;U,\mu,\lambda\right)-\theta l\left(\theta;U,\mu,\lambda\right)\right)f(\theta)d\theta & =0
+\end{align*}
+
+This is a system of $2N+1$ equations to solve for $\alpha_{n}$,
+$\beta_{n}$ and $\lambda$. The good news is each equations (except
+the last one) in only relevant only on one interval $\left[\theta_{n},\theta_{n+1}\right]$.
+
+Here is how the algorithm works:
+\begin{enumerate}
+\item Start with a guess of $\lambda$, $\alpha_{n}$ and $\beta_{n}$.
+\item For $\theta\in\left[\theta_{n},\theta_{n+1}\right]$, find $U\left(\theta\right)$,
+$\mu\left(\theta\right)$.
+\item Solve for $c\left(\theta;U,\mu,\lambda\right)$ and $l\left(\theta;U,\mu,\lambda\right)$
+such that
+\begin{eqnarray*}
+\frac{c^{1-\sigma}}{1-\sigma}-\psi\frac{l^{\gamma}}{\gamma}-U & = & 0,\\
+\theta-\psi l^{\gamma-1}c^{\sigma}+\frac{\mu}{\lambda\theta}\psi\gamma l^{\gamma-1} & = & 0.
+\end{eqnarray*}
+These are just promise keeping and FOC w.r.t to $l$.
+\item Evaluate $R_{\alpha}\left(\theta\right)$, $R_{\beta}\left(\theta\right)$
+and feasibility.
+\item Evaluate the derivative of the above equations w.r.t $\alpha_{n}$,
+$\beta_{n}$ and $\lambda$.
+\item Do the newton update.
+\end{enumerate}
+The following is useful in doing steps 2, 3, 4 and 5.
+
+Let $\epsilon=2(\theta-\theta_{n})/(\theta_{n+1}-\theta_{n})-1$ and
+$\Delta_{n}=\theta_{n+1}-\theta_{n}$. Then on the interval $\left[\theta_{n},\theta_{n+1}\right]$
+\begin{eqnarray*}
+U\left(\theta\right) & = & 0.5\alpha_{n}\left(1-\epsilon\right)+0.5\alpha_{n+1}\left(1+\epsilon\right)\\
+\mu\left(\theta\right) & = & 0.5\beta_{n}\left(1-\epsilon\right)+0.5\beta_{n+1}\left(1+\epsilon\right)
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+U'\left(\theta\right) & = & \frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}}\\
+\mu'\left(\theta\right) & = & \frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}}
+\end{eqnarray*}
+Therefore, we need to solve the system of $2N$ nonlinear equations
+for $\alpha_{n}$and $\beta_{n}$
+\begin{eqnarray*}
+\frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}} & -\phi & \frac{l\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)^{\gamma}}{\theta}=0\\
+\frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}} & - & \left(\lambda c\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)^{\sigma}-g-\left(0.5\beta_{n}\left(1-\epsilon\right)+0.5\beta_{n+1}\left(1+\epsilon\right)\right)\frac{f'}{f}\right)=0
+\end{eqnarray*}
+With conditions that $\alpha_{1}=\alpha_{N}=0$.
+
+Derivative of the $n$th equation with respect to 
+\begin{itemize}
+\item $\alpha_{n}$
+\[
+-1/\Delta_{n}-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\alpha_{n}}
+\]
+\[
+-\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\alpha_{n}}
+\]
+\item $\alpha_{n+1}$
+\[
+1/\Delta_{n}-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\alpha_{n+1}}
+\]
+\[
+-\sigma f\lambda c^{\sigma-1}\frac{\partial c}{\partial\alpha_{n+1}}
+\]
+\item $\beta_{n}$
+\[
+-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\beta_{n}}
+\]
+\[
+-1/\Delta_{n}-\left(\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\beta_{n}}-0.5\left(1-\epsilon\right)\frac{f'}{f}\right)
+\]
+\item $\beta_{n+1}$
+\[
+-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\beta_{n+1}}
+\]
+\[
+1/\Delta_{n}-\left(\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\beta_{n+1}}-0.5\left(1+\epsilon\right)\frac{f'}{f}\right)
+\]
+\end{itemize}
+Now, we can use the promise keeping and IC to find $\frac{\partial c}{\partial}$
+and $\frac{\partial l}{\partial}$
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi l^{\gamma-1}\\
+-\sigma\psi l^{\gamma-1}c^{\sigma-1} & \psi\left(\gamma-1\right)\left(\frac{\mu\gamma}{\lambda\theta}-c^{\sigma}\right)l^{\gamma-2}
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial U}\\
+\frac{\partial l}{\partial U}
+\end{array}\right]=\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]
+\]
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi l^{\gamma-1}\\
+-\sigma\psi l^{\gamma-1}c^{\sigma-1} & \psi\left(\gamma-1\right)\left(\frac{\mu\gamma}{\lambda\theta}-c^{\sigma}\right)l^{\gamma-2}
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial\mu}\\
+\frac{\partial l}{\partial\mu}
+\end{array}\right]=\left[\begin{array}{l}
+0\\
+-\frac{\psi\gamma}{\lambda\theta}l^{\gamma-1}
+\end{array}\right]
+\]
+
+Finally
+\[
+\frac{\partial U}{\partial\alpha_{n}}=0.5\left(1-\epsilon\right)
+\]
+\[
+\frac{\partial U}{\partial\alpha_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+\[
+\frac{\partial\mu}{\partial\beta_{n}}=0.5\left(1-\epsilon\right)
+\]
+\[
+\frac{\partial\mu}{\partial\beta_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+
+\end{document}

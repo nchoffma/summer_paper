@@ -1,0 +1,787 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+FOA: 
+\begin_inset Formula $\theta$
+\end_inset
+
+ unknown
+\end_layout
+
+\begin_layout Standard
+ICs:
+\begin_inset Formula 
+\[
+\theta,k\left(\theta\right)\in\arg\max_{\hat{\theta},\hat{k}}u\left(c_{0}\left(\hat{\theta}\right)+k\left(\hat{\theta}\right)-\hat{k}\right)+\beta\left(\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)h\left(\tilde{\varepsilon}\right)d\tilde{\varepsilon}+\left(1-\alpha\right)u\left(c_{1}\left(\theta,0\right)\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\[
+\tilde{\varepsilon}=\frac{\varepsilon\theta\hat{k}}{\hat{\theta}k\left(\hat{\theta}\right)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+d\tilde{\varepsilon}=\frac{\theta\hat{k}}{\hat{\theta}k\left(\hat{\theta}\right)}d\varepsilon
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d\tilde{\varepsilon}}{d\hat{k}}=\frac{\varepsilon\theta}{\hat{\theta}k\left(\hat{\theta}\right)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d\tilde{\varepsilon}}{d\hat{\theta}}=-\frac{\varepsilon\theta\hat{k}}{\hat{\theta}^{2}k\left(\hat{\theta}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Intuition: in imputing 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, the planner assumes that the agent has truthfully reported 
+\begin_inset Formula $\theta$
+\end_inset
+
+, and has invested the recommended amount for the type reported.
+ 
+\end_layout
+
+\begin_layout Standard
+The FOC with respect to 
+\begin_inset Formula $\hat{k}$
+\end_inset
+
+ is the same as before:
+\begin_inset Formula 
+\[
+u^{\prime}\left(c_{0}\left(\theta\right)\right)=\beta\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{k\left(\theta\right)}\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)d\varepsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can also treat the foc for 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ in the same way as before, ultimately:
+\begin_inset Formula 
+\[
+\mathcal{U}^{\prime}\left(\theta\right)=\frac{k\left(\theta\right)}{\theta}u^{\prime}\left(c_{0}\left(\theta\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And impose these in the planner's problem.
+ 
+\end_layout
+
+\begin_layout Section
+Wedges
+\end_layout
+
+\begin_layout Standard
+Household's problem (
+\begin_inset Formula $T\equiv T(\theta k\varepsilon,Rb)$
+\end_inset
+
+):
+\begin_inset Formula 
+\begin{align*}
+\max_{c_{0},k,b,c_{1}\left(\varepsilon\right),c_{1}\left(0\right)} & u\left(c_{0}\right)+\beta\left(\alpha\int u\left(c_{1}\left(\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u\left(c_{1}\left(0\right)\right)\right)\\
+\textnormal{s.t. } & c_{0}+k+b=w;\lambda_{0}\\
+ & c_{1}\left(\varepsilon\right)=\theta k\varepsilon+Rb-T\forall\varepsilon;\lambda_{1}(\varepsilon)\\
+ & c_{1}\left(0\right)=Rb-T;\lambda_{1}\left(0\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lagrangean:
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=u\left(c_{0}\right)+\beta\left(\alpha\int u\left(c_{1}\left(\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u\left(c_{1}\left(0\right)\right)\right)+\lambda_{0}\left[w-c_{0}-k-b\right]+\\
+\int_{\varepsilon}\lambda_{1}\left(\varepsilon\right)\left[\theta k\varepsilon+Rb-T-c_{1}\left(\varepsilon\right)\right]d\varepsilon+\lambda_{1}\left(0\right)\left[Rb-T-c_{1}\left(0\right)\right]
+\end{multline*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & u^{\prime}\left(c_{0}\right)=\lambda_{0}\\
+k: & \lambda_{0}=\int\theta\varepsilon\left(1-T_{1}\right)\lambda_{1}\left(\varepsilon\right)d\varepsilon\\
+b: & \lambda_{0}=R\left(1-T_{2}\right)\left(\int\lambda_{1}\left(\varepsilon\right)d\varepsilon+\lambda_{1}\left(0\right)\right)\\
+c_{1}\left(\varepsilon\right): & \beta\alpha u^{\prime}\left(c_{1}\left(\varepsilon\right)\right)h\left(\varepsilon\right)=\lambda_{1}\left(\varepsilon\right)\forall\varepsilon\\
+c_{1}\left(0\right): & \beta\left(1-\alpha\right)u^{\prime}\left(c_{1}\left(0\right)\right)=\lambda_{1}\left(0\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eulers:
+\begin_inset Formula 
+\begin{align*}
+u^{\prime}\left(c_{0}\right)= & \left(1-T_{1}\right)\beta\alpha\int u^{\prime}\left(c_{1}\left(\varepsilon\right)\right)\theta\varepsilon h\left(\varepsilon\right)d\varepsilon\\
+= & R\left(1-T_{2}\right)\beta\left[\alpha\int u^{\prime}\left(c_{1}\left(\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u^{\prime}\left(c_{1}\left(0\right)\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wedges:
+\begin_inset Formula 
+\begin{align*}
+\tau_{k}\left(\theta\right)= & 1-\frac{u^{\prime}\left(c_{0}\right)}{\beta\alpha\int u^{\prime}\left(c_{1}\left(\varepsilon\right)\right)\theta\varepsilon h\left(\varepsilon\right)d\varepsilon}\\
+\tau_{b}\left(\theta\right)= & 1-\frac{u^{\prime}\left(c_{0}\right)}{R\beta\left[\alpha\int u^{\prime}\left(c_{1}\left(\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u^{\prime}\left(c_{1}\left(0\right)\right)\right]}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Planner's Problem 
+\end_layout
+
+\begin_layout Standard
+Assumption: as always, the return on the risk-free asset is 
+\begin_inset Formula $R=\frac{\lambda_{0}}{\lambda_{1}}$
+\end_inset
+
+, where 
+\begin_inset Formula $\lambda_{t}$
+\end_inset
+
+ is the multiplier on feasibility at time 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\max & \int\mathcal{U}\left(\theta\right)f\left(\theta\right)d\theta\\
+ & \textnormal{subject to}\\
+w\ge & \int\left[c_{0}\left(\theta\right)+k_{1}\left(\theta\right)\right]f\left(\theta\right)d\theta;\lambda_{0}\\
+\alpha\int\int\theta k\left(\theta\right)\varepsilon h\left(\varepsilon\right)f\left(\theta\right)d\varepsilon d\theta\ge & \alpha\int\int c_{1}\left(\theta,\varepsilon\right)h\left(\varepsilon\right)f\left(\theta\right)d\varepsilon d\theta+\left(1-\alpha\right)\int c_{1}\left(\theta,0\right)f\left(\theta\right)d\theta;\lambda_{1}\\
+\mathcal{U}\left(\theta\right)= & u\left(c_{0}\left(\theta\right)\right)+\beta\left(\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u\left(c_{1}\left(\theta,0\right)\right)\right);\eta\left(\theta\right)f\left(\theta\right)\\
+u^{\prime}\left(c_{0}\left(\theta\right)\right)= & \beta\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{k\left(\theta\right)}\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)d\varepsilon;\kappa\left(\theta\right)f\left(\theta\right)\\
+\mathcal{U}^{\prime}\left(\theta\right)= & \frac{k\left(\theta\right)}{\theta}u^{\prime}\left(c_{0}\left(\theta\right)\right);\mu\left(\theta\right)f\left(\theta\right)\\
+\mathcal{U}\left(R\right)\ge & u\left(c_{0}\left(\overline{\theta}\right)+k\left(\overline{\theta}\right)\right)+\beta u\left(c_{1}\left(\overline{\theta},0\right)\right);\zeta
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lagrangian, after IBP
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int\mathcal{U}\left(\theta\right)f\left(\theta\right)d\theta+\lambda_{0}\left(w-\int\left[c_{0}\left(\theta\right)+k_{1}\left(\theta\right)\right]f\left(\theta\right)d\theta\right)+\lambda_{1}\left(\alpha\int\int\left[\theta k\left(\theta\right)\varepsilon-c_{1}\left(\theta,\varepsilon\right)\right]h\left(\varepsilon\right)f\left(\theta\right)d\varepsilon d\theta-\left(1-\alpha\right)\int c_{1}\left(\theta,0\right)f\left(\theta\right)d\theta\right)+\\
+\int\left[u\left(c_{0}\left(\theta\right)\right)+\beta\left(\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)h\left(\varepsilon\right)d\varepsilon+\left(1-\alpha\right)u\left(c_{1}\left(\theta,0\right)\right)\right)-\mathcal{U}\left(\theta\right)\right]\eta\left(\theta\right)f\left(\theta\right)d\theta+\\
+\int\left[\beta\alpha\int u\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{k\left(\theta\right)}\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)d\varepsilon-u^{\prime}\left(c_{0}\left(\theta\right)\right)\right]\kappa\left(\theta\right)f\left(\theta\right)d\theta+\int u^{\prime}\left(c_{0}\left(\theta\right)\right)\frac{k\left(\theta\right)}{\theta}\mu\left(\theta\right)f\left(\theta\right)d\theta+\\
+\int\mathcal{U}\left(\theta\right)f\left(\theta\right)\mu^{\prime}\left(\theta\right)d\theta+\int\mathcal{U}\left(\theta\right)f^{\prime}\left(\theta\right)\mu\left(\theta\right)d\theta-\left[\mathcal{U}\left(\theta\right)f\left(\theta\right)\mu\left(\theta\right)\right]_{\underline{\theta}}^{\overline{\theta}}+\zeta\left[\mathcal{U}\left(R\right)-u\left(c_{0}\left(\overline{\theta}\right)+k\left(\overline{\theta}\right)\right)-\beta u\left(c_{1}\left(\overline{\theta},0\right)\right)\right]
+\end{multline*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}\left(\theta\right): & -\lambda_{0}f\left(\theta\right)+\eta\left(\theta\right)f\left(\theta\right)u^{\prime}\left(c_{0}\left(\theta\right)\right)-\kappa\left(\theta\right)f\left(\theta\right)u^{\prime\prime}\left(c_{0}\left(\theta\right)\right)+\mu\left(\theta\right)f\left(\theta\right)\frac{k\left(\theta\right)}{\theta}u^{\prime\prime}\left(c_{0}\left(\theta\right)\right)=0\\
+k\left(\theta\right): & -\lambda_{0}f\left(\theta\right)+\lambda_{1}\alpha\theta\varepsilon h\left(\varepsilon\right)f\left(\theta\right)-\kappa\left(\theta\right)f\left(\theta\right)\frac{u\left(c_{1}\left(\theta,\varepsilon\right)\right)\left(\varepsilon h^{\prime}\left(\varepsilon\right)-h\left(\varepsilon\right)\right)}{k\left(\theta\right)^{2}}+\mu\left(\theta\right)f\left(\theta\right)\frac{u^{\prime}\left(c_{0}\left(\theta\right)\right)}{\theta}=0\\
+c_{1}\left(\theta,\varepsilon\right): & -\lambda_{1}\alpha h\left(\varepsilon\right)f\left(\theta\right)+\eta\left(\theta\right)f\left(\theta\right)h\left(\varepsilon\right)\beta\alpha u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)+\kappa\left(\theta\right)f\left(\theta\right)\beta\alpha u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{k\left(\theta\right)}\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)=0\\
+c_{1}\left(\theta,0\right): & -\lambda_{1}\left(1-\alpha\right)f\left(\theta\right)+\eta\left(\theta\right)f\left(\theta\right)\left(1-\alpha\right)\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)=0\\
+\mathcal{U}\left(\theta\right): & f\left(\theta\right)-\eta\left(\theta\right)f\left(\theta\right)+f\left(\theta\right)\mu^{\prime}\left(\theta\right)+f^{\prime}\left(\theta\right)\mu\left(\theta\right)=0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Boundary conditions, as usual: 
+\begin_inset Formula $\mu\left(\underline{\theta}\right)=\mu\left(\overline{\theta}\right)=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Cleaning up:
+\begin_inset Formula 
+\begin{align*}
+c_{0}\left(\theta\right): & \lambda_{0}=\eta\left(\theta\right)u^{\prime}\left(c_{0}\right)-\kappa\left(\theta\right)u^{\prime\prime}\left(c_{0}\right)+\mu\left(\theta\right)\frac{k}{\theta}u^{\prime\prime}\left(c_{0}\right)\\
+k\left(\theta\right): & \lambda_{0}=\lambda_{1}\alpha\theta\varepsilon h\left(\varepsilon\right)-\kappa\left(\theta\right)\frac{u\left(c_{1}\left(\theta,\varepsilon\right)\right)\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{k^{2}}+\mu\left(\theta\right)\frac{u^{\prime}\left(c_{0}\right)}{\theta}\\
+c_{1}\left(\theta,\varepsilon\right): & \lambda_{1}=\eta\left(\theta\right)\beta u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)+\kappa\left(\theta\right)\beta u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{k\left(\theta\right)}\frac{\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{h\left(\varepsilon\right)}\\
+c_{1}\left(\theta,0\right): & \lambda_{1}=\eta\left(\theta\right)\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)\\
+\mathcal{U}\left(\theta\right): & \eta\left(\theta\right)=1+\mu^{\prime}\left(\theta\right)+\frac{f^{\prime}\left(\theta\right)}{f\left(\theta\right)}\mu\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+c_{0}\left(\overline{\theta}\right): & \lambda_{0}=\eta\left(\theta\right)u^{\prime}\left(c_{0}\right)-\kappa\left(\theta\right)u^{\prime\prime}\left(c_{0}\right)+\mu\left(\theta\right)\frac{k}{\theta}u^{\prime\prime}\left(c_{0}\right)-\zeta u^{\prime}\left(c_{0}\left(\overline{\theta}\right)+k\left(\overline{\theta}\right)\right)\\
+k\left(\overline{\theta}\right): & \lambda_{0}=\lambda_{1}\alpha\theta\varepsilon h\left(\varepsilon\right)-\kappa\left(\theta\right)\frac{u\left(c_{1}\left(\theta,\varepsilon\right)\right)\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{k^{2}}+\mu\left(\theta\right)\frac{u^{\prime}\left(c_{0}\right)}{\theta}-\zeta u^{\prime}\left(c_{0}\left(\overline{\theta}\right)+k\left(\overline{\theta}\right)\right)\\
+c_{1}\left(\overline{\theta},0\right): & \lambda_{1}=\left(\eta\left(\theta\right)-\zeta\right)\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)
+\end{align*}
+
+\end_inset
+
+Try a similar method to before to eliminate 
+\begin_inset Formula $\eta\left(\theta\right)$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\eta\left(\theta\right)=\frac{\lambda_{1}}{\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Substituting in, and cleaning further: 
+\begin_inset Formula 
+\begin{align*}
+R= & \frac{u^{\prime}\left(c_{0}\right)}{\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)}+\left(\mu\left(\theta\right)\frac{k}{\theta}-\kappa\left(\theta\right)\right)\frac{u^{\prime\prime}\left(c_{0}\right)}{\lambda_{1}}\\
+1= & \frac{u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)}{u^{\prime}\left(c_{1}\left(\theta,0\right)\right)}+\kappa\left(\theta\right)\beta u^{\prime}\left(c_{1}\left(\theta,\varepsilon\right)\right)\frac{1}{\lambda_{1}k\left(\theta\right)}\frac{\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{h\left(\varepsilon\right)}\\
+\frac{\lambda_{1}}{\beta u^{\prime}\left(c_{1}\left(\theta,0\right)\right)}= & 1+\mu^{\prime}\left(\theta\right)+\frac{f^{\prime}\left(\theta\right)}{f\left(\theta\right)}\mu\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+FOC for 
+\begin_inset Formula $k\left(\theta\right)$
+\end_inset
+
+ remains unchanged.
+ 
+\end_layout
+
+\begin_layout Standard
+Parametrization: 
+\begin_inset Formula $u\left(c\right)=\log c$
+\end_inset
+
+, 
+\begin_inset Formula $u^{\prime}\left(c\right)=\frac{1}{c}$
+\end_inset
+
+, 
+\begin_inset Formula $u^{\prime\prime}\left(c\right)=-\frac{1}{c^{2}}$
+\end_inset
+
+ .
+ These all hold for 
+\begin_inset Formula $\theta\in\left(R,\overline{\theta}\right)$
+\end_inset
+
+–not at boundaries!
+\begin_inset Formula 
+\begin{align*}
+R= & \frac{c_{1}\left(\theta,0\right)}{\beta c_{0}}+\left(\kappa\left(\theta\right)-\mu\left(\theta\right)\frac{k}{\theta}\right)\frac{1}{\lambda_{1}c_{0}^{2}}\\
+R= & \alpha\theta\varepsilon h\left(\varepsilon\right)-\kappa\left(\theta\right)\frac{\log\left(c_{1}\left(\theta,\varepsilon\right)\right)\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{\lambda_{1}k^{2}}+\frac{\mu\left(\theta\right)}{\lambda_{1}\theta c_{0}}\\
+1= & \frac{c_{1}\left(\theta,0\right)}{c_{1}\left(\theta,\varepsilon\right)}+\kappa\left(\theta\right)\frac{\beta}{c_{1}\left(\theta,\varepsilon\right)}\frac{1}{\lambda_{1}k}\frac{\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{h\left(\varepsilon\right)}\forall\varepsilon\\
+\frac{\lambda_{1}c_{1}\left(\theta,0\right)}{\beta}= & 1+\mu^{\prime}\left(\theta\right)+\frac{f^{\prime}\left(\theta\right)}{f\left(\theta\right)}\mu\left(\theta\right)\\
+\mathcal{U}^{\prime}\left(\theta\right)= & \frac{k}{\theta c_{0}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Can this be solved as before? It's complicated.
+\end_layout
+
+\begin_layout Itemize
+The second and third equations have to hold for 
+\series bold
+all 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ 
+\series default
+in the support of 
+\begin_inset Formula $H\left(\varepsilon\right)$
+\end_inset
+
+, which seems tough to impose on the differential equations
+\end_layout
+
+\begin_layout Itemize
+what is 
+\begin_inset Formula $\kappa\left(\theta\right)$
+\end_inset
+
+? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+It appears, but has no specific equation.
+ Maybe it can be solved out for?
+\end_layout
+
+\begin_layout Itemize
+Even its sign is undetermined, much like 
+\begin_inset Formula $\mu$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The first equation gave the inverse Euler before, but now it only contains
+ 
+\begin_inset Formula $c_{1}\left(\theta,0\right)$
+\end_inset
+
+, plus 
+\begin_inset Formula $\kappa$
+\end_inset
+
+, whose sign is not yet known
+\end_layout
+
+\begin_layout Itemize
+Allocation variables in each equation (leave out the last two, these are
+ the differential equations)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $c_{0},k,c_{1}\left(\theta,0\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $c_{1}\left(\theta,\varepsilon\right),k,c_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $c_{1}\left(\theta,0\right),c_{1}\left(\theta,\varepsilon\right),k$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\kappa$
+\end_inset
+
+ is in all of these as well–too many unknowns!
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+One observation: the third equation becomes
+\begin_inset Formula 
+\[
+c_{1}\left(\theta,\varepsilon\right)=c_{1}\left(\theta,0\right)+\beta\kappa\left(\theta\right)\frac{\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)}{\lambda_{1}kh\left(\varepsilon\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Modulo the sign
+\end_layout
+
+\begin_layout Itemize
+Depending on the assumptions on 
+\begin_inset Formula $H$
+\end_inset
+
+, this could be used to say that, for instance, 
+\begin_inset Formula $c_{1}\left(\theta,\varepsilon\right)$
+\end_inset
+
+ is linear in 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, as in Ali JMP
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+At the very least, this could pin down 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+?
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Another thing: See Ali JMP, or Holmstrom 79: the 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ distribution has implications for 
+\begin_inset Formula $\frac{\varepsilon h^{\prime}\left(\varepsilon\right)}{h\left(\varepsilon\right)}+1$
+\end_inset
+
+, which shows up a number of times in the formula above.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Secifically: if 
+\begin_inset Formula $\varepsilon\sim\Gamma\left(\eta,\eta^{-1}\right)$
+\end_inset
+
+, then
+\begin_inset Formula 
+\[
+-1-\frac{\varepsilon h^{\prime}\left(\varepsilon\right)}{h\left(\varepsilon\right)}=\frac{1}{\eta}\left(1-\varepsilon\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $g_{k}$
+\end_inset
+
+ should in fact match Ali's JMP, then the equation for 
+\begin_inset Formula $c_{1}$
+\end_inset
+
+ above becomes
+\begin_inset Formula 
+\begin{align*}
+c_{1}\left(\theta,\varepsilon\right)= & c_{1}\left(\theta,0\right)+\beta\kappa\left(\theta\right)\frac{1}{\lambda_{1}k}\left(-1-\frac{\varepsilon h^{\prime}\left(\varepsilon\right)}{h\left(\varepsilon\right)}\right)\\
+= & c_{1}\left(\theta,0\right)+\beta\kappa\left(\theta\right)\frac{1}{\lambda_{1}\eta k}\left(\varepsilon-1\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Which I suppose is better? It provides an explicit formula for 
+\begin_inset Formula $c_{1}\left(\theta,\varepsilon\right)$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, along with some other things.
+ 
+\end_layout
+
+\begin_layout Itemize
+Cleaning up eqns.
+ above, assuming that the formulation is correct:
+\begin_inset Formula 
+\begin{align*}
+R= & \frac{c_{1}\left(\theta,0\right)}{\beta c_{0}}+\left(\kappa\left(\theta\right)-\mu\left(\theta\right)\frac{k}{\theta}\right)\frac{1}{\lambda_{1}c_{0}^{2}}\\
+R= & \alpha\theta\varepsilon h\left(\varepsilon\right)-\kappa\left(\theta\right)\frac{\log\left(c_{1}\left(\theta,\varepsilon\right)\right)}{\lambda_{1}\eta k^{2}}h\left(\varepsilon\right)\left(\varepsilon-1\right)+\frac{\mu\left(\theta\right)}{\lambda_{1}\theta c_{0}}\\
+c_{1}\left(\theta,\varepsilon\right)= & c_{1}\left(\theta,0\right)+\beta\kappa\left(\theta\right)\frac{1}{\lambda_{1}\eta k}\left(\varepsilon-1\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Can any multipliers be eliminated? Specifically, 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ is problematic, because it is a function of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, not just a single number that can be guessed and checked.
+\begin_inset Formula 
+\begin{align*}
+\kappa\left(\theta\right)= & \lambda_{1}c_{0}^{2}\left(R-\frac{c_{1}\left(\theta,0\right)}{\beta c_{0}}+\mu\left(\theta\right)\frac{k}{\lambda_{1}\theta c_{0}^{2}}\right)\\
+= & \lambda_{1}\left(Rc_{0}^{2}-c_{0}c_{1}\left(\theta,0\right)+\mu\left(\theta\right)\frac{k}{\lambda_{1}\theta}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Not helpful, not even sure what sign this should have.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+One thing to note, following Ali:
+\begin_inset Formula 
+\begin{align*}
+c_{1}\left(\theta,\varepsilon\right) & =c_{1}\left(\theta,0\right)+\beta\kappa\left(\theta\right)\frac{1}{\lambda_{1}k}\left(-1-\frac{\varepsilon h^{\prime}\left(\varepsilon\right)}{h\left(\varepsilon\right)}\right)\\
+\int c_{1}\left(\theta,\varepsilon\right)h\left(\varepsilon\right)d\varepsilon & =c_{1}\left(\theta,0\right)
+\end{align*}
+
+\end_inset
+
+because
+\begin_inset Formula 
+\begin{align*}
+\int_{0}^{\infty}\left(-1-\frac{\varepsilon h^{\prime}\left(\varepsilon\right)}{h\left(\varepsilon\right)}\right)h\left(\varepsilon\right)d\varepsilon= & \frac{1}{\eta}\int_{0}^{\infty}\left(\varepsilon-1\right)h\left(\varepsilon\right)d\varepsilon\\
+= & 0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+So there's something: if this goes through (big if), then 
+\begin_inset Formula $c_{1}\left(\theta,0\right)$
+\end_inset
+
+ is equal to the mean value of consumption over the distribution of 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Is this weird? This seems to contradict the assumption risk-averse agents
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{1}\left(\theta,0\right)$
+\end_inset
+
+ is sort of like a certainty equivalent: if they invest 0, they get this
+ for sure.
+\end_layout
+
+\begin_layout Itemize
+If they invest 
+\begin_inset Formula $k>0$
+\end_inset
+
+, they get 
+\begin_inset Formula $\int c_{1}\left(\theta,\varepsilon\right)h\left(\varepsilon\right)d\varepsilon$
+\end_inset
+
+, and if these two are the same, it seems like the agents would rather invest
+ nothing, given that they are risk averse.
+ So where is the issue?
+\end_layout
+
+\begin_layout Itemize
+This is also not true in the discrete version of the model.
+ Is the FOC wrong?
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Another question: what to make of the FOC for 
+\begin_inset Formula $k$
+\end_inset
+
+?
+\begin_inset Formula 
+\[
+R=\alpha\theta\varepsilon h\left(\varepsilon\right)-\kappa\left(\theta\right)\frac{\log\left(c_{1}\left(\theta,\varepsilon\right)\right)\left(\varepsilon h^{\prime}\left(\varepsilon\right)+h\left(\varepsilon\right)\right)}{\lambda_{1}k^{2}}+\frac{\mu\left(\theta\right)}{\lambda_{1}\theta c_{0}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I'd like to integrate this over the density, but there are some problems
+ there–such as 
+\begin_inset Formula $h\left(\varepsilon\right)$
+\end_inset
+
+s cancelling.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document

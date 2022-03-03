@@ -1,0 +1,1287 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{geometry}
+\usepackage{multirow}
+\geometry{verbose,letterpaper,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\setlength{\parskip}{0pt}
+\usepackage{setspace}
+\onehalfspacing
+\makeatletter
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage[bookmarks=false,colorlinks,citecolor=navy,linkcolor=maroon,urlcolor=maroon,backref]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{assumption}{Assumption}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}\\}
+\def\argmax{\mathop{\rm arg\,max}}
+\definecolor{Green}{rgb}{.3,.7,0}
+\definecolor{orange}{rgb}{.7,.3,0}
+\definecolor{maroon}{cmyk}{0,1,1,.3}
+\definecolor{navy}{cmyk}{1,1,0,.1}
+\usepackage[labelsep=colon,font={footnotesize},labelfont={sc},justification=justified]{caption} 
+
+\makeatother
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.5in
+\topmargin 1in
+\rightmargin 0.5in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Solving Static Mirrleesian Economy with Infinitely Many Types Using Finite
+ Element Method
+\end_layout
+
+\begin_layout Section
+Model
+\end_layout
+
+\begin_layout Standard
+Preferences
+\begin_inset Formula 
+\[
+U(c,l)=u(c)-v\left(l\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Technology
+\begin_inset Formula 
+\[
+y=\theta l
+\]
+
+\end_inset
+
+only 
+\begin_inset Formula $y$
+\end_inset
+
+ is observable.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\theta$
+\end_inset
+
+ has CDF 
+\begin_inset Formula $F(\theta)$
+\end_inset
+
+ (PDF 
+\begin_inset Formula $f(\theta)$
+\end_inset
+
+) on 
+\begin_inset Formula $\left[\underline{\theta},\overline{\theta}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Planner Problem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max\int_{\underline{\theta}}^{\overline{\theta}}U\left(\theta\right)f(\theta)d\theta
+\]
+
+\end_inset
+
+s.t.
+\begin_inset Formula 
+\[
+\int_{\underline{\theta}}^{\overline{\theta}}\left(c(\theta)-\theta l(\theta)\right)f(\theta)d\theta=0\quad;\lambda
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+U(\theta)=u(c(\theta))-v\left(l(\theta)\right)\quad;f\left(\theta\right)\eta(\theta)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+U'=\frac{l(\theta)}{\theta}v'\left(l(\theta)\right)\quad;\mu(\theta)f\left(\theta\right)
+\]
+
+\end_inset
+
+First order conditions:
+\begin_inset Formula 
+\begin{equation}
+-\lambda+u'(c(\theta))\eta(\theta)=0\label{eq:FOC-c}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\theta\lambda-\eta(\theta)v'\left(l(\theta)\right)+\frac{\mu(\theta)}{\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0\label{eq:FOC-l}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+1-\eta(\theta)+\mu'(\theta)+\frac{f'(\theta)}{f(\theta)}\mu(\theta)=0\label{eq:FOC-U}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mu(\overline{\theta})=\mu(\underline{\theta})=0
+\]
+
+\end_inset
+
+Use 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:FOC-c"
+
+\end_inset
+
+ to eliminate 
+\begin_inset Formula $\eta(\theta)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta-\frac{v'\left(l(\theta)\right)}{u'(c(\theta))}+\frac{\mu(\theta)}{\lambda\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\frac{\lambda}{u'(c(\theta))}+\dot{\mu}(\theta)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Solving the Problem
+\end_layout
+
+\begin_layout Standard
+We need to solve the following system of equations:
+\begin_inset Formula 
+\begin{equation}
+\int_{\underline{\theta}}^{\overline{\theta}}\left(c(\theta)-\theta l(\theta)\right)f(\theta)d\theta=0\label{eq:PK}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+U(\theta)=u(c(\theta))-v\left(l(\theta)\right)\label{eq:U}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+U'=\frac{l(\theta)}{\theta}v'\left(l(\theta)\right)\label{eq:IC}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\theta-\frac{v'\left(l(\theta)\right)}{u'(c(\theta))}+\frac{\mu(\theta)}{\lambda\theta}\left(v'\left(l(\theta)\right)+l(\theta)v''\left(l(\theta)\right)\right)=0\label{eq:FOC-lc}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+1+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\frac{\lambda}{u'(c(\theta))}+\mu'(\theta)=0\label{eq:FOC-mu}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\mu(\overline{\theta})=\mu(\underline{\theta})=0\label{eq:boundary}
+\end{equation}
+
+\end_inset
+
+To solve for the following five: 
+\begin_inset Formula $c(\theta),l(\theta),U(\theta),\mu(\theta),\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Example: disutility of work
+\end_layout
+
+\begin_layout Standard
+Consider the following example
+\begin_inset Formula 
+\[
+U(c,l)=\frac{c^{1-\sigma}}{1-\sigma}-\psi\frac{l^{\gamma}}{\gamma}
+\]
+
+\end_inset
+
+So equations 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:IC"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:FOC-lc"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:FOC-mu"
+
+\end_inset
+
+ become
+\begin_inset Formula 
+\[
+U'\left(\theta\right)=\frac{\psi l\left(\theta\right)^{\gamma}}{\theta}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta-\psi l\left(\theta\right)^{\gamma-1}c\left(\theta\right)^{\sigma}+\frac{\mu(\theta)}{\lambda\theta}\psi\gamma l\left(\theta\right)^{\gamma-1}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1+\frac{f'(\theta)}{f(\theta)}\mu(\theta)-\lambda c(\theta)^{\sigma}+\mu'(\theta)=0
+\]
+
+\end_inset
+
+Take 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as given.
+ We want to solve the following system of equations
+\begin_inset Formula 
+\begin{eqnarray*}
+U' & = & \psi\frac{l^{\gamma}}{\theta}\\
+\mu' & = & \lambda c^{\sigma}-1-\frac{f'}{f}\mu
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $l$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ are solutions to the following equation
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{c^{1-\sigma}}{1-\sigma}-\psi\frac{l^{\gamma}}{\gamma}-U & = & 0\\
+\theta-\psi l^{\gamma-1}c^{\sigma}+\frac{\mu}{\lambda\theta}\psi\gamma l^{\gamma-1} & = & 0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We approximate 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ with
+\begin_inset Formula 
+\begin{eqnarray*}
+U\left(\theta\right) & = & \sum_{n=1}^{N}\alpha_{n}\psi_{n}\left(\theta\right)\\
+\mu\left(\theta\right) & = & \sum_{n=1}^{N}\beta_{n}\psi_{n}\left(\theta\right)
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\phi_{n}\left(\theta\right)$
+\end_inset
+
+ is the tent function on 
+\begin_inset Formula $\left[\theta_{n-1},\theta_{n+1}\right]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\epsilon=2(\theta-\theta_{n})/(\theta_{n+1}-\theta_{n})-1$
+\end_inset
+
+ and 
+\begin_inset Formula $\Delta_{n}=\theta_{n+1}-\theta_{n}$
+\end_inset
+
+.
+ Then on the interval 
+\begin_inset Formula $\left[\theta_{n},\theta_{n+1}\right]$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+U\left(\theta\right) & = & 0.5\alpha_{n}\left(1-\epsilon\right)+0.5\alpha_{n+1}\left(1+\epsilon\right)\\
+\mu\left(\theta\right) & = & 0.5\beta_{n}\left(1-\epsilon\right)+0.5\beta_{n+1}\left(1+\epsilon\right)
+\end{eqnarray*}
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{U}\left(\theta\right) & = & \frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}}\\
+\dot{\mu}\left(\theta\right) & = & \frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}}
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we need to solve the system of 
+\begin_inset Formula $2N$
+\end_inset
+
+ nonlinear equations for 
+\begin_inset Formula $\alpha_{n}$
+\end_inset
+
+and 
+\begin_inset Formula $\beta_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}} & -\phi & \frac{l\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)^{\gamma}}{\theta}=0\\
+\frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}} & - & \left(\lambda c\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)^{\sigma}-1-\left(0.5\beta_{n}\left(1-\epsilon\right)+0.5\beta_{n+1}\left(1+\epsilon\right)\right)\frac{f'}{f}\right)=0
+\end{eqnarray*}
+
+\end_inset
+
+With conditions that 
+\begin_inset Formula $\alpha_{0}=\alpha_{N}=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Derivative of the 
+\begin_inset Formula $n$
+\end_inset
+
+th equation with respect to 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-1/\Delta_{n}-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\alpha_{n}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\alpha_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha_{n+1}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1/\Delta_{n}-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\alpha_{n+1}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\sigma f\lambda c^{\sigma-1}\frac{\partial c}{\partial\alpha_{n+1}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\beta_{n}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-1/\Delta_{n}-\left(\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\beta_{n}}-0.5\left(1-\epsilon\right)\frac{f'}{f}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{n+1}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\frac{\gamma\psi l^{\gamma-1}}{\theta}\frac{\partial l}{\partial\beta_{n+1}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1/\Delta_{n}-\left(\sigma\lambda c^{\sigma-1}\frac{\partial c}{\partial\beta_{n+1}}-0.5\left(1+\epsilon\right)\frac{f'}{f}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we can use the promise keeping and IC to find 
+\begin_inset Formula $\frac{\partial c}{\partial}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{\partial l}{\partial}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi l^{\gamma-1}\\
+-\sigma\psi l^{\gamma-1}c^{\sigma-1} & \psi\left(\gamma-1\right)\left(\frac{\mu\gamma}{\lambda\theta}-c^{\sigma}\right)l^{\gamma-2}
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial U}\\
+\frac{\partial l}{\partial U}
+\end{array}\right]=\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi l^{\gamma-1}\\
+-\sigma\psi l^{\gamma-1}c^{\sigma-1} & \psi\left(\gamma-1\right)\left(\frac{\mu\gamma}{\lambda\theta}-c^{\sigma}\right)l^{\gamma-2}
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial\mu}\\
+\frac{\partial l}{\partial\mu}
+\end{array}\right]=\left[\begin{array}{l}
+0\\
+-\frac{\psi\gamma}{\lambda\theta}l^{\gamma-1}
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally
+\begin_inset Formula 
+\[
+\frac{\partial U}{\partial\alpha_{n}}=0.5\left(1-\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial U}{\partial\alpha_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\mu}{\partial\beta_{n}}=0.5\left(1-\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\mu}{\partial\beta_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Example: utility of leisure
+\end_layout
+
+\begin_layout Standard
+Consider the following example
+\begin_inset Formula 
+\[
+U(c,l)=\frac{c^{1-\sigma}}{1-\sigma}+\psi\frac{\left(1-l\right)^{1-\gamma}}{1-\gamma}
+\]
+
+\end_inset
+
+So equations 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:IC"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:FOC-lc"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:FOC-mu"
+
+\end_inset
+
+ become
+\begin_inset Formula 
+\[
+\dot{U}\left(\theta\right)=\frac{l\left(\theta\right)}{\theta}\psi\left(1-l\left(\theta\right)\right)^{-\gamma}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta f\left(\theta\right)-\frac{f\left(\theta\right)}{c\left(\theta\right)^{-\sigma}}\psi\left(1-l\left(\theta\right)\right)^{-\gamma}+\frac{\mu\left(\theta\right)}{\theta}\psi\left(1-l\left(\theta\right)\right)^{-\gamma}+\gamma\frac{\mu\left(\theta\right)}{\theta}\psi l\left(\theta\right)\left(1-l\left(\theta\right)\right)^{-\gamma-1}=0
+\]
+
+\end_inset
+
+if 
+\begin_inset Formula $l\left(\theta\right)>0$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+\theta f\left(\theta\right)-\frac{f\left(\theta\right)}{c\left(\theta\right)^{-\sigma}}\psi+\frac{\mu\left(\theta\right)}{\theta}\psi<0
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\lambda f\left(\theta\right)-\frac{f\left(\theta\right)}{c\left(\theta\right)^{-\sigma}}+\dot{\mu}\left(\theta\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mu(\overline{\theta})=\mu(\underline{\theta})=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Take 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as given.
+ We want to solve the following system of equations
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{U} & = & \frac{l}{\theta}\psi\left(1-l\right)^{-\gamma}\\
+\dot{\mu} & = & f\left(c^{\sigma}-\lambda\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $l$
+\end_inset
+
+ and 
+\begin_inset Formula $c$
+\end_inset
+
+ are solutions to the following equations
+\begin_inset Formula 
+\[
+U=\frac{c^{1-\sigma}}{1-\sigma}+\psi\frac{\left(1-l\right)^{1-\gamma}}{1-\gamma}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta f-\frac{f}{c^{-\sigma}}\psi\left(1-l\right)^{-\gamma}+\frac{\mu}{\theta}\psi\left(1-l\right)^{-\gamma}+\gamma\frac{\mu}{\theta}\psi l\left(1-l\right)^{-\gamma-1}=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mbox{with }\theta f-\frac{f}{c^{-\sigma}}\psi+\frac{\mu}{\theta}\psi<0\mbox{ if }l=0
+\]
+
+\end_inset
+
+We approximate 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ with
+\begin_inset Formula 
+\begin{eqnarray*}
+U\left(\theta\right) & = & \sum_{n=1}^{N}\alpha_{n}\psi_{n}\left(\theta\right)\\
+\mu\left(\theta\right) & = & \sum_{n=1}^{N}\beta_{n}\psi_{n}\left(\theta\right)
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\phi_{n}\left(\theta\right)$
+\end_inset
+
+ is the tent function on 
+\begin_inset Formula $\left[\theta_{n-1},\theta_{n+1}\right]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\epsilon=2(\theta-\theta_{n})/(\theta_{n+1}-\theta_{n})-1$
+\end_inset
+
+ and 
+\begin_inset Formula $\Delta_{n}=\theta_{n+1}-\theta_{n}$
+\end_inset
+
+.
+ Then on the interval 
+\begin_inset Formula $\left[\theta_{n},\theta_{n+1}\right]$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+U\left(\theta\right) & = & 0.5\alpha_{n}\left(1-\epsilon\right)+0.5\alpha_{n+1}\left(1+\epsilon\right)\\
+\mu\left(\theta\right) & = & 0.5\beta_{n}\left(1-\epsilon\right)+0.5\beta_{n+1}\left(1+\epsilon\right)
+\end{eqnarray*}
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\begin{eqnarray*}
+\dot{U}\left(\theta\right) & = & \frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}}\\
+\dot{\mu}\left(\theta\right) & = & \frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}}
+\end{eqnarray*}
+
+\end_inset
+
+Therefore, we need to solve the system of 
+\begin_inset Formula $2N$
+\end_inset
+
+ nonlinear equations for 
+\begin_inset Formula $\alpha_{n}$
+\end_inset
+
+and 
+\begin_inset Formula $\beta_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\frac{-\alpha_{n}+\alpha_{n+1}}{\Delta_{n}} & -\psi & \frac{l\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)\left(1-l\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)\right)^{-\gamma}}{\theta}=0\\
+\frac{-\beta_{n}+\beta_{n+1}}{\Delta_{n}} & - & f\left(c\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)^{\sigma}-\lambda\right)=0
+\end{eqnarray*}
+
+\end_inset
+
+With conditions that 
+\begin_inset Formula $\alpha_{0}=\alpha_{N}=0$
+\end_inset
+
+.Derivative of the 
+\begin_inset Formula $n$
+\end_inset
+
+th equation with respect to 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-1/\Delta_{n}-\frac{\psi}{\theta}\left(\left(1-l\right)^{-\gamma}+\gamma l\left(1-l\right)^{-\gamma-1}\right)\frac{\partial l}{\partial\alpha_{n}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\sigma fc^{\sigma-1}\frac{\partial c}{\partial\alpha_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\alpha_{n+1}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1/\Delta_{n}-\frac{\psi}{\theta}\left(\left(1-l\right)^{-\gamma}+\gamma l\left(1-l\right)^{-\gamma-1}\right)\frac{\partial l}{\partial\alpha_{n+1}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\sigma fc^{\sigma-1}\frac{\partial c}{\partial\alpha_{n+1}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{n}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\frac{\psi}{\theta}\left(\left(1-l\right)^{-\gamma}+\gamma l\left(1-l\right)^{-\gamma-1}\right)\frac{\partial l}{\partial\beta_{n}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-1/\Delta_{n}-\sigma fc^{\sigma-1}\frac{\partial c}{\partial\beta_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\beta_{n+1}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\frac{\psi}{\theta}\left(\left(1-l\right)^{-\gamma}+\gamma l\left(1-l\right)^{-\gamma-1}\right)\frac{\partial l}{\partial\beta_{n+1}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+1/\Delta_{n}-\sigma fc^{\sigma-1}\frac{\partial c}{\partial\beta_{n+1}}
+\]
+
+\end_inset
+
+Now, we can use the promise keeping and IC to find 
+\begin_inset Formula $\frac{\partial c}{\partial}$
+\end_inset
+
+ and 
+\begin_inset Formula $\frac{\partial l}{\partial}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi\left(1-l\right)^{-\gamma}\\
+-\sigma f\psi\left(1-l\right)^{-\gamma}c^{\sigma-1} & \gamma\psi\left(\frac{\mu}{\theta}-\frac{f}{c^{-\sigma}}\right)\left(1-l\right)^{-\gamma-1}\\
+ & +\frac{\gamma\mu\psi}{\theta}\left(\left(1-l\right)^{-\gamma-1}+\left(1+\gamma\right)l\left(1-l\right)^{-\gamma-2}\right)
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial U}\\
+\frac{\partial l}{\partial U}
+\end{array}\right]=\left[\begin{array}{c}
+1\\
+0
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left[\begin{array}{ll}
+c^{-\sigma} & -\psi\left(1-l\right)^{-\gamma}\\
+-\sigma f\psi\left(1-l\right)^{-\gamma}c^{\sigma-1} & \gamma\psi\left(\frac{\mu}{\theta}-\frac{f}{c^{-\sigma}}\right)\left(1-l\right)^{-\gamma-1}\\
+ & +\frac{\gamma\mu\psi}{\theta}\left(\left(1-l\right)^{-\gamma-1}+\left(1+\gamma\right)l\left(1-l\right)^{-\gamma-2}\right)
+\end{array}\right]\left[\begin{array}{c}
+\frac{\partial c}{\partial\mu}\\
+\frac{\partial l}{\partial\mu}
+\end{array}\right]=\left[\begin{array}{l}
+0\\
+-\frac{\psi}{\theta}\left(1-l\right)^{-\gamma}\\
+-\frac{\gamma\psi}{\theta}l\left(1-l\right)^{-\gamma-1}
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally
+\begin_inset Formula 
+\[
+\frac{\partial U}{\partial\alpha_{n}}=0.5\left(1-\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial U}{\partial\alpha_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\mu}{\partial\beta_{n}}=0.5\left(1-\epsilon\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial\mu}{\partial\beta_{n+1}}=0.5\left(1+\epsilon\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Distorting the lowest type: a tiny mass
+\end_layout
+
+\begin_layout Standard
+Suppose there is a mass 
+\begin_inset Formula $F_{0}$
+\end_inset
+
+ of individuals at 
+\begin_inset Formula $\theta_{0}<\underline{\theta}$
+\end_inset
+
+.
+ The planning problem is 
+\begin_inset Formula 
+\[
+K\left(w\right)=\max\int_{\underline{\theta}}^{\overline{\theta}}\left(\theta l\left(\theta\right)-c\left(\theta\right)\right)f\left(\theta\right)d\theta+\left(\theta_{0}l_{0}-c_{0}\right)F_{0}
+\]
+
+\end_inset
+
+s.t.
+\begin_inset Formula 
+\[
+\int_{\underbar{\theta}}^{\overline{\theta}}\left(u\left(c\left(\theta\right)\right)-v\left(l\left(\theta\right)\right)\right)f\left(\theta\right)d\theta+\left(u\left(c_{0}\right)-v\left(l_{0}\right)\right)F_{0}\ge w\quad;\lambda
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+U\left(\theta\right)=u\left(c\left(\theta\right)\right)-v\left(l\left(\theta\right)\right)\quad;\eta\left(\theta\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\dot{U}=\frac{l\left(\theta\right)}{\theta}v'\left(l\left(\theta\right)\right)\quad;\mu\left(\theta\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+U\left(\underline{\theta}\right)\ge u\left(c_{0}\right)-v\left(\frac{\theta_{0}l_{0}}{\underline{\theta}}\right)\quad\mu_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Lagrangian is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{eqnarray*}
+{\cal L} & = & \int_{\underline{\theta}}^{\overline{\theta}}\left[\left(\theta l\left(\theta\right)-c\left(\theta\right)+\lambda U\left(\theta\right)\right)f\left(\theta\right)+\left(u\left(c\left(\theta\right)\right)-v\left(l\left(\theta\right)\right)-U\left(\theta\right)\right)\eta\left(\theta\right)+\mu\left(\theta\right)\frac{l\left(\theta\right)}{\theta}v'\left(l\left(\theta\right)\right)+\dot{\mu}\left(\theta\right)U\left(\theta\right)\right]d\theta\\
+ &  & -\mu\left(\bar{\theta}\right)U\left(\bar{\theta}\right)+\mu\left(\underline{\theta}\right)U\left(\underline{\theta}\right)\\
+ &  & +\left(\theta_{0}l_{0}-c_{0}\right)F_{0}+\lambda U_{0}F_{0}+\left(u\left(c_{0}\right)-v\left(l_{0}\right)-U_{0}\right)\eta_{0}+\mu_{0}\left(u\left(c_{0}\right)-v\left(\frac{\theta_{0}l_{0}}{\underline{\theta}}\right)-U\left(\underline{\theta}\right)\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First order conditions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+-f\left(\theta\right)+u'\left(c\left(\theta\right)\right)\eta\left(\theta\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta f\left(\theta\right)-\eta\left(\theta\right)v'\left(l\left(\theta\right)\right)+\frac{\mu\left(\theta\right)}{\theta}\left(v'\left(l\left(\theta\right)\right)+l\left(\theta\right)v''\left(l\left(\theta\right)\right)\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\dot{\mu}\left(\theta\right)=\lambda f\left(\theta\right)-\eta\left(\theta\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-F_{0}+u'\left(c_{0}\right)\left(\eta_{0}+\mu_{0}\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta_{0}F_{0}-\eta_{0}v'\left(l_{0}\right)-\mu_{0}\frac{\theta_{0}}{\underline{\theta}}v'\left(\frac{\theta_{0}l_{0}}{\underline{\theta}}\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\lambda F_{0}=\eta_{0}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mu\left(\bar{\theta}\right)=0
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mu\left(\underline{\theta}\right)=\mu_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let's assume 
+\begin_inset Formula $\theta_{0}=0$
+\end_inset
+
+.
+ Then to solve the problem we start from a guess of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+.
+ Then from the incentive constraint of the lowest type we can find 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+U\left(\underline{\theta}\right)=u\left(c_{0}\right)
+\]
+
+\end_inset
+
+Then 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+ can be found from 
+\begin_inset Formula 
+\[
+\mu_{0}=F_{0}\left(\frac{1}{u'\left(c_{0}\right)}-\lambda\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,132 @@
+%% LyX 2.3.5.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{plain}
+\newtheorem{prop}[thm]{\protect\propositionname}
+
+\makeatother
+
+\usepackage{babel}
+\providecommand{\propositionname}{Proposition}
+\providecommand{\theoremname}{Theorem}
+
+\begin{document}
+\begin{prop}
+If $k\left(\theta\right)>0$, then it must be that $\alpha\theta>R$.
+Furthermore, $\phi>0$, and $c_{1}^{y}=c_{1}^{0}+\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)}$.
+\end{prop}
+
+\begin{proof}
+The proof proceeds by contradiction. Assume that for some $\theta$,
+$k\left(\theta\right)>0$ at the optimum of the planner's problem,
+but $\alpha\theta<R$. Then, from the first-order condition for $k$
+in the planner's problem, 
+\[
+R-\alpha\theta=\frac{\mu}{\lambda_{1}\theta c_{0}}-\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}>0
+\]
+which implies that 
+\[
+\frac{\mu}{\lambda_{1}\theta c_{0}}>\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}>0
+\]
+Thus, $\mu$--the multiplier on the incentive constraint--is positive.
+Then, rearranging the first-order conditions for $c_{0}$ and $k$
+gives
+\begin{align*}
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}= & \frac{c_{1}^{y}}{\beta c_{0}}-\frac{\mu k}{\lambda_{1}\theta c_{0}^{2}}\\
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}= & \alpha\theta+\frac{\mu}{\lambda_{1}\theta c_{0}}
+\end{align*}
+which implies
+\[
+R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}=\frac{c_{1}^{y}}{\beta c_{0}}-\frac{k}{c_{0}}\left(\underbrace{R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}-\alpha\theta}_{>0}\right)
+\]
+The term in parentheses on the right-hand side is equal to $\frac{\mu}{\lambda_{1}\theta c_{0}}$,
+which by the above, is positive. This implies that 
+\[
+\frac{c_{1}^{y}}{\beta c_{0}}>R+\frac{\phi}{\lambda_{1}\left(c_{0}+k\right)}
+\]
+This, however, implies that $\mu<0$, contradicting the assumption.
+Thus, $k\left(\theta\right)>0\implies\alpha\theta>R$. This also shows
+that if the first-order condition for $k\left(\theta\right)$ in the
+planner's problem holds, $\mu<0$. 
+
+The first-order condition for $c_{1}\left(\theta,0\right)$, meanwhile,
+can be rearranged to give 
+\[
+c_{1}^{y}=c_{1}^{0}+\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)}
+\]
+By definition, $\phi\ge0$, with equality if the constraint in REF
+does not hold. Equation REF ABOVE shows that $k>0\implies\phi>0$;
+otherwise, the agents would have no incentive to bear the risk of
+investing. 
+\end{proof}
+\begin{prop}
+If $k>0$, $\tau_{k}\ge0$, with equality if $\theta=\overline{\theta}$,
+and $\tau_{b}>0$. If $k=0$, $\tau_{b}=0$. 
+\end{prop}
+
+\begin{proof}
+Recall that the intertemporal wedges are given by 
+\begin{align*}
+\tau_{k}\left(\theta\right)= & 1-\frac{c_{1}^{y}}{\alpha\beta\theta c_{0}}\\
+\tau_{b}\left(\theta\right)= & 1-\frac{\frac{1}{c_{0}}}{\beta R\left(\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\right)}
+\end{align*}
+Begin with the case where $k>0$. Combining the first-order conditions
+in the planner's problem for $c_{0}$ and $k$ gives 
+\[
+\frac{c_{1}^{y}}{\beta c_{0}}-\frac{\mu k}{\lambda_{1}\theta c_{0}^{2}}=\alpha\theta+\frac{\mu}{\lambda_{1}\theta c_{0}}
+\]
+which implies
+\begin{align*}
+\alpha\theta-\frac{c_{1}^{y}}{\beta c_{0}} & =\frac{\mu}{\lambda_{1}\theta c_{0}}\left(-\frac{k}{c_{0}}-1\right)\\
+\tau_{k}=1-\frac{c_{1}^{y}}{\alpha\beta\theta c_{0}} & =\frac{\mu}{\lambda_{1}\alpha\theta^{2}c_{0}}\left(-\frac{k}{c_{0}}-1\right)
+\end{align*}
+Recall that if $k\left(\theta\right)>0$, $\mu\left(\theta\right)<0$.
+Because all other variables on the right-hand side of the final equality
+are nonnegative, the above shows that $\tau_{k}>0$. Turning to the
+wedge on risk-free savings, note that if $k\left(\theta\right)>0$,
+then period-1 consumption $c_{1}\left(\theta\right)$ becomes a random
+variable, so by Jensen's inequality, 
+\begin{align*}
+\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}} & >\frac{1}{\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0}}\implies\\
+\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0} & >\frac{1}{\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}}\implies\\
+\frac{\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0}}{\beta Rc_{0}} & >\frac{\frac{1}{c_{0}}}{\beta R\left(\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\right)}
+\end{align*}
+So in order to establish a positive wedge $\tau_{b}$, it is sufficient
+to show that $\beta Rc_{0}>\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0}$.
+From the first-order conditions in the planner's problem, 
+\begin{align*}
+\alpha c_{1}^{y}+\left(1-\alpha\right)c_{1}^{0} & =c_{1}^{y}-\frac{\beta\phi}{\lambda_{1}}
+\end{align*}
+and
+\[
+\beta Rc_{0}=c_{1}^{y}-\frac{\beta\mu k}{\lambda_{1}\theta c_{0}}-\frac{\beta\phi c_{0}}{\lambda_{1}\left(c_{0}+k\right)}
+\]
+Combining and multiplying through by $\left(-\beta/\lambda_{1}\right)$,
+it suffices to show that 
+\[
+\phi\left(1-\frac{c_{0}}{c_{0}+k}\right)\ge\frac{\mu k}{\theta c_{0}}
+\]
+Note, however, that this inequality holds trivially: by definition,
+the right hand side is positive, while the left is negative.
+
+In the case where $k\left(\theta\right)=0$, $c_{1}\left(\theta,y\right)=c_{1}\left(\theta,0\right)\equiv c_{1}\left(\theta\right)$;
+the planner does not find it optimal for these types to invest, and
+so she has no need to incentivize them to do so. By Proposition REF1,
+then, $\phi\left(\theta\right)=0$. Then, the first-order condition
+for $c_{0}\left(\theta\right)$ in the planner's problem gives
+\[
+1=\frac{c_{1}}{\beta Rc_{0}}
+\]
+and thus $\tau_{b}\left(\theta\right)=0$ for types who do not invest. 
+\end{proof}
+
+\end{document}

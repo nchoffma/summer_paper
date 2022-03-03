@@ -1,0 +1,346 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Dynamic Model
+\end_layout
+
+\begin_layout Section
+Setup
+\end_layout
+
+\begin_layout Standard
+Time is discrete, indexed by 
+\begin_inset Formula $t=0,1,...$
+\end_inset
+
+ The process for capital income is the same:
+\begin_inset Formula 
+\begin{equation}
+y_{t}=\begin{cases}
+\theta_{t-1}k_{t} & \alpha\\
+0 & 1-\alpha
+\end{cases}
+\end{equation}
+
+\end_inset
+
+The timing is as follows: in the beginning of period 
+\begin_inset Formula $t$
+\end_inset
+
+, the agent wakes up, and realizes 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+, which follows the stochastic process above, given his prior type 
+\begin_inset Formula $\theta_{t-1}$
+\end_inset
+
+ and investment 
+\begin_inset Formula $k_{t}$
+\end_inset
+
+.
+ He then draws a new 
+\begin_inset Formula $\theta_{t}$
+\end_inset
+
+ from the same distribution 
+\begin_inset Formula $F\left(\theta\right)$
+\end_inset
+
+ (draws are i.i.d.
+ across agents and time).
+ Denoting his history of draws 
+\begin_inset Formula $\theta^{t}$
+\end_inset
+
+ and capital incomes 
+\begin_inset Formula $y^{t}$
+\end_inset
+
+, he then makes consumption and savings choices 
+\begin_inset Formula $c_{t}\left(\theta^{t},y^{t}\right),k_{t+1}\left(\theta^{t},y^{t}\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $b_{t+1}\left(\theta^{t},y^{t}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Planner's Problem
+\end_layout
+
+\begin_layout Standard
+The planner chooses allocations 
+\begin_inset Formula $\left\{ c_{t}\left(\theta^{t},y^{t}\right)\right\} _{t=0}^{\infty}$
+\end_inset
+
+, 
+\begin_inset Formula $\left\{ k_{t+1}\left(\theta^{t},y^{t}\right)\right\} _{t=0}^{\infty}$
+\end_inset
+
+, and 
+\begin_inset Formula $\left\{ b_{t+1}\left(\theta^{t},y^{t}\right)\right\} _{t=0}^{\infty}$
+\end_inset
+
+ to solve
+\begin_inset Formula 
+\begin{equation}
+\max\sum_{t=0}^{\infty}\beta^{t}\left[\int_{\underline{\theta}}^{\overline{\theta}}u\left(c_{t}\left(\theta^{t},y^{t}\right)\right)dF\left(\theta\right)\right]\Pr\left(y^{t}\right)
+\end{equation}
+
+\end_inset
+
+Subject to a sequence of feasibility constraints
+\begin_inset Formula 
+\begin{equation}
+\int\left[c_{t}\left(\theta^{t},y^{t}\right)+k_{t+1}\left(\theta^{t},y^{t}\right)\right]dF\left(\theta\right)=\alpha\int\theta_{t-1}k_{t}\left(\theta^{t-1},y^{t-1}\right)dF\left(\theta\right)
+\end{equation}
+
+\end_inset
+
+In addition, the planner's allocations must be incentive-compatible.
+ To begin, the promise utility allocated to an agent with history 
+\begin_inset Formula $\theta^{t}$
+\end_inset
+
+ conditional on the realization of 
+\begin_inset Formula $y^{t+1}$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\begin{equation}
+\omega_{t+1}\left(\theta^{t},y^{t+1}\right)=\sum_{s=t+1}^{\infty}\sum_{y^{s}\succsim y^{t+1}}\beta^{s-t-1}\left[\int u\left(c_{s}\left(\theta^{s},y^{s}\right)\right)dF\left(\theta\right)\right]\Pr\left(y^{s}|y^{t+1}\right)
+\end{equation}
+
+\end_inset
+
+Thus, upon realization of capital income 
+\begin_inset Formula $y_{t}$
+\end_inset
+
+ and report 
+\begin_inset Formula $\theta^{t}$
+\end_inset
+
+, the planner allocates consumption and investment to each agent, along
+ with promised utility as given above.
+ There are two deviation strategies available to the agents.
+ First, they can claim to be type 
+\begin_inset Formula $\hat{\theta}^{t}\ne\theta^{t}$
+\end_inset
+
+, and then mimic this type by investing 
+\begin_inset Formula $\left(\hat{\theta}^{t}/\theta^{t}\right)k\left(\hat{\theta}^{t}\right)$
+\end_inset
+
+.
+ The second available strategy is to claim to be type 
+\begin_inset Formula $\hat{\theta}_{t}$
+\end_inset
+
+, eat the entire endowment 
+\begin_inset Formula $c_{t}+k_{t+1}$
+\end_inset
+
+, and claim in the next period to have been unlucky.
+ Thus, the allocations must satisfy the following constraints: 
+\begin_inset Formula $\forall\theta^{t},\hat{\theta}^{t},y^{t},t$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{align*}
+u\left(c_{t}\left(\theta^{t},y^{t}\right)\right)+\beta\left[\alpha\omega_{t+1}\left(\theta^{t},\left\{ y^{t},y\right\} \right)+\left(1-\alpha\right)\omega_{t+1}\left(\theta^{t},\left\{ y^{t},0\right\} \right)\right]\ge & u\left(c_{t}\left(\hat{\theta}^{t},y^{t}\right)+k\left(\hat{\theta}^{t},y^{t}\right)-\frac{\hat{\theta}^{t}}{\theta^{t}}k\left(\hat{\theta}^{t},y^{t}\right)\right)+\beta\left[\alpha\omega_{t+1}\left(\hat{\theta}^{t},\left\{ y^{t},y\right\} \right)+\left(1-\alpha\right)\omega_{t+1}\left(\hat{\theta}^{t},\left\{ y^{t},0\right\} \right)\right]\\
+u\left(c_{t}\left(\theta^{t},y^{t}\right)\right)+\beta\left[\alpha\omega_{t+1}\left(\theta^{t},\left\{ y^{t},y\right\} \right)+\left(1-\alpha\right)\omega_{t+1}\left(\theta^{t},\left\{ y^{t},0\right\} \right)\right]\ge & u\left(c_{t}\left(\hat{\theta}^{t},y^{t}\right)+k\left(\hat{\theta}^{t},y^{t}\right)\right)+\beta\omega_{t+1}\left(\hat{\theta}^{t},\left\{ y^{t},0\right\} \right)
+\end{align*}
+
+\end_inset
+
+ The left-hand side is the same in both of the above inequalities; I denote
+ this object 
+\begin_inset Formula $\mathcal{U}_{t}\left(\theta^{t},y^{t}\right)$
+\end_inset
+
+.
+ With this formulation, the problem is more or less identical to the two
+ period version.
+ Accordingly, I can rewrite the incentive constraints analogously: 
+\begin_inset Formula 
+\begin{align}
+\mathcal{U}^{\prime}\left(\theta_{t}\right) & =u^{\prime}\left(c_{t}\left(\theta_{t},y^{t}\right)\right)\frac{k_{t+1}\left(\theta_{t},y^{t}\right)}{\theta_{t}}\\
+\mathcal{U}\left(\underline{\theta}_{t}\right)\ge & u\left(c_{t}\left(\theta_{t},y^{t}\right)+k_{t+1}\left(\theta_{t},y^{t}\right)\right)+\beta\omega_{t+1}\left(\theta_{t},\left\{ y^{t},0\right\} \right)
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dual of the planner's problem is to minimize the cost of providing a
+ prespecified level of utility to each agent, given a sequence of intertemporal
+ interest rates assumed to be 
+\begin_inset Formula $R_{t}=\frac{\lambda_{t-1}}{\lambda_{t}}$
+\end_inset
+
+, where 
+\begin_inset Formula $\lambda_{t}$
+\end_inset
+
+ is the multiplier on the feasibility constraint at time 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ This problem can be stated as 
+\begin_inset Formula 
+\[
+\min\sum_{t=0}^{\infty}R_{t}^{-1}\sum_{y^{t}}\int\left[c_{t}\left(\theta^{t},y^{t}\right)-\alpha\theta_{t-1}k_{t}\left(\theta^{t-1},y^{t-1}\right)\right]dF\left(\theta\right)\Pr\left(y^{t}\right)
+\]
+
+\end_inset
+
+ Subject to promise-keeping and incentive compatibility constraints.
+ I restrict attention to the component planner, who solves the above for
+ an agent of a particular history 
+\begin_inset Formula $\left(\theta^{t},y^{t}\right)$
+\end_inset
+
+.
+ The recursive formulation is as follows:
+\begin_inset Formula 
+\begin{align*}
+C\left(\omega\right)=\min_{c,k',\omega_{y}^{\prime},\omega_{0}^{\prime},\mathcal{U}} & \int\left[c-y\right]dF\left(\theta\right)+R^{-1}\left[\alpha C\left(\omega_{y}^{\prime}\right)+\left(1-\alpha\right)C\left(\omega_{0}^{'}\right)\right]\\
+\text{s.t.}\\
+\int\mathcal{U}\left(\theta\right)dF\left(\theta\right)= & \omega\\
+\mathcal{U}\left(\theta\right)= & u\left(c\right)+\beta\left[\alpha\omega_{y}^{\prime}\left(\theta\right)+\left(1-\alpha\right)\omega_{0}^{\prime}\left(\theta\right)\right]\\
+\mathcal{U}^{\prime}\left(\theta\right)= & u^{\prime}\left(c\right)\frac{k^{\prime}}{\theta}\\
+\mathcal{U}\left(\underline{\theta}\right)\ge & u\left(c+k^{\prime}\right)+\beta\omega_{0}^{\prime}
+\end{align*}
+
+\end_inset
+
+ The Lagrangean for this problem is as follows (after IBP): 
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int\left[c-y\right]dF\left(\theta\right)+R^{-1}\left[\alpha C\left(\omega_{y}^{\prime}\right)+\left(1-\alpha\right)C\left(\omega_{0}^{'}\right)\right]+\gamma\left(\omega-\int\mathcal{U}fd\theta\right)+\\
+\int\left[u\left(c\right)+\beta\left[\alpha\omega_{y}^{\prime}\left(\theta\right)+\left(1-\alpha\right)\omega_{0}^{\prime}\left(\theta\right)\right]-\mathcal{U}\right]\eta\left(\theta\right)f\left(\theta\right)d\theta+\int u^{\prime}\left(c\right)\frac{k^{\prime}}{\theta}\mu fd\theta+\\
+\int\mathcal{U}f^{\prime}\mu d\theta+\int\mathcal{U}f\mu^{\prime}d\theta+\int\left[\mathcal{U}\left(\underline{\theta}\right)-u\left(c+k^{\prime}\right)+\beta\omega_{0}^{\prime}\right]\phi fd\theta
+\end{multline*}
+
+\end_inset
+
+ The FOCs are:
+\begin_inset Formula 
+\begin{align*}
+c: & f+u^{\prime}\left(c\right)\eta f-\phi fu^{\prime}\left(c+k^{\prime}\right)=0\\
+k^{\prime}: & u^{\prime}\left(c\right)\frac{\mu}{\theta}f-u^{\prime}\left(c+k^{\prime}\right)\phi f=0\\
+\omega_{y}^{\prime}: & \alpha C^{\prime}\left(\omega_{y}^{\prime}\right)+\beta\alpha\eta f\omega_{y}^{\prime}=0\\
+\omega_{0}^{\prime}: & \left(1-\alpha\right)C^{\prime}\left(\omega_{0}^{\prime}\right)+\eta f\left(1-\alpha\right)\beta\omega_{0}^{\prime}+\beta\phi f=0\\
+\mathcal{U}: & \gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f=0\\
+\mathcal{U}\left(\underline{\theta}\right): & \gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f+\phi f=0
+\end{align*}
+
+\end_inset
+
+ Envelope condition:
+\begin_inset Formula 
+\[
+C^{\prime}\left(\omega\right)=\gamma
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document

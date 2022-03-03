@@ -1,0 +1,136 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial #2}}
+
+\begin{document}
+    \begin{flushleft}
+        Optimal Taxation with Heterogeneous Rates of Return \\
+        Progress \\
+        \today
+    \end{flushleft}
+
+\section{Model} \label{model_s}
+
+\subsection{Households} \label{hhs}
+
+Thus far, I have restricted attention to the simplest possible version of the model. The model economy is populated by a continuum of households of measure one. Each household has type \( \theta\in\Theta = [\ubar{\theta}, \bar{\theta}]\) and initial wealth \( w_0 \). For simplicity, I consider a two-period model. In the first period, the household allocates consumption between consumption and savings. If a household saves \( k \), they are able to produce output in the second period according to the production function \( y = \theta k \). Households discount the future at rate \( \beta \), and derive utility from consumption according to the twice continuously differentiable function \( u(c) \). 
+
+\subsection{Government} \label{gov}
+\subsubsection{Tax Problem} \label{tax_prob}
+I assume that the government cannot observe type \( \theta \) or investment \( k \) separately; it can only observe and thus levy a tax on output, denoted \( T(\theta k) \). The government's objective is to maximize total utility
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta \label{obj_tax}
+\end{equation}
+where \( \U(\theta) \) is total two-period utility of type \( \theta \):
+\begin{equation}
+    \U(\theta) = \max_{0\leq k \leq w_0} u(w_0 - k) + \beta u(\theta k - T(\theta k)) \label{bigu_tax}
+\end{equation}
+I require that for each type, \( 0 \leq k(\theta) \leq w_0 \), and that no taxes are levied in the first period, thus ensuring that the resource constraint holds trivially in the first period. The resource constraint faced by the government in the second period, then, is 
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} T(\theta k(\theta))f(\theta)d\theta \geq E \label{rc_tax}
+\end{equation}
+where \( E \) denotes government expenditures. 
+
+Additionally, the government faces incentive compatibility constraints, which require that the tax function \( T(\cdot) \) be such that no type \( \theta \) is better off imitating type \( \hat{\theta} \). Formally, these constraints require that the consumer's saving and consumption decisions be at an optimum. The first-order condition of (\ref{bigu_tax}) for \( k \) gives
+\begin{equation}
+    u^\p(w_0 - k) = \beta \theta (1 - T^\p)u^\p (\theta k - T(\theta k)) \label{foc_hh_tax}
+\end{equation}
+The envelope condition for (\ref{bigu_tax}), meanwhile, gives 
+\begin{equation}
+    \U^\p(\theta) = \beta k u^\p (\theta k - T(\theta k)) (1 - T^\p) \label{env_hh_tax}
+\end{equation}
+Combining (\ref{foc_hh_tax}) and (\ref{env_hh_tax}) gives the law of motion for \( \U \):
+\begin{equation}
+    \U^\p(\theta) = \frac{u^\p(w_0 - k)k}{\theta} \label{lom_tax}
+\end{equation}
+Thus, the government's problem is to maximize (\ref{obj_tax}), subject to (\ref{bigu_tax}), (\ref{rc_tax}), and (\ref{lom_tax}). 
+
+\subsubsection{Mechanism Design Problem} \label{md_prob}
+Noting that in the second period, \( c(\theta) = \theta k(\theta) - T(\theta k(\theta))\), the government's tax problem is equivalent to a mechanism design problem, wherein the government collects reports from households containing their type \( \theta \), and allocates first-period output \( y(\theta) \) and second-period consumption \( c(\theta) \). The government's objective, again, is to maximize total utility (\ref{obj_tax}), where now 
+\begin{equation}
+    \U(\theta) = u\left( w_0 - \frac{y(\theta)}{\theta} \right) + \beta u(c(\theta))) \label{bigu_md}
+\end{equation}
+The envelope condition for (\ref{bigu_md}) gives 
+\begin{align}
+    \U^\p(\theta) &= u^\p\left( w_0 - \frac{y(\theta)}{\theta} \right)\frac{y(\theta)}{\theta^2} \notag \\
+    &= u^\p(w_0 - k)\frac{k}{\theta} 
+\end{align}
+exactly as in (\ref{lom_tax}). The resource constraint (\ref{rc_tax}) can be rewritten as 
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \left[ \theta k(\theta) - c(\theta) \right]f(\theta) d\theta \geq E \label{rc_md}
+\end{equation}
+The incentive constraint again require that agents behave according to their prescribed type, or formally,
+\begin{equation}
+    \theta \in \arg\max_{\hat{\theta}} u\left( w_0 - \frac{\hat{\theta} k}{\theta} \right) + \beta u(c_1(\hat{\theta}))\quad \forall \theta\in\Theta \label{ic_md}
+\end{equation}
+The constraints in (\ref{ic_md}) can be interpreted as follows: the planner collects reports \( \hat{\theta} \), and allocates output \( y(\hat{\theta}) \) and consumption \( c(\hat{\theta}) \). Thus, if an agent of type \( \theta \) claims to be of type \( \hat{\theta} \), she will receive \( c(\hat{\theta}) \), but in return, she will be required to produce output \( y(\hat{\theta}) \), requiring investment \( \frac{\hat{\theta}k}{\theta} \). 
+
+\subsection{Solving}
+
+\subsubsection{Issues with Solving}
+I have shown that the tax problem of section \ref{tax_prob} and the mechanism design problem of section \ref{md_prob} are equivalent. I have attempted to solve both using the Pontryagin Maximization Principle, but I am running into difficulties. Beginning with the tax problem, the Hamiltonian for the government's problem is 
+\begin{equation}
+    \H = \U(\theta)f(\theta) + \lambda\left[ T(\theta k) \right]f(\theta) + \mu(\theta)\frac{u^\p(w_0 - k)k}{\theta} \label{ham_tax}
+\end{equation}
+Here, the state is \( \U \) and the control \( k \). However, in the references I have found, the assumption of quasi-linear preferences has allowed the authors to eliminate the tax schedule \( T(\cdot) \) from the budget constraint, ensuring that the Hamiltonian is only a function of the state and control variables. Because I cannot perform a similar manipulation, I am left with \( T(\cdot) \) in the Hamiltonian, which I am unsure how to deal with. 
+
+Turning to the mechanism design problem, the Hamiltonian is 
+\begin{equation}
+    \H = \U(\theta)f(\theta) + \lambda\left[ \theta k(\theta) - c(\theta) \right]f(\theta) + \mu(\theta)\frac{u^\p(w_0 - k)k}{\theta} \label{ham_md}
+\end{equation}
+In this formulation, the state is once again \( \U \), while the control is the vector \( \left[ k(\theta), c(\theta) \right] \). However, the Pontryagin principle requires that 
+\begin{equation*}
+    \mu^\p(\theta) = -\pderiv{\H}{\U}
+\end{equation*}
+\( \U \) only appears in the first term of the Hamiltonian, obscuring the fact that the state depends on \( c \) and \( k \). Here, I am unsure how to differentiate \( \H \) with respect to the state \( \U \). 
+
+\subsubsection{Outside Approaches}
+A number of papers in the Mirrleesian taxation literature have dealt with the issue of capital income taxes, albeit in differing frameworks. \cite{mirrlees1971exploration} and \cite{diamond1998optimal} use the Hamiltonian approach, and Mirrlees calculates the derivative of consumption with respect to the state \( \U \). The analogous conditions here are:
+\begin{align}
+    \frac{dc}{d\U} &= \frac{1}{\beta u^\p(c)} \\
+    \frac{dk}{d\U} &= \frac{-1}{u^\p(w_0 - k)}
+\end{align}
+However, as noted above, the state also depends on \( c \) and \( k \), so I am not sure if I need, for instance, \( d\U/dc \) in order to solve the problem. In general, I am unsure of how to approach this type of optimal control problem when the state itself, rather than just its evolution, is a function of the controls.  
+
+Another option is to use the first-order approach, where the incentive constraints are replaced by their first-order condition. For example, applying this to the mechanism design problem, the first-order condition of (\ref{ic_md}) with respect to \( \hat{\theta} \), evaluated at \( \hat{\theta} = \theta \), is 
+\begin{equation}
+    u^\p(w_0 - k)\frac{k}{\theta} = \beta u^\p(c(\theta))c^\p(\theta) \label{foa}
+\end{equation}
+Using this approach, the government would maximize (\ref{obj_tax}) subject to (\ref{rc_md}) and (\ref{foa}), a problem that could be dealt with using Lagrangean methods. The difficulty is that, as in the neoclassical growth model in continuous time, it is not clear how to differentiate \( c^\p(\theta) \) with respect to \( c(\theta) \). In that example, we used integration by parts to form an equivalent, tractable problem, a method which is not available here. 
+
+\cite{golosov2003optimal}, \cite{golosov2006new}, and \cite{kocherlakota2010new}, among others, derive the inverse Euler equation, which states that 
+\begin{equation}
+    \frac{1}{u^\p(c_t)} = \frac{1}{\ev\left[ \beta R u^\p(c_{t+1}) \right]} \label{inv_eul}
+\end{equation}
+When next-period consumption \( c_{t+1} \) is stochastic, applying (\ref{inv_eul}) implies that 
+\begin{equation}
+    u^\p(c_t) < \beta R u^\p(c_{t+1})
+\end{equation}
+implying that savings are distorted at the optimum. The difficulty in employing this approach here is that in the existing literature, the gross return on investment \( R \) between two periods \( t \) and \( t+1 \) is taken as fixed. In this model, meanwhile, the aggregate return \( R \) is dependent on the distribution of the prescribed \( k(\theta) \). The derivation of (\ref{inv_eul}) requires perturbing consumption in the first and second periods by small amounts, which in this this example may affect the cost of moving consumption across time. 
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

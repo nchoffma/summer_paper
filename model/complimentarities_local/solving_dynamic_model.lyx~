@@ -1,0 +1,335 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Ideas for Solving Dynamic Model
+\end_layout
+
+\begin_layout Section*
+Ideas for Solving
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ approach
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea The idea works as follows: We decompose the price into 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+, and include 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ as a state variable.
+ We then pose the component planning problem, which is homogeneous in 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ We then solve for the component planner who faces 
+\begin_inset Formula $w=0$
+\end_inset
+
+, in which case the allocations depend on 
+\begin_inset Formula $\overline{p}_{0}$
+\end_inset
+
+.
+ Then we can drop 
+\begin_inset Formula $\overline{p}_{0}$
+\end_inset
+
+ from the baseline allocations, and propose that the allocations have the
+ usual form, i.e.
+ 
+\begin_inset Formula 
+\begin{align*}
+C\left(w\right) & =Ae^{\left(1-\beta\right)w} & U\left(\theta,w\right) & =U\left(\theta\right)+w\\
+c\left(\theta,w\right) & =c\left(\theta\right)e^{\left(1-\beta\right)w} & w^{\prime}\left(\theta,w\right) & =w^{\prime}\left(\theta\right)+w\\
+k^{\prime}\left(\theta,w\right) & =k^{\prime}\left(\theta\right)e^{\left(1-\beta\right)w}
+\end{align*}
+
+\end_inset
+
+All of these depend on 
+\begin_inset Formula $\overline{p}_{0}$
+\end_inset
+
+, but this is constant in equilibrium, so we can drop it.
+ 
+\end_layout
+
+\begin_layout Description
+Issues There are two potential issues:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The decomposition of prices depends on a homogeneity property that I think
+ we lose in adding labor to the component planning problem.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+Component
+\emph default
+ planner's problem is still homogeneous, though
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We still need to solve for the baseline allocations, which is difficult
+ because we don't know 
+\begin_inset Formula $\overline{p}_{0}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+\begin_inset Formula $h\left(\cdot\right)$
+\end_inset
+
+ approach
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea We reverse engineer the recursive formulation by assuming that the
+ policy functions satisfy the form
+\begin_inset Formula 
+\begin{align*}
+c_{t}\left(\theta^{t}\right) & =e^{(1-\beta)w_{0}}c\left(\theta_{t}\right)\prod_{\tau=0}^{t-1}h\left(\theta_{\tau}\right)\\
+k_{t+1}\left(\theta^{t}\right) & =e^{(1-\beta)w_{0}}k\left(\theta_{t}\right)\prod_{\tau=0}^{t-1}h\left(\theta_{\tau}\right)
+\end{align*}
+
+\end_inset
+
+for some function 
+\begin_inset Formula $h\left(\cdot\right)$
+\end_inset
+
+.
+ This is a guess-and-verify type strategy, and a bit of a conjecture.
+ The advantage is that this creates a recursive form for the allocations:
+ we can write, for instance, 
+\begin_inset Formula 
+\[
+k_{t+1}\left(\theta^{t}\right)=h\left(\theta_{t-1}\right)k_{t}\left(\theta^{t-1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Issues The main issue is the unknown function 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Without complimentarities, we have the following:
+\begin_inset Formula 
+\begin{align*}
+c_{t}\left(\theta^{t}\right) & =c\left(\theta_{t}\right)\exp\left[(1-\beta)w_{t}\left(\theta^{t-1}\right)\right]\\
+ & =c\left(\theta_{t}\right)\exp\left[(1-\beta)\sum_{s=0}^{t-1}w^{\prime}\left(\theta_{t}\right)\right]\\
+ & =e^{(1-\beta)w_{0}}c\left(\theta_{t}\right)\prod_{s=0}^{t-1}e^{\left(1-\beta\right)w^{\prime}\left(\theta_{s}\right)}
+\end{align*}
+
+\end_inset
+
+so 
+\begin_inset Formula $h\left(\theta_{\tau}\right)=\exp\left[(1-\beta)w^{\prime}\left(\theta_{\tau}\right)\right]$
+\end_inset
+
+ for some function 
+\begin_inset Formula $w^{\prime}$
+\end_inset
+
+.
+ The question is, what is it here? Do we want to avoid promised utility?
+ If so, why? 
+\end_layout
+
+\begin_layout Description
+Strategy In the continuous case, we can say that in each period we have
+ density 
+\begin_inset Formula $F\left(\theta\right)$
+\end_inset
+
+, and we can introduce the density function 
+\begin_inset Formula 
+\[
+m_{t}\left(\theta^{t}\right)=\prod_{s=0}^{t}f\left(\theta_{s}\right)
+\]
+
+\end_inset
+
+in which case we are assured differentiability, with 
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial m_{t}\left(\theta^{t}\right)}{\partial\theta_{t}} & =f^{\prime}\left(\theta_{t}\right)\prod_{s=0}^{t-1}f\left(\theta_{s}\right)\\
+ & =f^{\prime}\left(\theta_{t}\right)m_{t-1}\left(\theta^{t-1}\right)
+\end{align*}
+
+\end_inset
+
+We could also try this in the discrete case, setting 
+\begin_inset Formula $\Theta=\left\{ \theta_{1},\theta_{2}\right\} $
+\end_inset
+
+ and using the Lagrange multiplier on the PKC as the state variable, as
+ in the handbook.
+ The problem, though, is with the prices: the component planner takes 
+\begin_inset Formula $p_{t}$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{t+1}\left(\theta^{t+1}\right)$
+\end_inset
+
+ as given.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Hybrid approach
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea Here we combine the two approaches.
+ If the homogeneity issue identified above can be resolved, then we can
+ boil the policy functions down to 
+\begin_inset Formula $c\left(\theta,\overline{p}_{0}\right)$
+\end_inset
+
+, etc.
+ Then, we can say that the policy functions in the sequence problem satisfy
+ a form similar to that in the problem without complimentarities.
+ In this case, the 
+\begin_inset Formula $h$
+\end_inset
+
+ function is the same, but the baseline allocation is not.
+ Approaching it in this way could possibly shed some light on how to solve
+ for these 
+\begin_inset Quotes eld
+\end_inset
+
+baseline
+\begin_inset Quotes erd
+\end_inset
+
+ allocations.
+ 
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

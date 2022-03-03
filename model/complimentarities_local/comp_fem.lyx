@@ -1,0 +1,413 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Finite Element Method with Complementarities
+\end_layout
+
+\begin_layout Standard
+ODE System: 
+\begin_inset Formula 
+\begin{align*}
+U^{\prime} & =\frac{k}{\theta c_{0}}\\
+\mu^{\prime} & =\frac{\lambda_{1}c_{1}}{\beta}-\frac{f^{\prime}}{f}\mu-1
+\end{align*}
+
+\end_inset
+
+Where 
+\begin_inset Formula $c_{0},c_{1},k$
+\end_inset
+
+ satisfy
+\begin_inset Formula 
+\begin{align}
+0 & =\frac{c_{1}}{\beta c_{0}}-\frac{k}{\lambda_{1}\theta c_{0}^{2}}\mu-R\label{eq:foc1}\\
+0 & =\left(\frac{Y\theta^{\varepsilon-1}}{k\left(\theta\right)}\right)^{\frac{1}{\varepsilon}}+\frac{\mu}{\lambda_{1}\theta c_{0}}-R\\
+0 & =\ln c_{0}+\beta\ln c_{1}-U\label{eq:foc3}
+\end{align}
+
+\end_inset
+
+Let 
+\begin_inset Formula $x=\left\{ c_{0},c_{1},k\right\} $
+\end_inset
+
+.
+ The Jacobian becomes 
+\begin_inset Formula 
+\begin{equation}
+J=\begin{bmatrix}-\frac{c_{1}}{\beta c_{0}^{2}}+\frac{2k\mu}{\lambda_{1}\theta c_{0}^{2}} & \frac{1}{\beta c_{0}} & -\frac{\mu}{\lambda_{1}\theta c_{0}^{2}}\\
+-\frac{\mu}{\lambda_{1}\theta c_{0}^{2}} & 0 & -\frac{1}{\varepsilon}Y^{\frac{1}{\varepsilon}}\theta^{\frac{\varepsilon-1}{\varepsilon}}k^{-\frac{1}{\varepsilon}-1}\\
+\frac{1}{c_{0}} & \frac{\beta}{c_{1}} & 0
+\end{bmatrix}\label{eq:jac}
+\end{equation}
+
+\end_inset
+
+Approximations: 
+\begin_inset Formula 
+\begin{align*}
+U\left(\theta\right) & =\sum_{n=1}^{N}\alpha_{n}\phi_{n}\left(\theta\right)\\
+\mu\left(\theta\right) & =\sum_{n=1}^{N}\beta_{n}\phi_{n}\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\phi_{n}\left(\theta\right)$
+\end_inset
+
+ is the tent function on 
+\begin_inset Formula $\left[\theta_{n-1},\theta_{n+1}\right]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Residuals:
+\begin_inset Formula 
+\begin{align*}
+R_{\alpha}\left(\theta\right) & =U^{\prime}\left(\theta\right)-\frac{k\left(\theta;U,\mu\right)}{\theta c_{0}\left(\theta;U,\mu\right)}\\
+R_{\beta}\left(\theta\right) & =\mu^{\prime}\left(\theta\right)-\left(\frac{\lambda_{1}c_{1}\left(\theta;U,\mu\right)}{\beta}-\frac{f^{\prime}}{f}\mu-1\right)
+\end{align*}
+
+\end_inset
+
+Finding 
+\begin_inset Formula $U,\mu$
+\end_inset
+
+: let
+\begin_inset Formula 
+\begin{align*}
+\epsilon & =2\frac{\theta-\theta_{n}}{\theta_{n+1}-\theta_{n}}\\
+\Delta_{n} & =\theta_{n+1}-\theta_{n}
+\end{align*}
+
+\end_inset
+
+so that on 
+\begin_inset Formula $\left[\theta_{n},\theta_{n+1}\right]$
+\end_inset
+
+, 
+\begin_inset Formula 
+\begin{align}
+U\left(\theta\right) & =\frac{\alpha_{n}\left(1-\epsilon\right)}{2}+\frac{\alpha_{n+1}\left(1+\epsilon\right)}{2}\label{eq:approxU}\\
+\mu\left(\theta\right) & =\frac{\beta_{n}\left(1-\epsilon\right)}{2}+\frac{\beta_{n+1}\left(1+\epsilon\right)}{2}\label{eq:approxmu}
+\end{align}
+
+\end_inset
+
+and thus
+\begin_inset Formula 
+\begin{align*}
+U^{\prime}\left(\theta\right) & =\frac{\alpha_{n+1}-\alpha_{n}}{\Delta_{n}}\\
+\mu^{\prime}\left(\theta\right) & =\frac{\beta_{n+1}-\beta_{n}}{\Delta_{n}}
+\end{align*}
+
+\end_inset
+
+So the system of 
+\begin_inset Formula $2N$
+\end_inset
+
+ nonlinear equations for 
+\begin_inset Formula $R_{\alpha}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{\beta}$
+\end_inset
+
+ becomes
+\begin_inset Formula 
+\begin{align*}
+\frac{\alpha_{n+1}-\alpha_{n}}{\Delta_{n}}-\frac{k\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)}{\theta c_{0}\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)} & =0 & FU\\
+\frac{\beta_{n+1}-\beta_{n}}{\Delta_{n}}-\left(\frac{\lambda_{1}c_{1}\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)}{\beta}-\frac{f^{\prime}}{f}\mu-1\right) & =0 & F\mu
+\end{align*}
+
+\end_inset
+
+Along with 
+\begin_inset Formula $\beta_{1}=\beta_{N}=0$
+\end_inset
+
+, if the distribution has bounded support.
+ 
+\end_layout
+
+\begin_layout Standard
+Now, because the allocations are functions of 
+\begin_inset Formula $U$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu$
+\end_inset
+
+, we can use our system of equations in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:foc1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+-
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:foc3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to get the derivatives of 
+\begin_inset Formula $c_{0},c_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $k$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $U$
+\end_inset
+
+ by totally differentiating:
+\begin_inset Formula 
+\begin{align*}
+-\frac{c_{1}}{\beta c_{0}^{2}}\frac{dc_{0}}{dU}+\frac{1}{\beta c_{0}}\frac{dc_{1}}{dU}+\frac{2k\mu}{\lambda_{1}\theta c_{0}^{3}}\frac{dc_{0}}{dU}-\frac{\mu}{\lambda_{1}\theta c_{0}^{2}}\frac{dk}{dU} & =0\\
+-\frac{\mu}{\lambda_{1}\theta c_{0}^{2}}\frac{dc_{0}}{dU}-\frac{1}{\varepsilon}Y^{\frac{1}{\varepsilon}}\theta^{\frac{\varepsilon-1}{\varepsilon}}k^{-\frac{1}{\varepsilon}-1}\frac{dk}{dU} & =0\\
+\frac{1}{c_{0}}\frac{dc_{0}}{dU}+\frac{\beta}{c_{1}}\frac{dc_{1}}{dU}-1 & =0
+\end{align*}
+
+\end_inset
+
+or in matrix form, 
+\begin_inset Formula 
+\[
+J\begin{bmatrix}\frac{dc_{0}}{dU}\\
+\frac{dc_{1}}{dU}\\
+\frac{dk}{dU}
+\end{bmatrix}=\begin{bmatrix}0\\
+0\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+Where 
+\begin_inset Formula $J$
+\end_inset
+
+ is the Jacobian in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:jac"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Doing the same thing for 
+\begin_inset Formula $\mu$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+-\frac{c_{1}}{\beta c_{0}^{2}}\frac{dc_{0}}{d\mu}+\frac{1}{\beta c_{0}}\frac{dc_{1}}{d\mu}-\frac{1}{\lambda_{1}\theta}\left(\frac{k}{c_{0}^{2}}-\frac{2k\mu}{c_{0}^{3}}\frac{dc_{0}}{d\mu}+\frac{\mu}{c_{0}^{2}}\frac{dk}{d\mu}\right) & =0\\
+\frac{1}{\lambda_{1}\theta c_{0}}-\frac{\mu}{\lambda_{1}\theta c_{0}^{2}}\frac{dc_{0}}{d\mu}-\frac{1}{\varepsilon}Y^{\frac{1}{\varepsilon}}\theta^{\frac{\varepsilon-1}{\varepsilon}}k^{-\frac{1}{\varepsilon}-1}\frac{dk}{dU} & =0\\
+\frac{1}{c_{0}}\frac{dc_{0}}{d\mu}+\frac{\beta}{c_{1}}\frac{dc_{0}}{d\mu} & =0
+\end{align*}
+
+\end_inset
+
+or in matrix form, 
+\begin_inset Formula 
+\[
+J\begin{bmatrix}\frac{dc_{0}}{d\mu}\\
+\frac{dc_{1}}{d\mu}\\
+\frac{dk}{d\mu}
+\end{bmatrix}=\begin{bmatrix}\frac{k}{\lambda_{1}\theta c_{0}^{2}}\\
+-\frac{1}{\lambda_{1}\theta c_{0}}\\
+0
+\end{bmatrix}
+\]
+
+\end_inset
+
+From the approximations in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:approxU"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:approxmu"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{align*}
+\frac{dU}{d\alpha_{n}} & =0.5\left(1-\epsilon\right)\\
+\frac{dU}{d\alpha_{n+1}} & =0.5\left(1+\epsilon\right)\\
+\frac{d\mu}{d\beta_{n}} & =0.5\left(1-\epsilon\right)\\
+\frac{d\mu}{d\beta_{n+1}} & =0.5\left(1+\epsilon\right)
+\end{align*}
+
+\end_inset
+
+ With these derivatives in hand, we can differentiate 
+\begin_inset Formula $FU$
+\end_inset
+
+ and 
+\begin_inset Formula $F\mu$
+\end_inset
+
+ with respect to the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ terms:
+\begin_inset Formula 
+\begin{align*}
+\frac{\alpha_{n+1}-\alpha_{n}}{\Delta_{n}}-\frac{k\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)}{\theta c_{0}\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)} & =0 & FU\\
+\frac{\beta_{n+1}-\beta_{n}}{\Delta_{n}}-\left(\frac{\lambda_{1}c_{1}\left(\theta;\alpha_{n},\alpha_{n+1},\beta_{n},\beta_{n+1}\right)}{\beta}-\frac{f^{\prime}}{f}\left[\frac{\beta_{n}\left(1-\epsilon\right)}{2}+\frac{\beta_{n+1}\left(1+\epsilon\right)}{2}\right]-1\right) & =0 & F\mu
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\frac{dFU}{d\alpha_{n}}= & -\frac{1}{\Delta_{n}}+\frac{k}{\theta c_{0}^{2}}\frac{dc_{0}}{dU}\frac{dU}{d\alpha_{n}}-\frac{1}{\theta c_{0}}\frac{dk}{dU}\frac{dU}{d\alpha_{n}}\\
+\frac{dFU}{d\beta_{n}}= & \frac{k}{\theta c_{0}^{2}}\frac{dc_{0}}{d\mu}\frac{d\mu}{d\beta_{n}}-\frac{1}{\theta c_{0}}\frac{dc_{0}}{d\mu}\frac{d\mu}{d\beta_{n}}\\
+\frac{dF\mu}{d\alpha_{n}}= & -\frac{\lambda_{1}}{\beta}\frac{dc_{0}}{dU}\frac{dU}{d\alpha_{n}}\\
+\frac{dF\mu}{d\beta_{n}}= & -\frac{1}{\Delta_{n}}-\left(\frac{\lambda_{1}}{\beta}\frac{dc_{0}}{d\mu}\frac{d\mu}{d\beta_{n}}-\frac{f^{\prime}}{f}\frac{1-\epsilon}{2}\right)\\
+\frac{dFU}{d\alpha_{n+1}}= & \frac{1}{\Delta_{n}}+\frac{k}{\theta c_{0}^{2}}\frac{dc_{0}}{dU}\frac{dU}{d\alpha_{n+1}}-\frac{1}{\theta c_{0}}\frac{dk}{dU}\frac{dU}{d\alpha_{n+1}}\\
+\frac{dFU}{d\beta_{n+1}}= & \frac{k}{\theta c_{0}^{2}}\frac{dc_{0}}{d\mu}\frac{d\mu}{d\beta_{n+1}}-\frac{1}{\theta c_{0}}\frac{dc_{0}}{d\mu}\frac{d\mu}{d\beta_{n+1}}\\
+\frac{dF\mu}{d\alpha_{n+1}}= & -\frac{\lambda_{1}}{\beta}\frac{dc_{0}}{dU}\frac{dU}{d\alpha_{n+1}}\\
+\frac{dF\mu}{d\beta_{n+1}}= & \frac{1}{\Delta_{n}}-\left(\frac{\lambda_{1}}{\beta}\frac{dc_{0}}{dU}\frac{d\mu}{d\beta_{n+1}}-\frac{f^{\prime}}{f}\frac{1+\epsilon}{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

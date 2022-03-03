@@ -1,0 +1,187 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial #2}}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+    \begin{flushleft}
+        Optimal Taxation with Heterogeneous Rates of Return \\
+        Progress: \today
+    \end{flushleft}
+
+\section{Allocations with Mobile Capital}
+
+With borrowing and lending in the first period, the planner's problem becomes
+
+\begin{align}
+    \max &\int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta \label{s1prob} \\ 
+    &\text{s.t.} \notag \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}}[c_0(\theta) + k(\theta)]f(\theta)d\theta \leq w \label{rc0} \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} [c_1(\theta) - \theta k(\theta)]f(\theta)d\theta \leq 0 \label{rc1} \\
+    \U(\theta) &= u(c_0(\theta)) + \beta u(c_1(\theta)) \label{pkc} \\
+    \U^\p(\theta) &= u^\p(c_0(\theta))\frac{k}{\theta} \label{icc}
+\end{align}
+
+Denoting the multipliers on the resource constraints (\ref{rc0}) and (\ref{rc1}) as \( \lambda_0 \) and \( \lambda_1 \), I assume that households can borrow and lend in the first period at rate 
+\[R = \frac{\lambda_0}{\lambda_1}\]
+
+Following Dr. Hosseini's notes, I multiply the constraints (\ref{pkc}) and (\ref{icc}) by \( f(\theta) \). After integrating by parts, the planner's Lagrangean is 
+\begin{multline}
+    \lagr = \int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta + \lambda_0\left( w - \int_{\ubar{\theta}}^{\bar{\theta}} [c_0(\theta) - k(\theta)]f(\theta)d\theta \right) + \lambda_1 \int_{\ubar{\theta}}^{\bar{\theta}}[\theta k(\theta) - c(\theta)]f(\theta)d\theta + \\ 
+    %
+    \int_{\ubar{\theta}}^{\bar{\theta}}[u(c_0(\theta)) + \beta u(c_1(\theta)) - \U(\theta)]\eta(\theta)f(\theta)d\theta +  \int_{\ubar{\theta}}^{\bar{\theta}} \mu(\theta)\frac{u^\p(c_0(\theta))k(\theta)}{\theta}f(\theta)d\theta + \\
+    %
+    \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)\mu(\theta)f^\p(\theta)d\theta + \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)f(\theta)\mu^\p(\theta)d\theta - \U(\theta)\mu(\theta)f(\theta)\big|_{\ubar{\theta}}^{\bar{\theta}}
+\end{multline}
+
+From the first-order condition for \( c_1(\theta) \), 
+\begin{equation}
+    \eta(\theta) = \frac{\lambda_1}{\beta u^\p(c_1(\theta))} \label{solve_eta}
+\end{equation}
+Substituting (\ref{solve_eta}) into the FOCs for \( c_0 \), \( k \), and \( \U \) gives the following identities:
+\begin{align}
+    \lambda_0 &= \lambda_1 \frac{u^\p(c_0(\theta))}{\beta u^\p(c_1(\theta))} + \frac{\mu(\theta)}{\theta} u^{\p\p}(c_0(\theta))k(\theta) \label{foc_c0} \\
+    \lambda_0 &= \theta\lambda_1 + \frac{\mu(\theta)}{\theta}u^\p(c(\theta)) \label{foc_k} \\
+    \frac{\lambda_1}{\beta u^\p(c_1(\theta))} &= 1 + \mu(\theta)\frac{f^\p(\theta)}{f(\theta)} + \mu^\p(\theta) \label{foc_U}
+\end{align}
+
+\subsection{Computations} \label{s1_comp}
+
+I set \( u(c) = \log c \), and use the following parametrization:
+\begin{align*}
+    \beta &= 0.95 & R &= 1.05 \\
+    \lambda_1 &= 1 & w&= 1.2
+\end{align*}
+
+Again following Dr. Hosseini, I assume that the distribution of \( \theta \) is Pareto-Lognormal as outlined in \cite{reed2004double}. The method here considers the following system of equations in \( c_0(\theta), c_1(\theta), k(\theta), \lambda_1, \U(\theta) \), and \( \mu(\theta) \): 
+\begin{align}
+    \int_{\ubar{\theta}}^{\bar{\theta}}[c_0(\theta) + k(\theta)]f(\theta)d\theta &= w \\
+    \int_{\ubar{\theta}}^{\bar{\theta}} [c_1(\theta) - \theta k(\theta)]f(\theta)d\theta &= 0 \\
+    \frac{c_1(\theta)}{\beta c_0(\theta)} - \frac{\mu(\theta)}{\lambda_1 \theta}\frac{k(\theta)}{c_0(\theta)^2} - R &= 0 \label{foc_c0_par} \\
+    \theta + \frac{\mu(\theta)}{\lambda_1\theta c_0(\theta)} - R &= 0 \label{foc_k_par} \\
+    \mu^\p(\theta) + \mu(\theta)\frac{f^\p(\theta)}{f(\theta)} - \frac{\lambda_1}{\beta u^\p(c_1(\theta))} + 1 &= 0 \\
+    \log c_0(\theta) + \beta\log c_1(\theta) - \U(\theta) &= 0 \label{pkc_par}
+\end{align}
+
+I solve for the optimal allocations using the method of weighted residuals. A complication arises from the possibility that because households can lend to one another, the planner may find it optimal for some types to not produce. If this is the case, then at these \( \theta \) values, the first-order condition for \( k \) (\ref{foc_k_par}) will not hold. In order to a accommodate this possibility, my algorithm begins by assuming that at each \( \theta \) value, \( k(\theta) > 0 \), and thus (\ref{foc_k_par}) holds. Then, given the current guess at \( \U(\theta) \) and \( \mu(\theta) \), it will attempt to set (\ref{foc_c0_par}), (\ref{foc_k_par}), and (\ref{pkc_par}) equal to 0. If it fails to find a solution, it assumes that \( k(\theta) = 0 \), and attempts to find \( c_0(\theta) \) and \( c_1(\theta) \) by setting (\ref{foc_c0_par}) and (\ref{pkc_par}) to zero. 
+
+\subsection{Cutoff \( \theta \)} \label{s1_cutoff}
+
+A natural question to ask in such a model is whether all types are required to invest capital into their entrepreneurial business, or whether there exists \( \hat{\theta} \) such that if \( \theta < \hat{\theta} \), \( k(\theta) = 0 \). An intuitive guess would be that \( k(\theta) > 0 \) if and only if \( \theta > R \). 
+
+\begin{proposition} \label{prop_k}
+    \( k(\theta) > 0 \) if and only if \( R < \theta \).
+\end{proposition}
+\begin{proof}
+    Assume that \( k(\theta) > 0 \) at the optimum of the planner's problem, and thus (\ref{foc_c0_par}) and (\ref{foc_k_par}) hold, and that \( R > \theta \). Then,
+    \begin{align*}
+        R &= \frac{c_1}{\beta c_0} - \frac{\mu}{\lambda_1\theta c_0}\frac{k}{c_0} \\
+        &= \frac{c_1}{\beta c_0} - \frac{k}{c_0} (R - \theta)
+    \end{align*}
+    which implies that 
+    \[\frac{c_1}{\beta c_0} > R \]
+    which implies that \( \mu(\theta) > 0 \). This, however, implies from (\ref{foc_k_par}) that \( \theta > R \), a contradiction. 
+
+    Now, assume that \( R < \theta \), and that both (\ref{foc_c0_par}) and (\ref{foc_k_par}) hold. By the second line above, this implies that \( \mu(\theta) > 0 \). However, \( \mu(\theta) > 0 \) implies from (\ref{foc_k_par}) that \( \theta > R \), contradicting the assumption. 
+\end{proof}
+Proposition \ref{prop_k} and its proof show that if \( R < \theta \), conditions (\ref{foc_c0_par}) and (\ref{foc_k_par}) cannot both hold, as they imply differing signs for \( \mu(\theta) \). 
+    
+\section{Decreasing Returns to Scale}
+
+Part of the motivation for considering the cutoff \( \theta \) in section \ref{s1_cutoff} is the fact that the agents' production function exhibits constant returns to scale: if an agent has type \( \theta \), then under the current assumption their marginal return on investing capital will always be less than lending, irrespective of the amount invested. Formally, in the undistorted equilibrium, agents will either be at an interior solution for \( k \) or \( b \), not both. In order to assess the implications altering this assumption, I recomputed the two-type case with production exhibiting decreasing returns to scale, using the production function \( y = \theta k^\alpha \) with  \( \alpha = 0.8 \). I adjust the planner's problem and incentive constraints accordingly. Table REF compares optimal allocations and wedges in the constant (CRS) and decreasing (DRS) case:
+
+\begin{table}[!htbp] 
+\centering 
+\caption{Allocations and Wedges} 
+    \begin{tabular}{c | c c | c c }  \hline
+        & \multicolumn{2}{c|}{CRS} & \multicolumn{2}{c}{DRS} \\
+        & \( \theta_L \) & \( \theta_H \) & \( \theta_L \) & \( \theta_H \) \\ \hline
+        \( c_1(\theta) \) & 1.29 & 1.29 & 0.97 & 0.99 \\
+        \( k(\theta) \) & 0 & 1.17 & 0.04 & 0.99 \\
+        \( b(\theta) \) & 0.59 & -0.59 & 0.48 & -0.48 \\ \hline
+        \( \tau_k(\theta) \) & -1.11 & -1.11 & -0.44 & -0.44 \\
+        \( \tau_b(\theta) \) & -1.16 & 0 & 0.041 & -0.79
+    \end{tabular} 
+\label{crs_drs} 
+\end{table}
+
+In the CRS case, lending from the low types to the high is subsidized, as is investment by the high types. This is also the case in the DRS allocations, but investment by the low types is distorted, so as to encourage them to lend more and invest less. 
+
+\section{Building a Stochastic Model}
+
+In this section, I construct the basic framework for a dynamic, stochastic version of the model. As before, I begin with the simplest case, in which \( \theta \) can take one of two values, \( \theta_L \) and \( \theta_H \). I add a third period to the model, so now time is given by \( t\in 0, 1, 2 \). I also allow for an individual's productivity \( \theta \) to move stochastically across time, with
+\[ \Pr(\theta_{t+1} = \theta_j | \theta_t = \theta_i) = \Pi_{i,j} \]
+for \( i,j\in\{L,H\} \), where \( \Pi \) is a Markov transition matrix. 
+
+\subsection{\( \theta_1 \) Certain}
+
+To begin, I simplify the model further by assuming that \( \theta_1 = \theta_0 \) with certainty. As such, the agents are sure of their first return, but not their second. In this case, the planner wishes to solve 
+\begin{equation}
+    \max = \sum_{i\in\{L,H\}} \pi_i \sum_{t = 0}^{3}\beta^t\ev [u(c_t) | \theta_0]
+\end{equation}
+where \( \pi_i = \Pr(\theta_1 = \theta_i) \), subject to the resource constraints:
+\begin{align}
+    \sum_i [c_0(\theta_{1i}) + k_0(\theta_{1i})]\pi_i &= w \\
+    \sum_i [\theta_{1i}k_0(\theta_{1i}) - c_1(\theta_{1i}) - k_1(\theta_{1i})] &= 0 \\
+    \sum_i \pi_i \sum_{j\in\{L,H\}}[\theta_{2j}k_1(\theta_{1i}) - c_2(\theta_{2j})]\pi_{j|i} &= 0
+\end{align}
+where \( \pi_{j|i} = \Pr(\theta_2 = \theta_j | \theta_1 = \theta_i) \) for \( i,j\in\{L,H\} \). The allocations must also satisfy the incentive constraints: for all \( \theta_1, \hat{\theta}_1 \): 
+\begin{multline}
+    u(c_0(\theta_1)) + \beta u(c_1(\theta_1)) + w(\theta_1) \geq \\
+    u\left(c_0(\hat{\theta_1}) + k_0(\hat{\theta_1}) - \frac{\hat{\theta_1}}{\theta_1}k_0(\hat{\theta_1})\right) + \beta u\left( c_1(\hat{\theta_1}) + k_1(\hat{\theta_1}) - \frac{\ev(\theta_2|\hat{\theta_1})}{\ev(\theta_2 | \theta_1)}k_1(\hat{\theta_1}) \right) + w(\hat{\theta_1}) \label{stoch_icc}
+\end{multline}
+where 
+\begin{equation}
+    w(\theta_1) = \beta^2 \ev[c_2(\theta_2) | \theta_1]
+\end{equation}
+denotes the promised expected utility, conditional on reporting type \( \theta_1 \). Note that in the second line of (\ref{stoch_icc}), agents who report untruthfully deviate twice: in the first period, they invest to produce the output of type \( \hat{\theta_1} \) at \( t = 1 \), and in the second period, they invest to produce the \textit{expected} output of type \( \hat{\theta_1} \) in period 2. Implicit in these strategies is the fact that the planner allocates to type \( \theta \) output \( y_1(\theta) = \theta_1 k_0(\theta_1) \) at \( t = 1 \) and expected output \( \ev y(\theta) = \ev(\theta_2 | \theta_1)k_1(\theta_1) \) at \( t = 2 \). 
+
+% \subsection{Computational Results}
+
+% I use the same parametrization as in section \ref{s1_comp}, and set 
+% \[\Pi = \begin{bmatrix}
+%     0.9 & 0.1 \\ 0.2 & 0.8
+% \end{bmatrix}\] 
+
+% The addition of stochastic types, as well as a third period, gives the planner additional cause to distort the intertemporal savings decisions: she wishes to incentivize continuing effort from productive types. For example, if an agent draws \( \theta_H \) in period 1, he may wish to invest less in the risky asset and more in a risk-free bond in this period, in order to insure against the possibility that he receives a draw of \( \theta_L \) at \( t = 2 \). The planner, however, will want him to continue to invest capital into his project, as \( \Pi \) is constructed such that this agent's expected return in \( t = 2 \) is higher. 
+
+% \section{Goals for July}
+
+% \subsection{Contribution to Literature}
+
+% Two recent papers from Tom Phelan address topics similar to this one, so I would like think about how this project complements these. \cite{phelan2019business} studies the optimal taxation of business owners, in a model where entrepreneurs are heterogeneous with regard to productivity, and exert private effort in their business. In this model, the evolution of productivity has two components: one a deterministic function of effort exerted, and one random. 
+
+% \cite{phelan2019differential} derives differential taxes on risky investment and risk-free savings, as well as on wealth. Each of these taxes plays a 
+
+% \subsection{Results to Derive}
+
+% First and foremost, I would like to extend this model to be fully dynamic, 
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

@@ -1,0 +1,170 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref} 
+\usepackage{pgfpages}
+\usepackage{amsmath,amssymb,mathrsfs}
+\setbeamertemplate{navigation symbols}{} % turns off navigation symbols at the bottom of slides
+\usepackage{graphicx}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[round]{natbib}
+
+\title{Summer Paper: Optimal Taxation with Idiosyncratic Return Shocks}
+\author[Hoffman, Shourideh]
+{Nick Hoffman\inst{1} \and Ali Shourideh \inst{1}}
+\institute[ ] 
+{\inst{1} Carnegie Mellon University}
+
+\begin{document}
+    \begin{frame}
+        \titlepage 
+    \end{frame}
+
+\begin{frame}
+    \frametitle{}
+    \tableofcontents
+\end{frame}
+
+\section{Main Research Questions}
+\begin{frame}
+    \frametitle{Main Question(s)}
+
+    \begin{enumerate}
+        \item What is the optimal tax schedule in an economy in which agents face idiosyncratic income and return shocks?
+        \begin{enumerate}
+            \item Is there a role for a tax on wealth?
+        \end{enumerate}
+        \item Does this schedule change with the introduction of non-pecuniary motives for wealth accumulation? (time permitting)
+    \end{enumerate}
+
+\end{frame}
+\section{Literature Review}
+
+\begin{frame}
+    \frametitle{Return Shocks}
+
+    \begin{itemize}
+        \item Heterogeneous-agent models in the vein of \cite{aiyagari1994uninsured}, \cite{huggett1996wealth} are unable to capture empirical distribution of wealth 
+        \item One augmentation: idiosyncratic shocks to rates of return 
+        \begin{itemize}
+            \item \cite{benhabib2011distribution}, \cite{benhabib2015wealth}: Stationary distribution of wealth in these models has a Pareto tail, as in the data 
+            \item \cite{benhabib2019wealth}: evidence that these shocks can help match social mobility, another appealing feature 
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Optimal Income Taxation}
+    
+    \cite{mirrlees1971exploration}
+    \begin{itemize}
+        \item Formal characterization of the tradeoff between efficiency and redistributive motives
+        \item Problem: government sets optimal tax schedule to maximize social welfare function
+        \item Solution must satisfy budget and individual rationality constraints
+        \item Government can only observe income, not type, and thus this becomes a signalling problem
+        \item Incentivize agents to reveal their types 
+        \item \cite{diamond1998optimal}, \cite{saez2001using}: shape of optimal taxes depends on functional assumptions; case for progressive taxes exists
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Capital Taxation}
+
+    \begin{itemize}
+        \item Great deal of attention paid to labor income taxation, and the progressivity thereof
+        \item Classic result: optimal tax on capital is 0
+        \item \cite{saez2019triumph}: cannot achieve desired progressivity with labor income tax alone
+        \begin{itemize}
+            \item Trivial example: think of famous CEOs % need to make sure labor income & cap gains tax are in concert
+        \end{itemize}
+        \item Motivation for considering capital income and wealth tax: how to tax wealthy individuals?
+        \item Mirrleesian model gives us a framework to consider the tradeoffs. 
+        \begin{itemize}
+            \item Some examples: \cite{golosov2003optimal}, \cite{albanesi2006dynamic}, \cite{golosov2006new}
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\section{Research Plan}
+
+\begin{frame}
+    \frametitle{Capital Taxation} % how to apply Mirrlees to wealth 
+
+    \begin{itemize}
+        \item In the classical \cite{mirrlees1971exploration} model, individuals choose their effort level, given the tax schedule of the government
+        \item Here, individuals will choose their savings rates and risk-taking behavior.
+        \item The government's problem: would like to reward risk-taking and discipline, but cannot observe history of earnings shocks   
+        \begin{itemize}
+            \item Constraint is now to ensure that individuals are incentivized to put wealth towards productive purposes % opportunity for non-pecuniary motives?
+        \end{itemize}
+        % Good place to put some citations from the user's guide
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model Features}
+
+    \begin{itemize}
+        \item Agents with preferences over consumption and liesure
+        \begin{itemize}
+            \item Allocate wealth and income between consumption and savings 
+        \end{itemize}
+        \item Idiosyncratic, persistent schocks to income and rates of return, calibrated to data 
+        \begin{itemize}
+            \item  \cite{floden2001idiosyncratic} use PSID for income process
+            \item PSID wealth supplements can be used to study rates of return on various components of household wealth (albeit with limited scope)
+            \item \cite{benhabib2011distribution} demonstrates that there must be persistence to wealth accumulation process to get stationary distribution
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model Features}
+
+    \begin{itemize}
+        \item Distribution of ability, unobserved by the policymaker
+        \begin{itemize}
+            \item \cite{diamond1998optimal} and \cite{saez2001using} suggest that this distribution should be Pareto 
+        \end{itemize} 
+        \item Government
+        \begin{itemize}
+            \item Levies taxes based on observable characteristics (income, wealth)
+            \item Maximizes a social welfare function 
+            \item Coordinates the tax schedule to satisfy individual rationality constraints and meet its budgetary requirements
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Potential Extension}
+
+    Non-pecuniary Motives
+    \begin{itemize}
+        \item Key question: why are savings rates high among wealthy individuals?
+        \item Various studies have suggested motives for saving outside of precautionary motive
+        \begin{itemize}
+            \item Bequest motive 
+            \item Conspicuous consumption
+            \item \cite{genicot2017aspirations}: individuals form \textit{aspirations}, threshold values of wealth. Crossing these gives additional utility.
+            \item These motives are relevant for optimal taxation insofar as they affect elasiticites
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+
+    \bibliographystyle{named}
+    \bibliography{summer_paper}
+
+\end{frame}
+\end{document}

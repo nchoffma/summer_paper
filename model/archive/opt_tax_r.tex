@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+
+\begin{document}
+    \begin{flushleft}
+        Optimal Taxation with Heterogeneous Rates of Return \\
+        Model
+    \end{flushleft}
+
+
+\section{Baseline Model: Immobile Capital, Constant Types} \label{s1}
+
+\subsection{Discrete Types} \label{s1d}
+
+I begin with a simple model in which exists a continuum of households, \( i\in[0,1] \). Each household is endowed with initial wealth \( w_0 \), and owns the rights to its own production technology. Households are heterogeneous in their rates of return, given by \( \theta\in\Theta = \{\theta_1, \dots, \theta_N\} \), where I denote \( \Pr(\theta = \theta_i) = \pi_i \). Without loss of generality, I assume that \( \theta_1 < \theta_2 < \ldots < \theta_N \). If a household with productivity \( \theta \) invests capital \( k \) in their production technology, their return is \( y = \theta k \). The the households have utility over consumption, and discount the future at rate \( \beta \). For exposition, I begin by studying a two-period model, with \(t\in \{0,1\} \). For additional simplicity, I assume that all uncertainty regarding output is resolved at \( t = 0 \); \( \theta \) remains constant within a household across time.
+
+A benevolent planner (here standing in for the government) allocates consumption \( c_0(\theta), c_1(\theta) \) in order to maximize total utility, subject to its resource and incentive compatibility constraints:
+\begin{align}
+    \max_{c_0(\theta), c_1(\theta)} &\sum_{i = 1}^N u(c_0(\theta_i)) + \beta u(c_1(\theta)) \label{obj_disc} \\
+    &\text{s.t.} \notag \\
+    &\sum_{i = 1}^N \left[ c_0(\theta_i) + k(\theta_i) \right]\pi_i = w_0 \label{rc0_disc} \\
+    &\sum_{i = 1}^{N}c_1(\theta_i)\pi_i = \sum_{i = 1}^{N} \theta_i k(\theta_i)\pi_i \label{rc1_disc} \\
+    &u(c_0(\theta_i)) + \beta u(c_1(\theta_i)) \geq u(c_0(\theta_{i_r})) + \beta u(c_1(\theta_{i_r}))\text{ }\forall i, i_r \in 1, \dots, N \label{icc_disc}
+\end{align}
+
+Following \cite{golosov2006new}, I denote \( i_r \) as the individual's reporting strategy; the incentive constraint (\ref{icc_disc}) requires that truthful reporting be a dominant strategy. I solve this problem using Lagrangean methods, where \( \lambda_0 \) and \( \lambda_1 \) are the multipliers on the resource constraints (\ref{rc0_disc}) and (\ref{rc1_disc}), respectively, and \( \psi(i, i_r) \) the multiplier on each of the \( N^2 \) incentive constraints (\ref{icc_disc}). The first-order conditions for the planner's problem are as follows:
+\begin{align}
+    u^\p(c_0(\theta_i)) &= \frac{\lambda_0 \pi_i}{\pi_i + \eta(i)} \label{c0_d} \\
+    \beta u^\p (c_1(\theta_i)) &= \frac{\lambda_1 \pi_i}{\pi_i + \eta(i)} \label{c1_d} \\
+    \theta_i &= \frac{\lambda_0}{\lambda_1} \label{kd}
+\end{align}
+
+where
+\[ \eta(i) = \sum_{i^\p} \psi(i^\p, i) - \psi(i, i^\p) \]
+By assumption, no two values of \( \theta \) are equal, and thus the FOC for \( k(\theta_i) \) (\ref{kd}) can only hold for one \( i \). In other words, there is only one \( i \) for which \( k^*(\theta_i) \) is at an interior solution. Because the planner maximizes utility, it stands to reason that \( k(\theta_N) > 0 \), and \( k(\theta_i) = 0 \) for \( i < N \). Thus, only the most productive agents are called upon to produce. 
+
+The Euler equation for the household problem is 
+\[u^\p(c_0) = \beta \theta u^\p(c_1)\]
+and thus the intertemporal wedge is given by 
+\[\tau_k(i) = 1 - \frac{u^\p(c_0(\theta_i))}{\beta \theta_i u^\p(c_1(\theta_i))}\]
+Combining the first-order conditions (\ref{c0_d})-(\ref{kd}) yields 
+\[\tau_k(i) = 1 - \frac{\theta_N}{\theta_i}\]
+Thus, for \( i < N \), \( \tau_k(i) < 0 \); these agents are discouraged from saving. Agents for whom \( i = N \), meanwhile, face a wedge of 0, and are on their Euler equations. 
+
+\subsection{Continuous Types} \label{s1c}
+
+The setup is the same as in section \ref{s1d}, but now I allow for a continuum of types. Households are now indexed by \( \theta\in\Theta = [\ubar{\theta}, \bar{\theta}] \). I assume that the distribution of \( \theta \) has the CDF \( F(\theta) \). The planning problem is now
+
+\begin{align}
+    \max_{c_0(\theta), c_1(\theta)} &\int_{\ubar{\theta}}^{\bar{\theta}} u(c_0(\theta)) + \beta u(c_1(\theta))dF(\theta) \label{obj} \\
+    &\text{s.t.} \notag \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} \left[ c_0(\theta) + k(\theta) \right]dF(\theta) = w_0 \label{rc1} \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} c_0(\theta)dF(\theta) = \int_{\ubar{\theta}}^{\bar{\theta}}\theta k(\theta)dF(\theta) \label{rc2} \\
+    & u(c_0(\theta)) + \beta u(c_1(\theta)) \geq u(c_0(\hat{\theta})) + \beta u(c_1(\hat{\theta})) \text{ } \forall \theta, \hat{\theta}\in\Theta \label{icc_start}
+\end{align}
+
+Following \cite{golosov2006new} and \cite{kocherlakota2010new}, I derive the inverse Euler equation in order to characterize the optimal wedges. As before, the Euler equation for a household of type \( \theta \) is 
+\[u^\p(c_0(\theta)) = \beta\theta u^\p(c_1(\theta))\]
+Thus, the intertemporal wedge is defined as in section \ref{s1d}:
+\[\tau_k(\theta) = 1 - \frac{u^\p(c_0(\theta))}{\beta\theta u^\p(c_1(\theta))}\]
+Fixing \( \theta \), I increase utility at \( t = 1 \) by \( \Delta \), and to compensate, decrease utility at \( t = 0 \) by \( \beta\Delta \). Note that the period-0 cost of delivering consumption in period 1 is the aggregate rate of return, which is exogeneous. Denoting the aggregate return \( \tilde{R} \), it is given by 
+\begin{equation}
+    \tilde{R} = \frac{\int_{\ubar{\theta}}^{\bar{\theta}} \theta k(\theta)dF(\theta)}{\int_{\ubar{\theta}}^{\bar{\theta}} k(\theta)dF(\theta)} \label{aggr}
+\end{equation}
+However, assuming that \( F(\theta) \) has no atoms, the contribution of each \( k(\theta) \) is infinitesimally small, so changing \( c_0(\theta) \) and thus \( k(\theta) \) by a small \( \Delta \) has no effect on \( \tilde{R} \). Therefore, this perturbation to equilibrium allocations does not affect the objective function or the incentive constraints. 
+
+The total cost of these perturbations, then, is given by 
+\[\inv{u}\left( u^\p (c_0(\theta)) - \beta\Delta \right) + \frac{1}{\tilde{R}} \inv{u}\left( u(c_1(\theta)) + \Delta \right)\] 
+The first-order condition of the above minimization problem with respect to \( \Delta \), evaluated at \( \Delta = 0 \), gives the inverse Euler equation:
+\begin{equation}
+    \frac{1}{u^\p (c_0(\theta)} = \frac{1}{B\tilde{R}u^\p(c_1(\theta))} \label{inv_eul1}
+\end{equation}
+Because period-1 consumption is not stochastic, (\ref{inv_eul1}) can be rearranged to yield 
+\[u^\p (c_0(\theta) = \beta\tilde{R}u^\p (c_1(\theta)) \]
+Thus, the determinant of the optimal intertemporal wedge will be the relationship between \( \theta \) and \( \tilde{R} \): if \( \theta > \tilde{R} \), \( \tau_k(\theta) > 0 \), while if \( \theta < \tilde{R} \), \( \tau_k(\theta) < 0 \). This is consistent with the wedge in section \ref{s1d}. I am still in the process of deriving the optimal allocations in this environment, in order to determine which types face positive and negative wedges. 
+
+\section{Immobile Capital, Idiosyncratic Shocks} \label{s2}
+
+\subsection{Discrete Types} \label{s2d}
+
+Here, I consider the model of section \ref{s1c}, but I allow for production at \( t = 1 \) to be subject to idiosyncratic shocks. A household investing \( k \) at \( t =0 \) in its personal production technology now produces at \( t = 1 \) output \( y = \theta k \varepsilon \), where the shocks \( \varepsilon \) are independent and identically distributed, with \( \ev[\varepsilon] = 1 \) and the CDF \( G(\varepsilon) \). For additional simplicity, I also assume that the shocks are independent of \( \theta \). The planner's problem is now 
+\begin{align}
+    \max_{c_0(\theta), c_1(\theta, \varepsilon)} &\int_{\ubar{\theta}}^{\bar{\theta}} \left[ u(c_0(\theta)) + \beta\int_{\R} u(c_1(\theta, \varepsilon))dG(\varepsilon) \right]dF(\theta) \label{obj_stoch} \\
+    &\text{s.t.} \notag \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} \left[ c_0(\theta) + k(\theta) \right]dF(\theta) = w_0 \label{rc0_stoch} \\
+    &\int_{\ubar{\theta}}^{\bar{\theta}} \int_\R c_1(\theta, \varepsilon)dG(\varepsilon)dF(\theta) = \int_{\ubar{\theta}}^{\bar{\theta}} \theta k(\theta)dF(\theta) \label{rc1_stoch} \\
+    &u(c_0(\theta)) + \beta u(c_1(\theta, \varepsilon)) \geq u(c_0(\hat{\theta})) + \beta u(c_1(\hat{\theta}, \hat{\varepsilon}))\text{ }\forall \theta, \hat{\theta}\in\Theta; \forall \varepsilon, \hat{\varepsilon}\in \R \label{icc_stoch}
+\end{align}
+
+Once again, I derive the inverse Euler equation. By the Law of Large Numbers, the aggregate interest rate is again given by (\ref{aggr}). I again consider a small deviation from the equilibrium allocations: fixing \( \theta \), I increase utility in the second period by \( \Delta \) for all realizations of \( \varepsilon \), and to compensate, decrease utility in the initial period by \( \beta\Delta \). The cost of doing so is 
+\[\inv{u}\left( u^\p (c_0(\theta)) - \beta\Delta \right) + \frac{1}{\tilde{R}} \int \inv{u}\left( u(c_1(\theta)) + \Delta \right)dG(\varepsilon)\]
+As in section \ref{s1c}, the first-order condition of the above at \( \Delta = 0 \) gives the inverse Euler equation:
+\begin{equation}
+    \frac{1}{u^\p(c_0(\theta))} = \frac{1}{\beta\tilde{R}} \int \frac{1}{u^\p(c_1(\theta, \varepsilon))}dG(\varepsilon) \label{inv_eul_s}
+\end{equation}
+Applying Jensen's inequality to the above yields 
+\[u^\p(c_0(\theta)) < \beta\tilde{R} \int u^\p(c_1(\theta, \varepsilon)) dG(\varepsilon) \]
+As in section \ref{s1c}, the optimal intertemporal wedge is determined by the relationship between \( \theta \) and \( \tilde{R} \). The Euler equation derived from the household's problem, given type \( \theta \), is 
+\[u^\p(c_0(\theta)) = \beta\theta \int u^\p(c_1(\theta, \varepsilon))dG(\varepsilon)\]
+and thus the intertemporal savings wedge is 
+\[\tau_k(\theta) = 1 - \frac{u^\p(c_0(\theta))}{\beta\theta \int u^\p(c_1(\theta, \varepsilon))dG(\varepsilon)}\]
+Thus, for types with \( \theta > \tilde{R} \), the optimal wedge is again positive. 
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

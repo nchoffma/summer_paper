@@ -1,0 +1,380 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Decentralization
+\end_layout
+
+\begin_layout Section
+Household Problem
+\end_layout
+
+\begin_layout Standard
+The timing for the household is the same as in the dynamic model:
+\end_layout
+
+\begin_layout Enumerate
+Wake up, realize capital income 
+\begin_inset Formula $y\in\left\{ \theta_{t-1}k_{t},0\right\} $
+\end_inset
+
+ and interest income 
+\begin_inset Formula $R_{t}b_{t}$
+\end_inset
+
+; pay taxes according to tax-and-transfer function 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ 
+\begin_inset Formula $T$
+\end_inset
+
+ may depend on some combination of capital income, interest income, and
+ wealth
+\end_layout
+
+\begin_layout Enumerate
+Draw new 
+\begin_inset Formula $\theta_{t}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Choose 
+\begin_inset Formula $c_{t}\left(\theta^{t},y^{t}\right),k_{t+t}\left(\theta^{t},y^{t}\right),b_{t+t}\left(\theta^{t},y^{t}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because of the stochastic process governing type, and the random nature
+ of 
+\begin_inset Formula $y$
+\end_inset
+
+, the state variables are 
+\begin_inset Formula $\theta_{t}$
+\end_inset
+
+ and current wealth 
+\begin_inset Formula $w_{t}$
+\end_inset
+
+.
+ The recursive formulation for the household's problem is 
+\begin_inset Formula 
+\begin{equation}
+V\left(\theta,w\right)=\max_{k^{\prime},b^{\prime}}u\left(w-k^{\prime}-b^{\prime}\right)+\beta\int\left\{ \alpha V\left(\theta^{\prime},\theta k^{\prime}+Rb^{\prime}-T\right)+\left(1-\alpha\right)V\left(\theta^{\prime},Rb^{\prime}-T\right)\right\} dF\left(\theta^{\prime}\right)
+\end{equation}
+
+\end_inset
+
+I solve the household problem, given tax function 
+\begin_inset Formula $T$
+\end_inset
+
+, using value function iteration on discrete grids for type and wealth,
+ 
+\begin_inset Formula $\Theta$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{W}$
+\end_inset
+
+ respectively.
+ I use linear interpolation to allow agent to choose any values for 
+\begin_inset Formula $k^{\prime}$
+\end_inset
+
+ and 
+\begin_inset Formula $b^{\prime}$
+\end_inset
+
+ in 
+\begin_inset Formula $\left[0,w\right]$
+\end_inset
+
+.
+ To calculate the integral in (1), I assume that all 
+\begin_inset Formula $n_{t}$
+\end_inset
+
+ types in 
+\begin_inset Formula $\Theta$
+\end_inset
+
+ are equally likely (for now).
+ Additionally, I allow the agents to maximize (1) by choosing any 
+\begin_inset Formula $k^{\prime}\ge0$
+\end_inset
+
+ and 
+\begin_inset Formula $b^{\prime}\ge\underline{b}$
+\end_inset
+
+, and use linear interpolation to calculate the value function at off-grid
+ points.
+ 
+\end_layout
+
+\begin_layout Subsection
+Tax Function
+\end_layout
+
+\begin_layout Standard
+This decentralization assumes several roles for the tax function 
+\begin_inset Formula $T$
+\end_inset
+
+.
+ Through 
+\begin_inset Formula $T$
+\end_inset
+
+, the government
+\end_layout
+
+\begin_layout Itemize
+Redistributes from high to low types
+\end_layout
+
+\begin_layout Itemize
+Provides insurance against adverse income shocks 
+\begin_inset Formula $\left(y=0\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Enforces an exogenous borrowing limit 
+\begin_inset Formula $\underline{b}<0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to fulfill these roles, the function 
+\begin_inset Formula $T$
+\end_inset
+
+ does the following:
+\end_layout
+
+\begin_layout Itemize
+Start with a baseline, with 
+\begin_inset Formula $y>0$
+\end_inset
+
+: progressive taxes; 
+\begin_inset Formula $T\left(y,Rb\right)=\delta_{1}y^{\psi_{1}}+\delta_{2}\left(Rb\right)^{\psi_{2}}$
+\end_inset
+
+, where 
+\begin_inset Formula $\psi_{1}\ge1$
+\end_inset
+
+ and 
+\begin_inset Formula $\psi_{2}\ge1$
+\end_inset
+
+.
+ This ensures that 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+ is increasing in 
+\begin_inset Formula $y$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+ is increasing in 
+\begin_inset Formula $Rb$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $Rb<0$
+\end_inset
+
+, the agent was a borrower.
+ I assume that repayments are not taxed or subsidized on the borrower's
+ side.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $y=0$
+\end_inset
+
+, 
+\begin_inset Formula $T\left(y,Rb\right)=\upsilon+\delta_{2}\left(Rb\right)^{\psi_{2}}$
+\end_inset
+
+; where 
+\begin_inset Formula $\upsilon<0$
+\end_inset
+
+ represents a transfer.
+\end_layout
+
+\begin_layout Itemize
+To enforce the borrowing limit: If 
+\begin_inset Formula $b<\underline{b}$
+\end_inset
+
+, then the government infers that the agent was over-leveraged, and taxes
+ total income/wealth at 100% as a punishment strategy, ensuring infinite
+ disutility.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This is a potential role for a wealth tax: it ensures that the agent cannot
+ over-leverage, even in the event of a successful investment.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Standard
+I parametrize the problem as follows:
+\begin_inset Formula 
+\begin{align*}
+n_{t} & =10\\
+n_{w} & =300\\
+\left\{ \underline{\theta},\overline{\theta}\right\}  & =\left\{ 2.2,4.8\right\} \\
+\left\{ \underline{w},\overline{w}\right\}  & =\left\{ 0.2,20.0\right\} \\
+R & =1.05\\
+\underline{b} & =-3.0
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following shows the value and policy functions for this parameterization:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/nickhoffman/Dropbox/Nick/figures/hh_problem.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The biggest mystery so far is the behavior of 
+\begin_inset Formula $k^{\prime}\left(\theta,w\right)$
+\end_inset
+
+: for higher values of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, it falls off after a certain point.
+ I will keep investigating this.
+ 
+\end_layout
+
+\end_body
+\end_document

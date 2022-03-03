@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: hoffman_sp_final.aux
+The style file: named.bst
+Database file #1: summer_paper.bib
+Warning--empty journal in phelan2019differential
+Warning--there's a number but no volume in phelan2019business
+You've used 20 entries,
+            2439 wiz_defined-function locations,
+            672 strings with 7309 characters,
+and the built_in function-call counts, 7110 in all, are:
+= -- 774
+> -- 202
+< -- 3
++ -- 69
+- -- 62
+* -- 554
+:= -- 1158
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 113
+chr.to.int$ -- 19
+cite$ -- 22
+duplicate$ -- 297
+empty$ -- 550
+format.name$ -- 85
+if$ -- 1451
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 18
+newline$ -- 103
+num.names$ -- 60
+pop$ -- 71
+preamble$ -- 1
+purify$ -- 131
+quote$ -- 0
+skip$ -- 248
+stack$ -- 0
+substring$ -- 459
+swap$ -- 63
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 156
+warning$ -- 2
+while$ -- 71
+width$ -- 24
+write$ -- 259
+(There were 2 warnings)

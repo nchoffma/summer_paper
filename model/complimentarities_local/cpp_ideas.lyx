@@ -1,0 +1,660 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Ideas for solving the component planning problem
+\end_layout
+
+\begin_layout Enumerate
+Using the existing formulation, imposing prices ex-post
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea: If we use the form for 
+\begin_inset Formula $w=0$
+\end_inset
+
+ in proposition 1, then we need to solve for the baseline allocations 
+\begin_inset Formula $A,c(\theta,\overline{p}),k^{\prime}(\theta,\overline{p}),w^{\prime}(\theta,\overline{p}),U(\theta,\overline{p})$
+\end_inset
+
+.
+ We can exploit the fact that if we decompose prices as in the draft, then
+ the steady-state values of 
+\begin_inset Formula $Y$
+\end_inset
+
+ and 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+ only show up in 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+.
+ The forms for 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ only depend on 
+\begin_inset Formula $\theta_{t}$
+\end_inset
+
+ and 
+\begin_inset Formula $k_{t}$
+\end_inset
+
+.
+ To capture the fact that the planner takes 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ as given, we can impose their functional forms 
+\end_layout
+
+\begin_layout Description
+Advantages: This method preserves the continuity of 
+\begin_inset Formula $\Theta$
+\end_inset
+
+.
+ Additionally, the existing code can be very easily adapted to solve this.
+ In fact, it should be simpler to solve, because we do not need to iterate
+ on 
+\begin_inset Formula $Y$
+\end_inset
+
+—we simply need 
+\begin_inset Formula $\int UdF=0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Description
+Issues: The main issue is that the state spaces for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ are endogenous, and it is not obvious what range they should lie in.
+ We know that 
+\begin_inset Formula $\overline{p}>0$
+\end_inset
+
+, but 
+\begin_inset Formula $w$
+\end_inset
+
+ can take on any value in 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Using two-type case with promised utility
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea: In this method, we attempt to solve for 
+\begin_inset Formula $A\left(\overline{p}\right)$
+\end_inset
+
+ in the case where 
+\begin_inset Formula $\Theta=\left\{ \theta_{L},\theta_{H}\right\} $
+\end_inset
+
+, and the probabilities of the shocks are 
+\begin_inset Formula $\pi_{H},\pi_{L}$
+\end_inset
+
+.
+ This is still a contraction, just simplified.
+ 
+\end_layout
+
+\begin_layout Description
+Advantages: This method is similar to the first, but vastly simplified,
+ as there are only a few unknowns to solve for.
+ The method would be similar: initialize a guess for 
+\begin_inset Formula $A$
+\end_inset
+
+, then solve for the allocations, and update.
+ 
+\end_layout
+
+\begin_layout Description
+Issues: This has the same issue as the first method: even with the model
+ simplified in this way, we still don't know necessarily what the domain
+ of 
+\begin_inset Formula $A\left(\overline{p}\right)$
+\end_inset
+
+ should be.
+ So we will still need some trial and error to find an appropriate space
+ for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Using Lagrange multipliers instead of promised utility
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Idea: Instead of using promised utility as the state variable in the planner's
+ problem, we use the Lagrange multipliers.
+ 
+\end_layout
+
+\begin_layout Description
+Advantages: As outlined in the handbook, this approach avoids the endogeneity
+ of the state space for 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Description
+Issues: The issue in all of these is the same: we cannot avoid this treble
+ of prices, and we don't know the space for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Continuous 
+\begin_inset Formula $\Theta$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The recursive planning problem for 
+\begin_inset Formula $w=0$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+A\left(\overline{p}\right)=\min_{\substack{c(\theta),k^{\prime}(\theta),\\
+w^{\prime}(\theta),U(\theta)
+}
+}\int\left[c\left(\theta\right)+k^{\prime}\left(\theta\right)+\frac{1}{R}\left\{ A\left(\overline{p}\cdot\tilde{p}\left(\theta\right)\right)\exp\left(\left(1-\beta\right)w^{\prime}(\theta)\right)-\overline{p}\cdot\hat{p}\left(\theta\right)\theta k^{\prime}\left(\theta\right)\right\} \right]dF\left(\theta\right)
+\]
+
+\end_inset
+
+subject to 
+\begin_inset Formula 
+\begin{align*}
+0 & =\int U(\theta,\overline{p})dF(\theta)\\
+U(\theta,\overline{p}) & =\ln\left(c(\theta,\overline{p})\right)+\beta w^{\prime}(\theta,\overline{p})\\
+U^{\prime}(\theta,\overline{p}) & =\frac{k^{\prime}(\theta,\overline{p})}{\theta c(\theta,\overline{p})}
+\end{align*}
+
+\end_inset
+
+An advantage of this formulation–in addition to the homotheticity–is that
+ the component planner does not need to know 
+\begin_inset Formula $Y$
+\end_inset
+
+ or 
+\begin_inset Formula $K_{f}$
+\end_inset
+
+, as these only show up in 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+.
+ The Lagrangean for the above problem is as follows:
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int\left[c\left(\theta\right)+k^{\prime}\left(\theta\right)+\frac{1}{R}\left\{ A\left(\overline{p}\cdot\tilde{p}\left(\theta\right)\right)\exp\left(\left(1-\beta\right)w^{\prime}(\theta)\right)-\overline{p}\cdot\hat{p}\left(\theta\right)\theta k^{\prime}\left(\theta\right)\right\} \right]dF\left(\theta\right)-\\
+\gamma\int U(\theta)dF(\theta)+\int\eta\left[\ln\left(c(\theta)\right)+\beta w^{\prime}(\theta)-U\left(\theta\right)\right]dF\left(\theta\right)+\int\frac{k\left(\theta\right)}{\theta c\left(\theta\right)}\mu dF\left(\theta\right)-\\
+Uf\mu\big|_{\underline{\theta}}^{\overline{\theta}}+\int Uf^{\prime}\mu d\theta+\int Uf\mu^{\prime}d\theta
+\end{multline*}
+
+\end_inset
+
+with the FOCs: 
+\begin_inset Formula 
+\begin{align*}
+1-\frac{\eta}{c}-\frac{\mu k}{\theta c^{2}} & =0\\
+1-\frac{1}{R}\overline{p}\hat{p}\left(\theta\right)\theta+\frac{\mu}{\theta c} & =0\\
+\frac{1}{R}A\left(\overline{p}\tilde{p}\left(\theta\right)\right)\left(1-\beta\right)\exp\left[\left(1-\beta\right)w^{\prime}\right]+\eta\beta & =0\\
+-\gamma-\eta+f^{\prime}\mu+\mu^{\prime}f & =0
+\end{align*}
+
+\end_inset
+
+We can solve for 
+\begin_inset Formula $\eta$
+\end_inset
+
+ using the FOC for 
+\begin_inset Formula $w^{\prime}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\eta=-\frac{1}{\beta R}A\left(\overline{p}\tilde{p}\left(\theta\right)\right)\left(1-\beta\right)\exp\left[\left(1-\beta\right)w^{\prime}\right]
+\]
+
+\end_inset
+
+ We can also impose that 
+\begin_inset Formula 
+\begin{align*}
+\hat{p}\left(\theta\right) & =\left(\theta k\right)^{-1/\varepsilon}\\
+\tilde{p}\left(\theta\right) & =\exp\left[-\frac{\left(1-\beta\right)}{\varepsilon}w^{\prime}\right]
+\end{align*}
+
+\end_inset
+
+So our FOCs are now
+\begin_inset Formula 
+\begin{align*}
+1+\frac{1}{\beta Rc}A\left(\overline{p}\exp\left[-\frac{\left(1-\beta\right)}{\varepsilon}w^{\prime}\right]\right)\left(1-\beta\right)\exp\left[\left(1-\beta\right)w^{\prime}\right]-\frac{\mu k}{\theta c^{2}} & =0\\
+1-\frac{1}{R}\overline{p}\theta^{1-1/\varepsilon}k^{-1/\varepsilon}+\frac{\mu}{\theta c} & =0\\
+\ln c+\beta w^{\prime}-U & =0
+\end{align*}
+
+\end_inset
+
+and the system of ODE's is now 
+\begin_inset Formula 
+\begin{align*}
+U^{\prime} & =\frac{k}{\theta c}\\
+\mu^{\prime} & =\gamma-\frac{1}{\beta R}A\left(\overline{p}\tilde{p}\left(\theta\right)\right)\left(1-\beta\right)\exp\left[\left(1-\beta\right)w^{\prime}\right]-\frac{f^{\prime}}{f}\mu
+\end{align*}
+
+\end_inset
+
+The following steps can be used to solve for 
+\begin_inset Formula $A\left(\cdot\right)$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Enumerate
+Initialize a range for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+; we can call this space 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ and its (finite, positive) bounds as 
+\begin_inset Formula $\overline{p}_{L}$
+\end_inset
+
+ and 
+\begin_inset Formula $\overline{p}_{H}$
+\end_inset
+
+.
+ My guess is that it will be easier to use a Chebyshev approximation for
+ 
+\begin_inset Formula $A$
+\end_inset
+
+, which will require fewer grid points than a discrete-grid method.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+This is where the choice of grid matters: given 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+, we will need to evaluate 
+\begin_inset Formula $A\left(\overline{p}\tilde{p}\left(\theta\right)\right)$
+\end_inset
+
+ using our approximation.
+ So, we need to ensure that our space for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ is bounded in some way.
+ 
+\end_layout
+
+\begin_layout Enumerate
+We also need to ensure that our guess and updates of 
+\begin_inset Formula $A$
+\end_inset
+
+ do not make this system unstable.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Start with a guess for 
+\begin_inset Formula $A$
+\end_inset
+
+ at each of the nodes 
+\begin_inset Formula $\overline{p}_{i}$
+\end_inset
+
+ on 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+, and compute the approximation 
+\begin_inset Formula $\tilde{A}_{0}\left(\overline{p}\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $\overline{p}\in\mathcal{P}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Solve the above system of ODEs in the usual way at each node over 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+At each node 
+\begin_inset Formula $\overline{p}_{i}$
+\end_inset
+
+, calculate the updated approximation 
+\begin_inset Formula $\tilde{A}_{1}\left(\overline{p}_{i}\right)$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Check for convergence, where 
+\begin_inset Formula 
+\[
+\left|\left|\tilde{A}_{0}-\tilde{A}_{1}\right|\right|=\max_{i}\left|\tilde{A}_{0}\left(\overline{p}_{i}\right)-\tilde{A}_{1}\left(\overline{p}_{i}\right)\right|
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Two-type case with promised utility
+\end_layout
+
+\begin_layout Standard
+In the CPP with 
+\begin_inset Formula $w=0$
+\end_inset
+
+, the fixed-point problem is 
+\begin_inset Formula 
+\begin{align*}
+A(\overline{p}) & =\min_{\substack{c(\theta),k^{\prime}(\theta),\\
+w^{\prime}(\theta),U(\theta)
+}
+}\frac{1}{2}\sum_{i\in H,L}\left\{ c\left(\theta_{i},\overline{p}\right)+k^{\prime}\left(\theta_{i},\overline{p}\right)+\frac{1}{R}\left[A\left(\overline{p}\cdot\tilde{p}\left(\theta\right)\right)\exp\left(\left(1-\beta\right)w^{\prime}(\theta)\right)-\overline{p}\cdot\hat{p}\left(\theta\right)\theta k^{\prime}\left(\theta_{i},\overline{p}\right)\right]\right\} \\
+U\left(\theta_{i},\overline{p}\right) & =u\left(c_{i}\right)+\beta w_{i}^{\prime} & \frac{\eta_{i}}{2}\\
+\frac{1}{2}\sum_{i\in H,L}U_{i} & =0 & \gamma\\
+u\left(c_{H}\right)+\beta w_{H}^{\prime} & \ge u\left(c_{L}+k_{L}-\frac{\theta_{L}}{\theta_{H}}k\left(\theta_{L}\right)\right)+\beta w_{L}^{\prime} & \frac{\mu_{H}}{2}\\
+u\left(c_{L}\right)+\beta w_{L}^{\prime} & \ge u\left(c_{H}+k_{H}-\frac{\theta_{H}}{\theta_{L}}k\left(\theta_{H}\right)\right)+\beta w_{H}^{\prime} & \frac{\mu_{L}}{2}
+\end{align*}
+
+\end_inset
+
+ The FOCs can be rearranged, and combined with the functional forms for
+ 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+, to show that 
+\begin_inset Formula 
+\begin{align*}
+c_{H} & =-\frac{1}{\eta+\mu_{H}}\\
+k_{H} & =\overline{p}^{\varepsilon}\theta_{H}^{\varepsilon-1}
+\end{align*}
+
+\end_inset
+
+ and that the remaining system that needs to be solved is 
+\begin_inset Formula 
+\begin{align*}
+0= & 1+\frac{\eta}{c_{L}}-\frac{\mu_{H}}{c_{L}+k_{L}-\frac{\theta_{L}}{\theta_{H}}k\left(\theta_{L}\right)}=0\\
+0= & 1-\overline{p}\cdot\theta_{L}\left(\theta_{L}k_{L}\right)^{-1/\varepsilon}-\mu_{H}\left(1-\frac{\theta_{L}}{\theta_{H}}\right)\frac{1}{c_{L}+k_{L}-\frac{\theta_{L}}{\theta_{H}}k\left(\theta_{L}\right)}=0\\
+0= & \frac{A\left(\overline{p}\cdot\exp\left[-\frac{\left(1-\beta\right)}{\varepsilon}w_{H}^{\prime}\right]\right)}{R}\left(1-\beta\right)\exp\left[\left(1-\beta\right)w_{H}^{\prime}\right]+\beta\eta+\beta\mu_{H}=0\\
+0= & \frac{A\left(\overline{p}\cdot\exp\left[-\frac{\left(1-\beta\right)}{\varepsilon}w_{L}^{\prime}\right]\right)}{R}\left(1-\beta\right)\exp\left[\left(1-\beta\right)w_{L}^{\prime}\right]+\beta\eta-\beta\mu_{H}=0\\
+\ln c_{H}+\beta w_{H}^{\prime}= & \ln\left(c_{L}+k_{L}-\frac{\theta_{L}}{\theta_{H}}k\left(\theta_{L}\right)\right)+\beta w_{L}^{\prime}\\
+0= & \frac{1}{2}\sum_{i\in H,L}\left\{ \ln c_{i}+\beta w_{i}^{\prime}\right\} 
+\end{align*}
+
+\end_inset
+
+which is six equations in six unknowns: 
+\begin_inset Formula $c_{L},k_{L},w_{H}^{\prime},w_{L}^{\prime},\eta,\mu_{H}$
+\end_inset
+
+.
+ We can simplify it down further, but the point is that we can solve for
+ the allocations 
+\emph on
+given a guess at a function 
+\begin_inset Formula $A$
+\end_inset
+
+
+\emph default
+.
+ So, the steps are the same as before: 
+\end_layout
+
+\begin_layout Enumerate
+Begin with a guess at 
+\begin_inset Formula $A\left(\cdot\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $\overline{p}\in\mathcal{P}$
+\end_inset
+
+.
+ Because the evolution of the state 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ has the form above, we will need to evaluate it at off-grid points anyway,
+ so we may as well use a Chebyshev approximation.
+ 
+\end_layout
+
+\begin_layout Enumerate
+For each node 
+\begin_inset Formula $\overline{p}_{i}$
+\end_inset
+
+, solve the above for 
+\begin_inset Formula $c_{i},k_{i},w_{i}^{\prime}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=H,L$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Evaluate 
+\begin_inset Formula $\tilde{A}_{1}\left(\overline{p}_{i}\right)$
+\end_inset
+
+, and check for convergence as above.
+ 
+\end_layout
+
+\begin_layout Standard
+This is really just the same method as above, but for two types instead
+ of infinitely many.
+ This may prove to be more feasible, as some guesses of 
+\begin_inset Formula $A$
+\end_inset
+
+ may make the system of ODEs in section 1 unstable.
+ But it does not avoid solving for 
+\begin_inset Formula $A$
+\end_inset
+
+ or figuring out what the state space for 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ should be.
+ 
+\end_layout
+
+\begin_layout Section
+Using Lagrange multipliers instead of promised utility
+\end_layout
+
+\begin_layout Standard
+Under construction
+\end_layout
+
+\end_body
+\end_document

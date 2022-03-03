@@ -1,0 +1,703 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Golosov (2016) Handbook Example
+\end_layout
+
+\begin_layout Standard
+The main claim is that 
+\begin_inset Formula $\left(\mathbf{u},\mathbf{v}\right)\in\Gamma\left(v_{0}\right)$
+\end_inset
+
+ if and only if 
+\begin_inset Formula 
+\[
+\left(\mathbf{u}-\left(1-\beta\right)v_{0},\mathbf{v}-v_{0}\right)\in\Gamma\left(0\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\left(\mathbf{u},\mathbf{v}\right)=\left(\left\{ u_{t}\left(\theta^{t}\right)\right\} _{t,\theta^{t}},\left\{ v_{t}\left(\theta^{t}\right)\right\} _{t,\theta^{t}}\right)
+\]
+
+\end_inset
+
+ is the sequence of utilities and promised utilities, respectively.
+ The feasible set 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ is defined by the set of 
+\begin_inset Formula $\left(\mathbf{u},\mathbf{v}\right)$
+\end_inset
+
+ such that the following hold: 
+\begin_inset Formula 
+\begin{align*}
+v_{t}\left(\theta^{t}\right) & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)+\beta v_{t+1}\left(\theta^{t},\theta\right)\right] & \text{Defn. of promise utility}\\
+u_{t}\left(\theta^{t-1},\theta\right)+\beta v_{t}\left(\theta^{t-1},\theta\right) & \ge u_{t}\left(\theta^{t-1},\hat{\theta}\right)+\beta v_{t}\left(\theta^{t-1},\hat{\theta}\right) & \text{Incentive constraints}\\
+v_{0} & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)+\beta v_{1}\left(\theta\right)\right] & \text{Promise keeping}
+\end{align*}
+
+\end_inset
+
+First, let's show the iff claim above.
+ Suppose that 
+\begin_inset Formula $\left(\mathbf{u},\mathbf{v}\right)\in\Gamma\left(v_{0}\right)$
+\end_inset
+
+, meaning that the above three hold.
+ For 
+\begin_inset Formula $u_{t}\in\mathbf{u}$
+\end_inset
+
+, 
+\begin_inset Formula $v_{t}\in\mathbf{v}$
+\end_inset
+
+, define 
+\begin_inset Formula $\tilde{u}_{t}=u_{t}-\left(1-\beta\right)v_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{v}_{t}=v_{t}-v_{0}$
+\end_inset
+
+.
+ Then: 
+\begin_inset Formula 
+\begin{align*}
+\tilde{v}_{t}\left(\theta^{t}\right) & =v_{t}\left(\theta^{t}\right)-v_{0}\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)+\beta v_{t+1}\left(\theta^{t},\theta\right)\right]-v_{0}\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)-\left(1-\beta\right)v_{0}+\beta v_{t+1}\left(\theta^{t},\theta\right)-\beta v_{0}\right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[\tilde{u}_{t+1}\left(\theta^{t},\theta\right)+\beta\tilde{v}_{t+1}\left(\theta^{t},\theta\right)\right]
+\end{align*}
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{align*}
+\tilde{u}_{t}\left(\theta^{t-1},\theta\right)+\beta\tilde{v}_{t}\left(\theta^{t-1},\theta\right) & =u_{t}\left(\theta^{t-1},\theta\right)+\beta v_{t}\left(\theta^{t-1},\theta\right)-v_{0}\\
+\tilde{u}_{t}\left(\theta^{t-1},\hat{\theta}\right)+\beta\tilde{v}_{t}\left(\theta^{t-1},\hat{\theta}\right) & =u_{t}\left(\theta^{t-1},\hat{\theta}\right)+\beta v_{t}\left(\theta^{t-1},\hat{\theta}\right)-v_{0}
+\end{align*}
+
+\end_inset
+
+so the incentive constraint will hold, as we just subtract 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ from both sides.
+ Finally, for promise-keeping: 
+\begin_inset Formula 
+\begin{align*}
+\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[\tilde{u}_{0}\left(\theta\right)+\beta\tilde{v}_{1}\left(\theta\right)\right] & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)-\left(1-\beta\right)v_{0}+\beta v_{1}\left(\theta\right)-\beta v_{0}\right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)-v_{0}+\beta v_{1}\left(\theta\right)\right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)+\beta v_{1}\left(\theta\right)\right]-v_{0}\\
+ & =0
+\end{align*}
+
+\end_inset
+
+This is the recursive formulation.
+ The full formulation is 
+\begin_inset Formula 
+\[
+v_{0}=\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}u_{t}\left(\theta^{t}\right)\right]
+\]
+
+\end_inset
+
+Now, with 
+\begin_inset Formula $T=\infty$
+\end_inset
+
+,
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}_{0}\left[\sum_{t=1}^{\infty}\beta^{t-1}\tilde{u}_{t}\left(\theta^{t}\right)\right] & =\mathbb{E}_{0}\left[\sum_{t=1}^{\infty}\beta^{t-1}\left\{ u_{t}\left(\theta^{t}\right)-\left(1-\beta\right)v_{0}\right\} \right]\\
+ & =\mathbb{E}_{0}\left[\sum_{t=1}^{\infty}\beta^{t-1}u_{t}\left(\theta^{t}\right)\right]-\sum_{t=1}^{\infty}\beta^{t-1}\left(1-\beta\right)v_{0}\\
+ & =v_{0}-\frac{1-\beta}{1-\beta}v_{0}\\
+ & =0
+\end{align*}
+
+\end_inset
+
+Thus, 
+\begin_inset Formula $\left(\tilde{\mathbf{u}},\tilde{\mathbf{v}}\right)\in\Gamma\left(0\right)$
+\end_inset
+
+.
+ The same process will work in reverse.
+ The final constraint (full-horizon PKC) is where the infinite sum applies.
+ 
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Geometric Series
+\end_layout
+
+\begin_layout Plain Layout
+The following two facts are useful (
+\begin_inset Formula $T\ge1$
+\end_inset
+
+): 
+\begin_inset Formula 
+\begin{align*}
+\sum_{t=0}^{T}\beta^{t} & =\frac{1-\beta^{T+1}}{1-\beta}\\
+\sum_{t=1}^{T}\beta^{t-1}=\sum_{t=0}^{T-1}\beta^{t} & =\frac{1-\beta^{T}}{1-\beta}\\
+\sum_{t=0}^{\infty}\beta^{t} & =\frac{1}{1-\beta}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Finite-horizon case
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $T<\infty$
+\end_inset
+
+, then the proposition needs to be modified: in this case, the shifter on
+ 
+\begin_inset Formula $\mathbf{u}$
+\end_inset
+
+ is 
+\begin_inset Formula $\left(\frac{1-\beta}{1-\beta^{T}}\right)$
+\end_inset
+
+, and the shifter 
+\begin_inset Formula $x$
+\end_inset
+
+ on 
+\begin_inset Formula $\mathbf{v}$
+\end_inset
+
+ is 
+\begin_inset Formula $x$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{align*}
+\beta x & =\frac{1-\beta}{1-\beta^{T}}-1\\
+x & =-\left(\frac{1-\beta^{T-1}}{1-\beta^{T}}\right)
+\end{align*}
+
+\end_inset
+
+This works because 
+\begin_inset Formula 
+\begin{align*}
+\tilde{u}_{t}\left(\theta^{t}\right)+\beta\tilde{v}_{t}\left(\theta^{t}\right) & =u_{t}\left(\theta^{t}\right)-\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}+\beta\left[v_{t}\left(\theta^{t}\right)-\frac{1-\beta^{T-1}}{1-\beta^{T}}v_{0}\right]\\
+ & =u_{t}\left(\theta^{t}\right)+\beta v_{t}\left(\theta^{t}\right)-\frac{1+\beta-\beta+\beta^{T}}{1-\beta^{T}}v_{0}\\
+ & =u_{t}\left(\theta^{t}\right)+\beta v_{t}\left(\theta^{t}\right)-v_{0}
+\end{align*}
+
+\end_inset
+
+Thus, the proposition is that 
+\begin_inset Formula $\left(\mathbf{u},\mathbf{v}\right)\in\Gamma\left(v_{0}\right)$
+\end_inset
+
+ if and only if 
+\begin_inset Formula 
+\[
+\left(\mathbf{u}-\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0},\mathbf{v}-\left(\frac{1-\beta^{T-1}}{1-\beta^{T}}\right)v_{0}\right)\in\Gamma\left(0\right)
+\]
+
+\end_inset
+
+Repeating the 
+\begin_inset Formula $\implies$
+\end_inset
+
+ step: 
+\begin_inset Formula 
+\begin{align*}
+\tilde{v}_{t}\left(\theta^{t}\right) & =v_{t}\left(\theta^{t}\right)-v_{0}\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)+\beta v_{t+1}\left(\theta^{t},\theta\right)\right]-v_{0}\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)+\beta v_{t+1}\left(\theta^{t},\theta\right)\right]-\frac{1-\beta}{1-\beta^{T}}v_{0}-\beta\frac{1-\beta^{T-1}}{1-\beta^{T}}v_{0}\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{t+1}\left(\theta^{t},\theta\right)-\frac{1-\beta}{1-\beta^{T}}v_{0}+\beta\left\{ v_{t+1}\left(\theta^{t},\theta\right)-\frac{1-\beta^{T-1}}{1-\beta^{T}}v_{0}\right\} \right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[\tilde{u}_{t+1}\left(\theta^{t},\theta\right)+\beta\tilde{v}_{t+1}\left(\theta^{t},\theta\right)\right]
+\end{align*}
+
+\end_inset
+
+by the reasoning above.
+ Then, 
+\begin_inset Formula 
+\begin{align*}
+\tilde{u}_{t}\left(\theta^{t-1},\theta\right)+\beta\tilde{v}_{t}\left(\theta^{t-1},\theta\right) & =u_{t}\left(\theta^{t-1},\theta\right)+\beta v_{t}\left(\theta^{t-1},\theta\right)-v_{0}\\
+\tilde{u}_{t}\left(\theta^{t-1},\hat{\theta}\right)+\beta\tilde{v}_{t}\left(\theta^{t-1},\hat{\theta}\right) & =u_{t}\left(\theta^{t-1},\hat{\theta}\right)+\beta v_{t}\left(\theta^{t-1},\hat{\theta}\right)-v_{0}
+\end{align*}
+
+\end_inset
+
+again by the above.
+ Lastly, for the PKC, in the recursive formulation we have 
+\begin_inset Formula 
+\begin{align*}
+\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[\tilde{u}_{0}\left(\theta\right)+\beta\tilde{v}_{1}\left(\theta\right)\right] & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)-\left(1-\beta^{T}\right)v_{0}+\beta v_{1}\left(\theta\right)-\beta^{T}v_{0}\right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)-v_{0}+\beta v_{1}\left(\theta\right)\right]\\
+ & =\sum_{\theta\in\Theta}\pi\left(\theta\right)\left[u_{0}\left(\theta\right)+\beta v_{1}\left(\theta\right)\right]-v_{0}\\
+ & =0
+\end{align*}
+
+\end_inset
+
+and the full formulation is 
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}\tilde{u}_{t}\left(\theta^{t}\right)\right] & =\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}\left\{ u_{t}\left(\theta^{t}\right)-\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}\right\} \right]\\
+ & =\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}u_{t}\left(\theta^{t}\right)\right]-\sum_{t=1}^{T}\beta^{t-1}\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}\\
+ & =v_{0}-\frac{1-\beta^{T}}{1-\beta}\frac{1-\beta}{1-\beta^{T}}v_{0}\\
+ & =0
+\end{align*}
+
+\end_inset
+
+The same will work in reverse, and the proposition goes through.
+ 
+\end_layout
+
+\begin_layout Standard
+With an infinite horizon, the remainder of the proposition is as follows:
+ 
+\begin_inset Formula 
+\begin{align*}
+K\left(v_{0}\right) & =\min_{\left(\mathbf{u},\mathbf{v}\right)\in\Gamma\left(v_{0}\right)}\mathbb{E}_{0}\left[\sum_{t=1}^{\infty}\beta^{t-1}\exp\left(u_{t}\right)\right]\\
+ & =\min_{\left(\tilde{\mathbf{u}},\tilde{\mathbf{v}}\right)\in\Gamma\left(0\right)}\mathbb{E}_{0}\left[\sum_{t=1}^{\infty}\beta^{t-1}\exp\left(\tilde{u}_{t}+\left(1-\beta\right)v_{0}\right)\right]\\
+ & =\min_{\left(\tilde{\mathbf{u}},\tilde{\mathbf{v}}\right)\in\Gamma\left(0\right)}\mathbb{E}_{0}\left[\exp\left(\left(1-\beta\right)v_{0}\right)\sum_{t=1}^{\infty}\beta^{t-1}\exp\left(\tilde{u}_{t}\right)\right]\\
+ & =\exp\left(\left(1-\beta\right)v_{0}\right)K\left(0\right)
+\end{align*}
+
+\end_inset
+
+Note the steps here.
+ In the second line, we consider the problem with 
+\begin_inset Formula $v_{0}=0$
+\end_inset
+
+, and use the proposition above.
+ The proposition implies that the feasible sets with the transformation
+ are essentially equivalent, so to solve the 
+\begin_inset Formula $v_{0}$
+\end_inset
+
+ problem we can just solve the 0 problem, and make the appropriate transformatio
+n to all of the utilities.
+ The rest simply tells us how the value is affected.
+ 
+\end_layout
+
+\begin_layout Standard
+With 
+\begin_inset Formula $T<\infty$
+\end_inset
+
+, we have 
+\begin_inset Formula 
+\begin{align*}
+K_{0}\left(v_{0}\right) & =\min_{\left(\mathbf{u},\mathbf{v}\right)\in\Gamma\left(v_{0}\right)}\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}\exp\left(u_{t}\right)\right]\\
+ & =\min_{\left(\tilde{\mathbf{u}},\tilde{\mathbf{v}}\right)\in\Gamma\left(0\right)}\mathbb{E}_{0}\left[\sum_{t=1}^{T}\beta^{t-1}\exp\left(\tilde{u}_{t}+\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}\right)\right]\\
+ & =\exp\left(\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}\right)K\left(0\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A note on allocations: the above implies that the optimal period utility
+ at a point is 
+\begin_inset Formula $u_{t}^{v_{0}}\left(\theta^{t}\right)=u_{t}^{0}\left(\theta^{t}\right)+\left(1-\beta\right)v_{0}$
+\end_inset
+
+, so the optimal consumption is 
+\begin_inset Formula 
+\begin{align*}
+c_{t}^{v_{0}}\left(\theta^{t}\right) & =\exp\left[u_{t}^{0}\left(\theta^{t}\right)+\left(1-\beta\right)v_{0}\right]\\
+ & =c_{t}^{0}e^{\left(1-\beta\right)v_{0}}
+\end{align*}
+
+\end_inset
+
+The same will apply for the finite horizon: 
+\begin_inset Formula $u_{t}^{v_{0}}\left(\theta^{t}\right)=u_{t}^{0}\left(\theta^{t}\right)+\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}$
+\end_inset
+
+, so 
+\begin_inset Formula 
+\begin{align*}
+c_{t}^{v_{0}}\left(\theta^{t}\right) & =\exp\left[u_{t}^{0}\left(\theta^{t}\right)+\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}\right]\\
+ & =c_{t}^{0}e^{\left(\frac{1-\beta}{1-\beta^{T}}\right)v_{0}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+On the timing: if we start at 
+\begin_inset Formula $t=0$
+\end_inset
+
+ instead of 
+\begin_inset Formula $t=1$
+\end_inset
+
+, the promise-keeping constraint becomes 
+\begin_inset Formula 
+\begin{align*}
+\mathbb{E}_{0}\left[\sum_{t=0}^{T}\beta^{t}\tilde{u}_{t}\left(\theta^{t}\right)\right] & =\mathbb{E}_{0}\left[\sum_{t=0}^{T}\beta^{t}\left\{ u_{t}\left(\theta^{t}\right)-xv_{0}\right\} \right]\\
+ & =v_{0}-x\frac{1-\beta^{T+1}}{1-\beta}v_{0}
+\end{align*}
+
+\end_inset
+
+so we need 
+\begin_inset Formula 
+\[
+x=\frac{1-\beta}{1-\beta^{T+1}}
+\]
+
+\end_inset
+
+and the shifter on 
+\begin_inset Formula $\mathbf{v}$
+\end_inset
+
+ must be 
+\begin_inset Formula $y$
+\end_inset
+
+ such that 
+\begin_inset Formula 
+\begin{align*}
+-\left(\frac{1-\beta}{1-\beta^{T+1}}\right)+\beta y & =-1\\
+\beta y & =\frac{1-\beta}{1-\beta^{T+1}}-1\\
+ & =\frac{1-\beta-1+\beta^{T+1}}{1-\beta^{T+1}}\\
+y & =\frac{\beta^{T}-1}{1-\beta^{T+1}}\\
+ & =-\frac{1-\beta^{T}}{1-\beta^{T+1}}
+\end{align*}
+
+\end_inset
+
+So all terms involving 
+\begin_inset Formula $T$
+\end_inset
+
+ shift up by one.
+ 
+\end_layout
+
+\begin_layout Section
+Our Model
+\end_layout
+
+\begin_layout Standard
+The dual problem is 
+\begin_inset Formula 
+\[
+\min\sum_{t=0}^{T}\left(\prod_{s=0}^{t-1}R_{s}\right)^{-1}\left\{ \int\left[c_{t}\left(\theta^{t}\right)+k_{t+1}\left(\theta^{t}\right)\right]d\mu_{t}\left(\theta^{t}\right)-\int p_{t}\left(\theta^{t-1}\right)\theta_{t-1}k_{t}\left(\theta^{t-1}\right)d\mu_{t-1}\left(\theta^{t-1}\right)\right\} 
+\]
+
+\end_inset
+
+subject to 
+\begin_inset Formula 
+\[
+\sum_{t=0}^{T}\beta^{t}\int u\left[c_{t}\left(\theta^{t}\right)\right]d\mu_{t}\left(\theta^{t}\right)\ge U^{*}
+\]
+
+\end_inset
+
+along with the local incentive constraints 
+\begin_inset Formula 
+\[
+U^{\prime}\left(\theta^{t}\right)=u^{\prime}\left(c_{t}\left(\theta^{t}\right)\right)\frac{k_{t+1}\left(\theta^{t}\right)}{\theta_{t}}
+\]
+
+\end_inset
+
+Note: these incentive constraints make use of the one-shot deviation principle,
+ and thus consider a deviation only at a single 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Here we have 
+\begin_inset Formula 
+\[
+p_{t}\left(\theta^{t-1}\right)=\alpha K_{t,f}^{\alpha-1}\left(\frac{K_{t,f}}{\theta_{t-1}k_{t}\left(\theta^{t-1}\right)}\right)^{\frac{1}{\varepsilon}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+component
+\emph default
+ planning problem (taking prices as given) is 
+\begin_inset Formula 
+\[
+\min_{\substack{c_{\tau}\left(\theta^{\tau}\right),k_{\tau+1}\left(\theta^{\tau}\right),\\
+U_{\tau}\left(\theta^{\tau}\right),w_{\tau+1}\left(\theta^{\tau}\right)
+}
+}\sum_{\tau=t}^{T}\left(\prod_{s=t}^{\tau-1}R_{s}\right)^{-1}\left\{ \int\left[c_{\tau}\left(\theta^{\tau}\right)+k_{\tau+1}\left(\theta^{\tau}\right)\right]d\mu_{\tau}\left(\theta^{\tau}\right)-\int p_{\tau}\left(\theta^{\tau-1}\right)\theta_{\tau-1}k_{\tau}\left(\theta^{\tau-1}\right)d\mu_{\tau-1}\left(\theta^{\tau-1}\right)\right\} 
+\]
+
+\end_inset
+
+Subject to 
+\begin_inset Formula 
+\begin{align*}
+w_{t}\left(\theta^{t-1}\right) & =\sum_{\tau=t}^{\infty}\beta^{\tau-t}\int u\left[c_{\tau}\left(\theta^{\tau}\right)\right]d\mu_{\tau}\left(\theta^{\tau}\right)\\
+U_{\tau}\left(\theta^{\tau}\right) & =u\left[c_{\tau}\left(\theta^{\tau}\right)\right]+\beta w_{\tau+1}\left(\theta^{\tau}\right)\\
+\frac{\partial U_{\tau}\left(\theta^{\tau}\right)}{\theta_{\tau}} & =\frac{k_{\tau+1}\left(\theta^{\tau}\right)}{\theta_{\tau}c_{\tau}\left(\theta^{\tau}\right)}
+\end{align*}
+
+\end_inset
+
+Using the homogeneity result in section 1, I make the following proposition.
+ The recursive formulation is 
+\begin_inset Formula 
+\begin{align*}
+C_{t}(w_{t},\overline{p}_{t})=\min_{\substack{c(\theta),k^{\prime}(\theta),\\
+w^{\prime}(\theta),U(\theta)
+}
+} & \int\left\{ c_{t}\left(\theta_{t}\right)+k_{t}^{\prime}\left(\theta_{t}\right)+\frac{1}{R_{t}}\left[C_{t+1}\left(w_{t}^{\prime}\left(\theta\right),\overline{p}_{t}\cdot\tilde{p}\left(\theta_{t}\right)\right)-\overline{p}_{t}\cdot\hat{p}\left(\theta_{t}\right)\theta_{t}k^{\prime}\left(\theta_{t}\right)\right]\right\} dF\left(\theta\right)\\
+ & \text{subject to}\\
+\int U\left(\theta_{t}\right)dF\left(\theta_{t}\right) & \ge w_{t}\\
+U\left(\theta_{t}\right) & =u\left(c_{t}\left(\theta_{t}\right)\right)+\beta w_{t}^{\prime}\left(\theta_{t}\right)\\
+U^{\prime}\left(\theta_{t}\right) & =u^{\prime}\left(c_{t}\left(\theta_{t}\right)\right)\frac{k_{t}^{\prime}\left(\theta_{t}\right)}{\theta_{t}}
+\end{align*}
+
+\end_inset
+
+and I propose the following forms (in the log utility case): 
+\begin_inset Formula 
+\begin{align*}
+C_{t}\left(w,\overline{p}_{t}\right) & =A_{t}\left(\overline{p}_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\right] & w_{t}^{\prime}\left(\theta_{t},w_{t},\overline{p}_{t}\right) & =w_{t}^{\prime}\left(\theta_{t},\overline{p}_{t}\right)+\frac{1-\beta^{T}}{1-\beta^{T+1}}w_{t}\\
+c_{t}\left(\theta_{t},w_{t},\overline{p}_{t}\right) & =c_{t}\left(\theta_{t},\overline{p}_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\right] & U_{t}\left(\theta_{t},w_{t},\overline{p}_{t}\right) & =U_{t}\left(\theta_{t},\overline{p}_{t}\right)+w_{t}\\
+k_{t}^{\prime}\left(\theta_{t},w_{t},\overline{p}_{t}\right) & =k_{t}^{\prime}\left(\theta_{t},\overline{p}_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\right]
+\end{align*}
+
+\end_inset
+
+Note that the limit on the shifters approaches their infinite-horizon analogues
+ as 
+\begin_inset Formula $T\to\infty$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Checking on the constraints: 
+\begin_inset Formula 
+\begin{align*}
+u\left(c_{t}\left(\theta_{t},w_{t},\overline{p}_{t}\right)\right)+\beta w_{t}^{\prime}\left(\theta_{t},w_{t},\overline{p}_{t}\right) & =\ln\left\{ c_{t}\left(\theta_{t},\overline{p}_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\right]\right\} +\beta\left[w_{t}^{\prime}\left(\theta_{t},\overline{p}_{t}\right)+\frac{1-\beta^{T}}{1-\beta^{T+1}}w_{t}\right]\\
+ & =\ln c_{t}\left(\theta_{t},\overline{p}_{t}\right)+\frac{1-\beta}{1-\beta^{T+1}}w_{t}+\beta w_{t}^{\prime}\left(\theta_{t},\overline{p}_{t}\right)+\frac{\beta-\beta^{T+1}}{1-\beta^{T+1}}w_{t}\\
+ & =U_{t}\left(\theta_{t},\overline{p}_{t}\right)+w_{t}\\
+ & =U_{t}\left(\theta_{t},w_{t},\overline{p}_{t}\right)
+\end{align*}
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\begin{align*}
+\int U_{t}\left(\theta_{t},w_{t},\overline{p}_{t}\right)dF\left(\theta_{t}\right) & =\int\left[U_{t}\left(\theta_{t},\overline{p}_{t}\right)+w_{t}\right]dF\left(\theta_{t}\right)\\
+ & =w_{t}
+\end{align*}
+
+\end_inset
+
+All good! 
+\end_layout
+
+\begin_layout Standard
+With this result, we need to update the decomposition of 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ Start with 
+\begin_inset Formula $k$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+k_{t+1}\left(\theta^{t}\right) & =\overline{k}_{t+1}\left(\theta_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\left(\theta^{t-1}\right)\right]\\
+ & =\overline{k}_{t+1}\left(\theta_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}\left(\frac{1-\beta^{T}}{1-\beta^{T+1}}w^{\prime}\left(\theta_{t-1}\right)+\frac{1-\beta^{T}}{1-\beta^{T+1}}w^{\prime}\left(\theta_{t-2}\right)+...+\frac{1-\beta^{T}}{1-\beta^{T+1}}w^{\prime}\left(\theta_{0}\right)+w_{0}\right)\right]
+\end{align*}
+
+\end_inset
+
+Thus, the price evolves according to 
+\begin_inset Formula 
+\begin{align}
+p_{t+1}\left(\theta^{t}\right) & =\alpha K_{f}^{\alpha-1}K_{f}^{\frac{1}{\varepsilon}}\left(\theta_{t}k_{t+1}\left(\theta^{t}\right)\right)^{-\frac{1}{\varepsilon}}\\
+ & =\alpha K_{f}^{\alpha-1}K_{f}^{\frac{1}{\varepsilon}}\left(\theta_{t}\overline{k}_{t+1}\left(\theta_{t}\right)\exp\left[\frac{1-\beta}{1-\beta^{T+1}}w_{t}\left(\theta^{t-1}\right)\right]\right)^{-\frac{1}{\varepsilon}}\\
+ & =\underbrace{\alpha K_{f}^{\alpha-1}K_{f}^{\frac{1}{\varepsilon}}\exp\left[-\frac{1}{\varepsilon}\frac{1-\beta}{1-\beta^{T+1}}\left(\frac{1-\beta^{T}}{1-\beta^{T+1}}w^{\prime}\left(\theta_{t-1}\right)+...+\frac{1-\beta^{T}}{1-\beta^{T+1}}w^{\prime}\left(\theta_{0}\right)+w_{0}\right)\right]}_{\overline{p}_{t}\left(\theta^{t-1}\right)}\times\\
+ & \qquad\underbrace{\left(\theta_{t}\overline{k}_{t+1}\left(\theta_{t}\right)\right)^{-\frac{1}{\varepsilon}}}_{\hat{p}_{t}\left(\theta_{t}\right)}
+\end{align}
+
+\end_inset
+
+So, 
+\begin_inset Formula $\hat{p}$
+\end_inset
+
+ is the same.
+ What changes are 
+\begin_inset Formula $\overline{p}$
+\end_inset
+
+ (the state) and 
+\begin_inset Formula $\tilde{p}$
+\end_inset
+
+.
+ The state evolves according to 
+\begin_inset Formula 
+\[
+\overline{p}_{t+1}\left(\theta^{t}\right)=\overline{p}_{t}\left(\theta^{t-1}\right)\underbrace{\exp\left(-\frac{1-\beta}{\varepsilon\left(1-\beta^{T+1}\right)}\frac{1-\beta^{T}}{1-\beta^{T+1}}w_{t}^{\prime}\left(\theta_{t}\right)\right)}_{\tilde{p}_{t}\left(\theta_{t}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,76 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{subcaption} % caption the subfigures
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+
+\begin{document}
+\begin{flushleft}
+    Presentation Outline \\
+    \today
+\end{flushleft}
+
+    \begin{itemize}
+        \item Main Research Question(s)
+        \begin{enumerate}
+            \item What is the optimal tax schedule in an economy where individuals face idiosyncratic shocks to both income, and rates of return on wealth?
+            \item Does the optimal tax schedule change when non-pecuniary motives for wealth accumulation are added?
+        \end{enumerate}
+
+        \item Summary of Related Literature
+        \begin{itemize}
+            \item Optimal Taxation
+            \begin{itemize}
+                \item \cite{mirrlees1971exploration}
+                \begin{itemize}
+                    \item Seminal paper in optimal taxation
+                    \item Formal characterization of the tradeoff between efficiency and redistributive motives
+                    \item Problem: government sets optimal tax schedule to maximize social welfare function
+                    \item Must satisfy its budget constraint, along with individual rationality constraint
+                    \item Government can only observe income, not type
+                    \item One finding: optimal top marginal rate is zero
+                \end{itemize}
+                \item \cite{diamond1998optimal}
+                \begin{itemize}
+                    \item Alternative characterization of first-order conditions of the \cite{mirrlees1971exploration}
+                    \item Stronger case for very progressive taxation 
+                    \item Top rate of zero: minimal bearing on policy; rate need not slowly decline to zero 
+                    \item Generally: optimal marginal rate at a given income level depends on the elasticity of labor supply around this level (did Mirrlees show this?)
+                \end{itemize}
+                \item \cite{saez2001using}
+                \begin{itemize}
+                    \item Building on \cite{diamond1998optimal}, uses elaticities observed in data to derive optimal marginal rate
+                \end{itemize}
+            \end{itemize}
+            \item Taxation of capital and capital income 
+            \begin{itemize}
+                \item \cite{feldstein1978welfare}
+                \item \cite{saez2019triumph}: meeting optimal progressivity requires taxes other than on income 
+                \item Cite some Saez/Zucman/Piketty things
+            \end{itemize}
+            
+            \item Idiosyncratic RoR shocks
+            \begin{itemize}
+                \item \cite{benhabib2011distribution}, \cite{benhabib2015wealth}, \cite{benhabib2019wealth}, \cite{gabaix2016dynamics}
+                \item Pareto tail: need persistence to (a) have stationary dist and (b) match data
+            \end{itemize}
+        \end{itemize}
+
+        \item Early Stages of Model
+        \item 
+    \end{itemize}
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

@@ -1,0 +1,449 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Alternative Problem
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\min & \int\left[c_{0}+k-w+\frac{1}{R}\left[\alpha\left(c_{1}^{y}-\theta k\right)+\left(1-\alpha\right)c_{1}^{0}\right]\right]f\left(\theta\right)d\theta\\
+\text{s.t.}\\
+U^{*} & \le\int Ufd\theta\\
+U & =u\left(c_{0}\right)+\beta\left[\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right]\\
+U^{\prime} & =u\left(c_{0}\right)\frac{k}{\theta}\\
+U\left(\underline{\theta}\right) & \ge u\left(c_{0}+k\right)+\beta u\left(c_{1}^{0}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Idea: suppose 
+\begin_inset Formula $U\left(\underline{\theta}\right)=u\left(c_{0}+k\right)+\beta u\left(c_{1}^{0}\right)$
+\end_inset
+
+ , solve out for 
+\begin_inset Formula $u\left(c_{1}^{0}\right)$
+\end_inset
+
+, and thus 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+ as fxn of 
+\begin_inset Formula $U\left(\underline{\theta}\right),c_{0},k$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+c_{1}^{0}=u^{-1}\left(\frac{U\left(\underline{\theta}\right)-u\left(c_{0}+k\right)}{\beta}\right)
+\]
+
+\end_inset
+
+The derivatives of this thing are
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial c_{0}} & =\frac{1}{u^{\prime}\left(u^{-1}\left(\frac{U\left(\underline{\theta}\right)-u\left(c_{0}+k\right)}{\beta}\right)\right)}\left(-\frac{1}{\beta}u^{\prime}\left(c_{0}+k\right)\right)\\
+\frac{\partial}{\partial k} & =\frac{1}{u^{\prime}\left(u^{-1}\left(\frac{U\left(\underline{\theta}\right)-u\left(c_{0}+k\right)}{\beta}\right)\right)}\left(-\frac{1}{\beta}u^{\prime}\left(c_{0}+k\right)\right)
+\end{align*}
+
+\end_inset
+
+With log preferences:
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial}{\partial c_{0}} & =\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)\left(-\frac{1}{\beta\left(c_{0}+k\right)}\right)\\
+\frac{\partial}{\partial k} & =\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)\left(-\frac{1}{\beta\left(c_{0}+k\right)}\right)
+\end{align*}
+
+\end_inset
+
+New problem (assume 
+\begin_inset Formula $\alpha\theta>R$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\min & \int\left[c_{0}+k-w+\frac{1}{R}\left[\alpha\left(c_{1}^{y}-\theta k\right)+\left(1-\alpha\right)\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)\right]\right]f\left(\theta\right)d\theta\\
+\text{s.t.}\\
+U^{*} & \le\int Ufd\theta\\
+U & =\log\left(c_{0}\right)+\beta\left[\alpha\log\left(c_{1}^{y}\right)+\frac{\left(1-\alpha\right)}{\beta}\left(U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)\right)\right]\\
+U^{\prime} & =\frac{k}{\theta c_{0}}
+\end{align*}
+
+\end_inset
+
+Lagrangean:
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int\left\{ c_{0}+k-w+\frac{1}{R}\left[\alpha\left(c_{1}^{y}-\theta k\right)+\left(1-\alpha\right)\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)\right]\right\} f\left(\theta\right)d\theta+\gamma\left(U^{*}-\int Ufd\theta\right)+\\
+\int\left\{ \log\left(c_{0}\right)+\beta\left[\alpha\log\left(c_{1}^{y}\right)+\frac{\left(1-\alpha\right)}{\beta}\left(U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)\right)\right]-U\right\} \eta fd\theta+\\
+\int\frac{k}{\theta c_{0}}\mu fd\theta+\int U\mu f^{\prime}d\theta+\int U\mu^{\prime}fd\theta+U\mu f\big|_{\underline{\theta}}^{\overline{\theta}}
+\end{multline*}
+
+\end_inset
+
+FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & f\left(1-\frac{\left(1-\alpha\right)}{R}\frac{\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)}{\beta\left(c_{0}+k\right)}\right)+\eta f\left(\frac{1}{c_{0}}-\frac{\left(1-\alpha\right)}{c_{0}+k}\right)-\frac{\mu k}{\theta c_{0}^{2}}f=0\\
+k: & f\left(1+\frac{1}{R}\left(-\alpha\theta-\left(1-\alpha\right)\frac{\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)}{\beta\left(c_{0}+k\right)}\right)\right)-\eta f\frac{\left(1-\alpha\right)}{c_{0}+k}+\frac{\mu}{\theta c_{0}}f=0\\
+c_{1}^{y}: & f\frac{\alpha}{R}+\frac{\alpha\beta\eta}{c_{1}^{y}}f=0\\
+U: & -\gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f=0\\
+U\left(\underline{\theta}\right): & f\frac{\left(1-\alpha\right)}{\beta R}\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)-\gamma f-\alpha\eta f+\mu f^{\prime}+\mu^{\prime}f=0
+\end{align*}
+
+\end_inset
+
+Cleaning: first note
+\begin_inset Formula 
+\begin{align*}
+\exp\left(\frac{U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)}{\beta}\right)\left(-\frac{1}{\beta\left(c_{0}+k\right)}\right) & =-\frac{\exp\left[U\left(\underline{\theta}\right)-\log\left(c_{0}+k\right)\right]\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)}\\
+ & =-\frac{1}{\beta\left(c_{0}+k\right)}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{c_{0}+k}\\
+ & =-\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)^{2}}
+\end{align*}
+
+\end_inset
+
+FOCs become: 
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{\left(1-\alpha\right)}{R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)^{2}}+\eta\left(\frac{1}{c_{0}}-\frac{\left(1-\alpha\right)}{c_{0}+k}\right)-\frac{\mu k}{\theta c_{0}^{2}}=0\\
+k: & 1-\frac{\alpha\theta}{R}-\frac{\left(1-\alpha\right)}{R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)^{2}}-\eta\frac{\left(1-\alpha\right)}{c_{0}+k}+\frac{\mu}{\theta c_{0}}=0\\
+c_{1}^{y}: & \frac{\alpha}{R}+\frac{\alpha\beta\eta}{c_{1}^{y}}=0\\
+U: & -\gamma f-\eta f+\mu f^{\prime}+\mu^{\prime}f=0\\
+U\left(\underline{\theta}\right): & f\frac{\left(1-\alpha\right)}{\beta R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{c_{0}+k}-\gamma f-\alpha\eta f+\mu f^{\prime}+\mu^{\prime}f=0
+\end{align*}
+
+\end_inset
+
+Solving for 
+\begin_inset Formula $\eta$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{R} & =-\frac{\beta}{c_{1}^{y}}\eta\implies\\
+\eta & =-\frac{c_{1}^{y}}{\beta R}
+\end{align*}
+
+\end_inset
+
+Substituting:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{\left(1-\alpha\right)}{R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)^{2}}-\frac{c_{1}^{y}}{\beta R}\left(\frac{1}{c_{0}}-\frac{\left(1-\alpha\right)}{c_{0}+k}\right)-\frac{\mu k}{\theta c_{0}^{2}}=0\\
+k: & 1-\frac{\alpha\theta}{R}-\frac{\left(1-\alpha\right)}{R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\beta\left(c_{0}+k\right)^{2}}+\frac{c_{1}^{y}}{\beta R}\frac{\left(1-\alpha\right)}{c_{0}+k}+\frac{\mu}{\theta c_{0}}=0\\
+U: & -\gamma+\frac{c_{1}^{y}}{\beta R}+\mu\frac{f^{\prime}}{f}+\mu^{\prime}=0\\
+U\left(\underline{\theta}\right): & \frac{\left(1-\alpha\right)}{\beta R}\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{c_{0}+k}-\gamma+\alpha\frac{c_{1}^{y}}{\beta R}+\mu\frac{f^{\prime}}{f}+\mu^{\prime}=0
+\end{align*}
+
+\end_inset
+
+These could constitute the new system, along with 
+\begin_inset Formula $U^{\prime}$
+\end_inset
+
+, although not sure what this gets us...
+\end_layout
+
+\begin_layout Section
+Standard Problem
+\end_layout
+
+\begin_layout Standard
+FOCs from the usual formulation:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k}=0\\
+k: & 1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k}=0\\
+c_{1}^{y}: & \frac{\alpha}{R}+\frac{\alpha\beta\eta}{c_{1}^{y}}=0\\
+c_{1}^{0}: & 1-\frac{c_{1}^{y}}{c_{1}^{0}}+\frac{\beta R\phi}{\left(1-\alpha\right)c_{1}^{0}}=0\\
+U: & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}\\
+U\left(\underline{\theta}\right): & \mu^{\prime}=\gamma-\frac{c_{1}^{y}}{\beta R}-\mu\frac{f^{\prime}}{f}+\phi
+\end{align*}
+
+\end_inset
+
+Substitute 
+\begin_inset Formula $c_{1}^{0}=\exp\left(\underline{U}\right)\exp\left(1/\beta\right)/\left(c_{0}+k\right)$
+\end_inset
+
+; this only affects the FOC for 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+c_{1}^{0}=c_{1}^{y}+\frac{\beta R\phi}{1-\alpha}=\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}
+\]
+
+\end_inset
+
+Four equations, four unknowns:
+\begin_inset Formula 
+\begin{align*}
+1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k} & =0\\
+1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k} & =0\\
+c_{1}^{y}+\frac{\beta R\phi}{1-\alpha} & =\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}
+\end{align*}
+
+\end_inset
+
+Can easily solve this out for 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+c_{1}^{y}=\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}-\frac{\beta R\phi}{1-\alpha}
+\]
+
+\end_inset
+
+and so
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta Rc_{0}} & =\frac{1}{\beta Rc_{0}}\left(\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}-\frac{\beta R\phi}{1-\alpha}\right)\\
+ & =\frac{\exp\left(\underline{U}/\beta\right)}{\beta Rc_{0}\left(c_{0}+k\right)}-\frac{\phi}{\left(1-\alpha\right)c_{0}}
+\end{align*}
+
+\end_inset
+
+Now:
+\begin_inset Formula 
+\begin{align*}
+U & =\log c_{0}+\beta\left[\alpha\log c_{1}^{y}+\left(1-\alpha\right)\log c_{1}^{0}\right]\\
+ & =\log c_{0}+\beta\left[\alpha\log\left(\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}-\frac{\beta R\phi}{1-\alpha}\right)+\frac{\left(1-\alpha\right)}{\beta}\left(\underline{U}-\log\left(c_{0}+k\right)\right)\right]
+\end{align*}
+
+\end_inset
+
+This gives three equations in three unknowns (
+\begin_inset Formula $c_{0},k,\phi$
+\end_inset
+
+).
+ Simplifying the inside:
+\begin_inset Formula 
+\begin{align*}
+\log\left(\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}-\frac{\beta R\phi}{1-\alpha}\right) & =\frac{\log\left(\exp\left(\underline{U}/\beta\right)\right)-\log\left(c_{0}+k\right)}{\log\left(\beta R\phi\right)-\log\left(1-\alpha\right)}\\
+ & =\frac{\underline{U}/\beta-\log\left(c_{0}+k\right)}{\log\left(\beta R\phi\right)-\log\left(1-\alpha\right)}
+\end{align*}
+
+\end_inset
+
+So the system is
+\begin_inset Formula 
+\begin{align*}
+0 & =\log c_{0}+\beta\left[\alpha\frac{\underline{U}/\beta-\log\left(c_{0}+k\right)}{\log\left(\beta R\phi\right)-\log\left(1-\alpha\right)}+\frac{\left(1-\alpha\right)}{\beta}\left(\underline{U}-\log\left(c_{0}+k\right)\right)\right]-U\\
+0 & =1-\frac{\exp\left(\underline{U}/\beta\right)}{\beta Rc_{0}\left(c_{0}+k\right)}+\frac{\phi}{\left(1-\alpha\right)c_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k}\\
+0 & =1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k}
+\end{align*}
+
+\end_inset
+
+Combining the last two: 
+\begin_inset Formula 
+\begin{align*}
+\frac{\exp\left(\underline{U}/\beta\right)}{\beta Rc_{0}\left(c_{0}+k\right)}-\frac{\phi}{\left(1-\alpha\right)c_{0}}+\frac{\mu k}{\theta c_{0}^{2}}-\frac{\phi}{c_{0}+k} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}-\frac{\phi}{c_{0}+k}\\
+\frac{\exp\left(\underline{U}/\beta\right)}{\beta Rc_{0}\left(c_{0}+k\right)}-\frac{\phi}{\left(1-\alpha\right)c_{0}}+\frac{\mu k}{\theta c_{0}^{2}} & =\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}
+\end{align*}
+
+\end_inset
+
+Multiply through by 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\frac{\exp\left(\underline{U}/\beta\right)}{\beta R\left(c_{0}+k\right)}-\frac{\phi}{\left(1-\alpha\right)}+\frac{\mu k}{\theta c_{0}}=\frac{\alpha\theta}{R}c_{0}-\frac{\mu}{\theta}
+\]
+
+\end_inset
+
+This can be used to solve for 
+\begin_inset Formula $\phi$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\frac{\exp\left(\underline{U}/\beta\right)}{\beta R\left(c_{0}+k\right)}+\frac{\mu k}{\theta c_{0}}-\frac{\alpha\theta}{R}c_{0}+\frac{\mu}{\theta}=\frac{\phi}{\left(1-\alpha\right)}
+\]
+
+\end_inset
+
+so
+\begin_inset Formula 
+\[
+\phi=\left(1-\alpha\right)\left[\frac{\exp\left(\underline{U}/\beta\right)}{\beta R\left(c_{0}+k\right)}+\frac{\mu k}{\theta c_{0}}-\frac{\alpha\theta}{R}c_{0}+\frac{\mu}{\theta}\right]
+\]
+
+\end_inset
+
+Now we're down to two equations:
+\begin_inset Formula 
+\begin{align*}
+0 & =\log c_{0}+\beta\left[\alpha\frac{\underline{U}/\beta-\log\left(c_{0}+k\right)}{\log\left(\beta R\phi\right)-\log\left(1-\alpha\right)}+\frac{\left(1-\alpha\right)}{\beta}\left(\underline{U}-\log\left(c_{0}+k\right)\right)\right]-U\\
+0 & =1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\left(1-\alpha\right)}{c_{0}+k}\left[\frac{\exp\left(\underline{U}/\beta\right)}{\beta R\left(c_{0}+k\right)}+\frac{\mu k}{\theta c_{0}}-\frac{\alpha\theta}{R}c_{0}+\frac{\mu}{\theta}\right]
+\end{align*}
+
+\end_inset
+
+Can replace 
+\begin_inset Formula $\phi$
+\end_inset
+
+ in the first, but not sure if this really is better.
+ What if we combined them earlier?
+\begin_inset Formula 
+\begin{align*}
+1-\frac{c_{1}^{y}}{\beta Rc_{0}}-\frac{\mu k}{\theta c_{0}^{2}}+\frac{\phi}{c_{0}+k} & =0\\
+1-\frac{\alpha\theta}{R}+\frac{\mu}{\theta c_{0}}+\frac{\phi}{c_{0}+k} & =0\\
+c_{1}^{y}+\frac{\beta R\phi}{1-\alpha} & =\frac{\exp\left(\underline{U}\right)\exp\left(1/\beta\right)}{\left(c_{0}+k\right)}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{c_{1}^{y}}{\beta Rc_{0}}+\frac{\mu k}{\theta c_{0}^{2}}=\frac{\alpha\theta}{R}-\frac{\mu}{\theta c_{0}}
+\]
+
+\end_inset
+
+Multiply through by 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+ again: 
+\begin_inset Formula 
+\[
+\frac{c_{1}^{y}}{\beta R}+\frac{\mu k}{\theta c_{0}}=\frac{\alpha\theta}{R}c_{0}-\frac{\mu}{\theta}
+\]
+
+\end_inset
+
+Can solve this for 
+\begin_inset Formula $k$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\frac{\mu k}{\theta c_{0}} & =\frac{\alpha\theta}{R}c_{0}-\frac{\mu}{\theta}-\frac{c_{1}^{y}}{\beta R}\\
+k & =\frac{1}{\mu}\left(\frac{\alpha}{R}\left(\theta c_{0}\right)^{2}-\mu c_{0}-\frac{\theta c_{0}c_{1}^{y}}{\beta R}\right)\\
+ & =\frac{\alpha}{\mu R}\left(\theta c_{0}\right)^{2}-c_{0}-\frac{\theta c_{0}c_{1}^{y}}{\mu\beta R}
+\end{align*}
+
+\end_inset
+
+Now substitute for 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+k=\frac{\alpha}{\mu R}\left(\theta c_{0}\right)^{2}-c_{0}-\frac{\theta c_{0}}{\mu\beta R}\frac{\exp\left(\underline{U}/\beta\right)}{\left(c_{0}+k\right)}-\frac{\beta R\phi}{1-\alpha}
+\]
+
+\end_inset
+
+Not sure if any of these can be solved for.
+ 
+\end_layout
+
+\end_body
+\end_document

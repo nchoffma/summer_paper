@@ -1,0 +1,42 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+
+\begin{document}
+    
+% Model
+Parent-child pair makes up a dynasty
+Parent allocates lifetime income \( y \) between consumption \( c \) and investment in child's wealth \( z \). 
+Payoff to parent: 
+\[u(c) + w_0(z) + w_1(e)\]
+where \( w_0 \) is the intrinsic parental utility from the child's wealth, and \( w_1 \) the milestone utility from passing a threshold \( a \), with \( e = \max\{z - a, 0\} \). 
+
+\( \Psi(\lambda y, F^\lambda) = \lambda\Psi(y, F) \)
+
+\( \min\{y, \min F\} \leq \Psi(y, F) \leq \max(y, \max F) \)
+
+% \begin{align*}
+%     u(c) &= c^{1 - \sigma} & w_0(z) &= \delta z^{1 - \sigma} & w_1(e) &= \delta \pi e^{1 - \sigma}
+% \end{align*}
+
+The parent's problem is 
+\[\max_z u(y - k(z)) + w_0(z) + w_1(\max\{z - a, 0\})\]
+
+\[w_0^\prime(z_0) = \frac{u^\prime(y - k(z_0))}{f^\prime(k(z_0))}\]
+and
+\[w_0^\prime(z_1) + w_1^\prime(z_1 - a) = \frac{u^\prime(y - k(z_1))}{f^\prime(k(z_1))}\]
+
+% Aspirations and Growth
+
+\[\left(y - \frac{z}{\rho}\right)^{1 - \sigma} + \delta\left[z^{1 - \sigma} + \pi \left(\max\{z - a, 0\}\right)^{1 - \sigma}\right]\]
+
+\[\left(1 - \frac{g}{\rho}\right)^{1 - \sigma} + \delta\left[g^{1 - \sigma} + \pi \left(\max\{g - r, 0\}\right)^{1 - \sigma}\right]\]
+
+$r\equiv z/y$ 
+
+\[\left(1 - \frac{g(r)}{\rho}\right)^{- \sigma} = \delta\rho\left[g(r)^{- \sigma} + \pi \left(g(r) - r\right)^{-\sigma}\right]\]
+
+\[\left(1 - \frac{g}{\rho}\right)^{-\sigma} = \delta\rho g^{-\sigma} \]
+
+\( \underline{g} \)
+
+\end{document}

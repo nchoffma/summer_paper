@@ -1,0 +1,130 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Itemize
+Household problem:
+\begin_inset Formula 
+\begin{align*}
+\max_{k,b}U\left(c_{0},c_{1}\right) & =\log c_{0}+\beta\mathbb{E}\left[\log c_{1}\right]\\
+ & \text{s.t.}\\
+c_{0} & \le w-k-b\\
+c_{1} & \le\begin{cases}
+\theta k+Rb-T\left(y,Rb\right) & y>0\\
+Rb-T\left(y,Rb\right) & y=0
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Allocations: 
+\begin_inset Formula $\left\{ c_{0}\left(\theta\right),k\left(\theta\right),b\left(\theta\right),c_{1}\left(\theta,y\right),c_{1}\left(\theta,0\right)\right\} _{\theta\in\Theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Planner's problem: 
+\begin_inset Formula 
+\begin{align*}
+\max\int_{\underline{\theta}}^{\overline{\theta}}\mathcal{U}\left(\theta\right)dF\left(\theta\right)\\
+ & \text{s.t.}\\
+\log c_{0}\left(\theta\right)+\beta\left[\alpha\log c_{1}\left(\theta,y\right)+\left(1-\alpha\right)\log c_{1}\left(\theta,0\right)\right] & =\mathcal{U}\left(\theta\right)\\
+\int_{\underline{\theta}}^{\overline{\theta}}\left[c_{0}\left(\theta\right)+k\left(\theta\right)\right]dF\left(\theta\right) & \le w\\
+\int_{\underline{\theta}}^{\overline{\theta}}\left[\alpha c_{1}\left(\theta,y\right)+\left(1-\alpha\right)c_{1}\left(\theta,0\right)\right]dF\left(\theta\right) & \le\int_{\underline{\theta}}^{\overline{\theta}}\alpha\theta k\left(\theta\right)dF\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

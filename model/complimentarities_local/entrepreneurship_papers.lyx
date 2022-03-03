@@ -1,0 +1,248 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Paragraph
+Albaneesi (2006)
+\end_layout
+
+\begin_layout Itemize
+Moral hazard problem: returns to entrepreneurial activity depend upon privately-
+known effort
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Idiosyncratic capital income risk comes from effort
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Preferences: separable in consumption and effort
+\begin_inset Formula 
+\[
+U=u\left(c_{0}\right)+\beta u\left(c_{1}\right)-v\left(e\right)
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $e\in\left\{ 0,1\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Return on capital: 
+\begin_inset Formula $R\left(K_{1},x\right)=K_{1}\left(1+x\right)$
+\end_inset
+
+ where 
+\begin_inset Formula 
+\[
+x=\begin{cases}
+\overline{x} & \pi\left(e\right)\\
+\underline{x} & 1-\pi\left(e\right)
+\end{cases}
+\]
+
+\end_inset
+
+so there are two states, good and bad return, the probability of which depends
+ on effort (of which there are two possible levels)
+\end_layout
+
+\begin_layout Itemize
+Intertemporal wedges: two types
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Aggregate: 
+\begin_inset Formula 
+\[
+IW=\beta E_{1}\left(1+x\right)E_{1}u^{\prime}\left(c_{1}^{*}\left(x\right)\right)-u^{\prime}\left(c_{0}^{*}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Individual:
+\begin_inset Formula 
+\[
+IW_{K}=\beta E_{1}u^{\prime}\left(c_{1}^{*}\left(x\right)\right)\left(1+x\right)-u^{\prime}\left(c_{0}^{*}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+This wedge is more directly comparable to our wedges
+\end_layout
+
+\begin_layout Itemize
+The sign of this wedge depends on the degree of risk aversion
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+Implementation
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+First market structure: entrepreneurs can hold bonds (most similar to ours)
+\end_layout
+
+\begin_layout Itemize
+Differential asset taxation is optimal here as well
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Points of contrast to draw
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Differences in rates of return result from ex-ante, rather than ex-post
+ heterogeneity
+\end_layout
+
+\begin_layout Itemize
+Ours is somewhat of a generalization
+\end_layout
+
+\begin_layout Itemize
+We do not assume that investments are publicly observed
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph
+Scheuer (2013)
+\end_layout
+
+\begin_layout Itemize
+Individuals heterogeneous w/r/t 1) skill in labor market and 2) cost of
+ setting up a firm
+\end_layout
+
+\begin_layout Itemize
+Necessarily features entrepreneurial choice, which we eliminate by assuming
+ all agents produce goods that the market wants at least some of (imperfect
+ substitutes)
+\end_layout
+
+\begin_layout Itemize
+Emphasis placed on differential taxation of labor income and entrepreneurial
+ income
+\end_layout
+
+\begin_layout Itemize
+Nonseparable preferences again: 
+\begin_inset Formula 
+\[
+U\left(c,l;\theta\right)=c-\psi\left(\frac{l}{\theta}\right)
+\]
+
+\end_inset
+
+our model generalizes this
+\end_layout
+
+\begin_layout Itemize
+No entrepreneurial investment, just effort
+\end_layout
+
+\end_body
+\end_document

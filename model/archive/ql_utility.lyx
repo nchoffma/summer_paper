@@ -1,0 +1,443 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Quaslinear Utility:
+\begin_inset Formula 
+\[
+U\left(\theta\right)=c_{0}+\beta\left[\alpha\log c_{1}^{y}+\left(1-\alpha\right)\log c_{1}^{0}\right]
+\]
+
+\end_inset
+
+Household problem:
+\begin_inset Formula 
+\begin{align*}
+\max_{c_{0},k,b,c_{1}^{y},c_{1}^{0}} & c_{0}+\beta\left(\alpha u\left(c_{1}^{y}\right)+\left(1-\alpha\right)u\left(c_{1}^{0}\right)\right)\\
+\text{s.t.}\\
+c_{0}+b+k= & w;\lambda_{0}\\
+c_{1}^{y}= & \theta k+Rb-T(y,Rb);\lambda_{1y}\\
+c_{1}^{0}= & Rb-T\left(y,Rb\right);\lambda_{10}
+\end{align*}
+
+\end_inset
+
+FOCs:
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & 1=\lambda_{0}\\
+c_{1}^{y}: & \beta\alpha u^{\prime}\left(c_{1}^{y}\right)=\lambda_{1y}\\
+c_{1}^{0}: & \beta\left(1-\alpha\right)u^{\prime}\left(c_{1}^{0}\right)=\lambda_{10}\\
+k: & \lambda_{0}=\theta\left(1-T_{1}\right)\lambda_{1y}\\
+b: & \lambda_{0}=R\left(1-T_{2}\right)\left(\lambda_{1y}+\lambda_{10}\right)
+\end{align*}
+
+\end_inset
+
+Eulers:
+\begin_inset Formula 
+\begin{align*}
+1= & \beta\alpha\theta\left(1-T_{1}\right)u^{\prime}\left(c_{1}^{y}\right)\\
+= & \beta R\left(1-T_{2}\right)\left(\alpha u^{\prime}\left(c_{1}^{y}\right)+\left(1-\alpha\right)u^{\prime}\left(c_{1}^{0}\right)\right)
+\end{align*}
+
+\end_inset
+
+Wedges:
+\begin_inset Formula 
+\begin{align*}
+\tau_{k}\left(\theta\right)= & 1-\frac{c_{1}^{y}}{\alpha\beta\theta}\\
+\tau_{b}\left(\theta\right)= & 1-\frac{1}{\beta R\left(\frac{\alpha}{c_{1}^{y}}+\frac{1-\alpha}{c_{1}^{0}}\right)}
+\end{align*}
+
+\end_inset
+
+LIC:
+\begin_inset Formula 
+\begin{align*}
+U^{\prime}\left(\theta\right)= & \beta\alpha\left(1-T_{1}\right)ku^{\prime}\left(c_{1}^{y}\right)\\
+= & u^{\prime}\left(c_{0}\right)\frac{k}{\theta}\\
+= & \frac{k}{\theta}
+\end{align*}
+
+\end_inset
+
+Planner's Lagrangean: 
+\begin_inset Formula 
+\begin{multline*}
+\mathcal{L}=\int Ufd\theta+\lambda_{0}\left(w-\int\left[c_{0}+k\right]fd\theta\right)+\lambda_{1}\left(\int\left[\alpha\theta k-\alpha c_{1}^{y}-\left(1-\alpha\right)c_{1}^{0}\right]fd\theta\right)+\\
+\int\left[c_{0}+\beta\left(\alpha\log c_{1}^{y}+\left(1-\alpha\right)\log c_{1}^{0}\right)-U\right]\eta fd\theta+\int\frac{k}{\theta}\mu fd\theta+\\
+\int Uf\mu^{\prime}d\theta+\int Uf^{\prime}\mu d\theta+Uf\mu\big|_{\underline{\theta}}^{\overline{\theta}}+\int\left[\underline{U}-c_{0}-k-\beta\log c_{1}^{0}\right]\phi fd\theta
+\end{multline*}
+
+\end_inset
+
+FOCs: 
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & -\lambda_{0}f+\eta f-\phi f=0\\
+k: & -\lambda_{0}f+\alpha\theta\lambda_{1}f+\frac{\mu}{\theta}f-\phi f=0\\
+c_{1}^{y}: & -\alpha\lambda_{1}+\frac{\beta\alpha\eta}{c_{1}^{y}}f=0\\
+c_{1}^{0}: & -\left(1-\alpha\right)\lambda_{1}f+\frac{\beta\left(1-\alpha\right)\eta}{c_{1}^{0}}f-\frac{\beta\phi}{c_{1}^{0}}f=0\\
+U: & f-\eta f+f\mu^{\prime}+\mu f^{\prime}=0\\
+\underline{U}: & f-\eta f+f\mu^{\prime}+\mu f^{\prime}+\phi f=0
+\end{align*}
+
+\end_inset
+
+Cleaning up: 
+\begin_inset Formula 
+\begin{align*}
+c_{0}: & \eta=\lambda_{0}+\phi\\
+k: & \lambda_{0}=\alpha\theta\lambda_{1}+\frac{\mu}{\theta}-\phi\\
+c_{1}^{y}: & \lambda_{1}=\frac{\beta\eta}{c_{1}^{y}}\\
+c_{1}^{0}: & \lambda_{1}=\frac{\beta\eta}{c_{1}^{0}}-\frac{\beta\phi}{\left(1-\alpha\right)c_{1}^{0}}\\
+U: & f-\eta+\mu^{\prime}+\mu\frac{f^{\prime}}{f}=0\\
+\underline{U}: & f-\eta+\mu^{\prime}+\mu\frac{f^{\prime}}{f}+\phi=0
+\end{align*}
+
+\end_inset
+
+Solving for 
+\begin_inset Formula $\eta$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\eta=\frac{\lambda_{1}c_{1}^{y}}{\beta}
+\]
+
+\end_inset
+
+Substituting: 
+\begin_inset Formula 
+\begin{align*}
+\frac{\lambda_{1}c_{1}^{y}}{\beta} & =\lambda_{0}+\phi\\
+\lambda_{1}= & \frac{\beta}{c_{1}^{0}}\frac{\lambda_{1}c_{1}^{y}}{\beta}-\frac{\beta\phi}{\left(1-\alpha\right)c_{1}^{0}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $R=\frac{\lambda_{0}}{\lambda_{1}}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+R & =\frac{c_{1}^{y}}{\beta}-\frac{\phi}{\lambda_{1}}\\
+R & =\alpha\theta+\frac{\mu}{\lambda_{1}\theta}-\frac{\phi}{\lambda_{1}}\\
+1 & =\frac{c_{1}^{y}}{c_{1}^{0}}-\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)c_{1}^{0}}\\
+\underline{U} & =c_{0}+k+\beta\log c_{1}^{0}\\
+\frac{\lambda_{1}c_{1}^{y}}{\beta} & =\mu^{\prime}+\mu\frac{f^{\prime}}{f}
+\end{align*}
+
+\end_inset
+
+Combine the two expressions that are equal to 
+\begin_inset Formula $R$
+\end_inset
+
+: 
+\begin_inset Formula 
+\begin{align*}
+\frac{c_{1}^{y}}{\beta} & =\alpha\theta+\frac{\mu}{\lambda_{1}\theta}\\
+c_{1}^{y} & =\alpha\theta\beta+\frac{\mu}{\lambda_{1}\theta}\beta
+\end{align*}
+
+\end_inset
+
+So now if we have a guess at 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, and a supplied value of 
+\begin_inset Formula $\mu$
+\end_inset
+
+, we can solve directly for 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+.
+ Note also that the second expression does not involve any allocations,
+ so we can get an expression for 
+\begin_inset Formula $\phi$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+\phi=\alpha\theta\lambda_{1}+\frac{\mu}{\theta}-R\lambda_{1}
+\]
+
+\end_inset
+
+So now we have 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+.
+ With these (and our guess at 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+), we can solve for 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+c_{1}^{0}=c_{1}^{y}-\frac{\beta\phi}{\lambda_{1}\left(1-\alpha\right)}
+\]
+
+\end_inset
+
+Then given 
+\begin_inset Formula $U\left(\theta\right)$
+\end_inset
+
+, we can solve for 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+: 
+\begin_inset Formula 
+\[
+c_{0}=U-\beta\left[\alpha\log c_{1}^{y}+\left(1-\alpha\right)\log c_{1}^{0}\right]
+\]
+
+\end_inset
+
+and then for 
+\begin_inset Formula $k$
+\end_inset
+
+ with 
+\begin_inset Formula 
+\[
+k=\underline{U}-c_{0}-\log c_{1}^{0}
+\]
+
+\end_inset
+
+So now we have 
+\begin_inset Formula $c_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}^{y}$
+\end_inset
+
+, 
+\begin_inset Formula $c_{1}^{0}$
+\end_inset
+
+, 
+\begin_inset Formula $k$
+\end_inset
+
+, and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ given the current guess at 
+\begin_inset Formula $\lambda_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+, and 
+\begin_inset Formula $\underline{U}$
+\end_inset
+
+.
+ At this point, we can implement the same algorithm as before, minus the
+ use of Newton's method.
+ Can we get further analytically?
+\end_layout
+
+\begin_layout Standard
+One thing to try and prove is that 
+\begin_inset Formula $k\left(\theta\right)>0\implies\alpha\theta>R$
+\end_inset
+
+.
+ We should be able to get this directly: if 
+\begin_inset Formula $k>0$
+\end_inset
+
+, then we know that 
+\begin_inset Formula $\phi>0$
+\end_inset
+
+, and this constraint binds.
+ 
+\begin_inset Formula 
+\begin{align*}
+\alpha\theta\lambda_{1}+\frac{\mu}{\theta}-R\lambda_{1} & >0\\
+\alpha\theta+\frac{\mu}{\lambda_{1}\theta} & >R\\
+\alpha\theta & >R-\frac{\mu}{\lambda_{1}\theta}\\
+ & >R
+\end{align*}
+
+\end_inset
+
+where the final inequality follows from the negativity of 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+ So if 
+\begin_inset Formula $\alpha\theta<R$
+\end_inset
+
+, then 
+\begin_inset Formula $\phi<0$
+\end_inset
+
+, which implies 
+\begin_inset Formula $c_{1}^{0}>c_{1}^{y}$
+\end_inset
+
+.
+ If this is the case, then clearly it is efficient to have such an agent
+ be a lender.
+ The differential equations are as follows:
+\begin_inset Formula 
+\begin{align*}
+U^{\prime} & =\frac{k}{\theta}\\
+\mu^{\prime} & =\begin{cases}
+\frac{\lambda_{1}c_{1}^{y}}{\beta}-\mu\frac{f^{\prime}}{f}-1-\phi & \theta=\underline{\theta}\\
+\frac{\lambda_{1}c_{1}^{y}}{\beta}-\mu\frac{f^{\prime}}{f}-1 & \theta>\underline{\theta}
+\end{cases}
+\end{align*}
+
+\end_inset
+
+The algorithm now is the same as before: I set 
+\begin_inset Formula $\underline{\mu}=0$
+\end_inset
+
+, and find a value of 
+\begin_inset Formula $\underline{U}$
+\end_inset
+
+ which sets 
+\begin_inset Formula $\overline{\mu}=0$
+\end_inset
+
+.
+ From there, the values of 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $R$
+\end_inset
+
+ (or equivalently, 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda_{0}$
+\end_inset
+
+) are chosen such that the feasibility constraints bind in both periods.
+ 
+\end_layout
+
+\end_body
+\end_document

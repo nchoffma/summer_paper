@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\onehalfspacing
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\U}{\mathcal{U}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial #2}}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+
+\section{Model}
+
+Our model is most closely related to that in \cite{shourideh2014optimal}. Although the full model contains \( T\le\infty \) periods, for expositional purposes, many of the key results on optimal taxation in our model can be derived from a two-period version.
+
+\subsection{A Two-Period Economy}
+
+The economy is populated by a continuum of agents, indexed by \( i\in[0,1] \). Each agent has a privately-known type \( \theta\in\Theta=[\ubar{\theta},\bar{\theta}] \), distributed according to the C.D.F \( F(\theta) \). Time is discrete, and is given by \( t\in\{0,1\} \). Agents derive utility from consumption and discount the future at rate \( \beta \), and thus their preferences are given by 
+\begin{equation}
+    u(c_0) + \beta u(c_1)
+\end{equation}
+where \( c_t \) denotes consumption at time \( t \). All agents are endowed with initial wealth \( w \), which they allocate at \( t = 0 \) between consumption and savings. There are two assets in which agents may save for future consumption: risk-free savings bonds \( b \), and investment into their private entrepreneurial production technology \( k \). The price of the risk-free bond is normalized to one, and the return is given by \( R > 0 \). If an agent of type \( \theta \) invests \( k \) into his entrepreneurial technology, his production at \( t = 1 \) is as follows:
+\begin{equation}
+    y = \begin{cases}
+        \theta k \varepsilon & \text{with probability }\alpha \\
+        0 & \text{with probability }1 - \alpha
+    \end{cases}
+\end{equation}
+\( \varepsilon \) is an idiosyncratic shock to productivity, drawn from a distribution with C.D.F. \( H(\varepsilon) \). 
+
+I assume that the government levies a tax on capital income, and is able to differentiate between income from risk-free saving and risky investment. The government is unable, however, to observe type \( \theta \), investment \( k \), or shock \( \varepsilon \). As noted in \cite{mirrlees1971exploration}, the government can be equivalently characterized as a benevolent social planner, who collects reports from agents on their type \( \theta \) and income \( y \), and allocates first-period consumption and investment \( \left( c_0(\theta),k(\theta) \right) \) and second-period consumption \( c_1(\theta,y) \). Henceforth, I use the terms ``government'' and ``planner'' interchangeably. 
+
+The planner's objective, then, is to maximize
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}}\U(\theta)f(\theta)d\theta
+\end{equation}
+by choosing allocations \( \left( c_0(\theta),k(\theta), \right),c_1(\theta,y) \) for \( \theta\in\Theta \) and \( y\in\R_+ \). An allocation is said to be \textit{feasible} if it satisfies the resource constraints for \( t=0,1 \):
+\begin{align}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \left[ c_0(\theta) + k(\theta) \right]f(\theta)d\theta &\le w \\
+    \alpha\int_{\ubar{\theta}}^{\bar{\theta}}\int_{0}^{\infty}\left[ \theta k(\theta)\varepsilon - c_1(\theta,y) \right]h(\varepsilon)d\varepsilon f(\theta)d\theta + (1-\alpha)\int_{\ubar{\theta}}^{\bar{\theta}}c_1(\theta,0)f(\theta)d\theta &\le 0
+\end{align}
+
+Additionally, because the planner cannot observe \( \theta \) or \( k \), she must choose allocations that are \textit{incentive compatible}. Formally, the incentive constraints are formulated as follows: \( \forall \theta\in\Theta \),
+\begin{equation}
+    \theta, k(\theta)\in\arg\max_{\hat{\theta},\hat{k}}u\left( c_0(\hat{\theta}) + k(\hat{\theta}) - \hat{k} \right) + \beta\left( \alpha\int_{0}^{\infty}c_1(\hat{\theta},y)h\left( \frac{y}{\theta k} \right)dy + (1 - \alpha)u\left( c_1\left( \theta,0 \right) \right) \right) \label{ics}
+\end{equation}
+The planner faces one additional constraint in formulating optimal allocations. As we will show, if \( R \) is the risk-free rate, then the planner finds it optimal to incentivize all types \( \theta > R \) to invest \( k(\theta)>0 \). The agents who do so will face risk, including the nonzero probability that their capital investment return will be zero. The planner must ensure that these types are not better off eating their entire first-period allotment \( c_0(\theta) + k(\theta) \), investing nothing (and thus producing \( y = 0 \) with certainty), and then claiming to have been unlucky. Formally, we require that \( \forall\theta\in\Theta \),
+\begin{equation}
+    \U(\theta)\geq \max_{\hat{\theta}} u\left( c_0(\hat{\theta}) + k(\hat{\theta}) \right) + \beta u\left( c_1(\hat{\theta},0) \right) \label{nolie}
+\end{equation}
+In order to simplify the double continuum of constraints in (\ref{nolie}) we make the following two assumptions, which will prove to be innocuous. The first is that if \( \theta > R \), \( \U^\p(\theta) > 0 \); that is, the utility from optimal allocations is increasing in \( \theta \). The second is that 
+\begin{equation}
+    \bar{\theta} = \arg \max_{\hat{\theta}} u\left( c_0(\hat{\theta}) + k(\hat{\theta}) \right) + \beta u\left( c_1(\hat{\theta},0) \right) 
+\end{equation}
+With these assumptions in place, (\ref{nolie}) can be reduced to a single constraint:
+\begin{equation}
+    \U(R)\geq u\left( c_0(\bar{\theta}) + k(\bar{\theta}) \right) + \beta u\left( c_1(\bar{\theta},0) \right) \label{nolie1}
+\end{equation}
+
+\subsection{Characterizing Optimal Allocations}
+\subsubsection{A Discrete Analogue}
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

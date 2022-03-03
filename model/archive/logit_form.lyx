@@ -1,0 +1,272 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Logit Model
+\end_layout
+
+\begin_layout Section
+Setup
+\end_layout
+
+\begin_layout Standard
+Idea: two possibilities for 
+\begin_inset Formula $y$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+y=\begin{cases}
+\theta k & \text{w/p }\alpha\left(\theta,k\right)\\
+0 & 1-\alpha
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where
+\begin_inset Formula 
+\[
+\alpha\left(\theta,k\right)=\frac{\exp\left(\theta k\right)}{\exp\left(\theta k\right)+1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial\alpha}{\partial k}= & \frac{\left(\exp\left(\theta k\right)+1\right)\theta\exp\left(\theta k\right)-\exp\left(\theta k\right)\theta\exp\left(\theta k\right)}{\left(\exp\left(\theta k\right)+1\right)^{2}}\\
+= & \theta\exp\left(\theta k\right)\frac{1}{\left(\exp\left(\theta k\right)+1\right)^{2}}\\
+= & \alpha\theta\frac{1}{\exp\left(\theta k\right)+1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now the planner's problem is:
+\begin_inset Formula 
+\begin{align*}
+\max & \int\mathcal{U}fd\theta\\
+s.t.\\
+\int\left[c_{0}+k\right]fd\theta\le & w;\lambda_{0}\\
+\int\left[\alpha\left(\theta,k\right)\underbrace{c_{1}\left(\theta,y\right)}_{=c_{1y}}+\left(1-\alpha\left(\theta,k\right)\right)\underbrace{c_{1}\left(\theta,0\right)}_{=c_{10}}\right]fd\theta\le & \int\alpha\left(\theta,k\right)\theta kfd\theta;\lambda_{1}\\
+\mathcal{U}= & \underbrace{u\left(c_{0}\right)}_{=u_{0}}+\beta\left[\alpha\underbrace{u\left(c_{1}\left(\theta,y\right)\right)}_{=u_{1y}}+\left(1-\alpha\right)\underbrace{u\left(c_{1}\left(\theta,0\right)\right)}_{=u_{10}}\right];\eta f\\
+u_{0}^{\prime}= & \beta\theta\alpha\left[\frac{u_{1y}-u_{10}}{\exp\left(\theta k\right)+1}\right];\kappa f\\
+\mathcal{U}^{\prime}= & \frac{k}{\theta}u_{0}^{\prime};\mu f
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+First question: does this fix the issue? I think not.
+ The issue is this: as 
+\begin_inset Formula $k\left(\theta\right)\to\infty$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha\to1$
+\end_inset
+
+ for all 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ So the planner can allocate infinite capital to the highest type, and be
+ certain that their project will be successful.
+ If an agent of this type–or any other, for that matter–eats the infinite
+ capital and claims to have been unlucky, the planner will be able to detect
+ this.
+ This feature holds even if
+\begin_inset Formula 
+\[
+\alpha=\frac{\exp\left(\theta f\left(k\right)\right)}{\exp\left(\theta f\left(k\right)\right)+1}
+\]
+
+\end_inset
+
+with 
+\begin_inset Formula $f$
+\end_inset
+
+ a concave function.
+ This is a problem, because the goal is to make an allocation that gives
+ infinite capital to one type incompatible with the incentive constraints.
+ This requires the deviation described above to be undetectable.
+ 
+\end_layout
+
+\begin_layout Standard
+In order to fix the issue, we need to adjust alpha such that no amount of
+ 
+\begin_inset Formula $k$
+\end_inset
+
+–even 
+\begin_inset Formula $\infty$
+\end_inset
+
+–guarantees a successful project.
+ Easiest way to do this:
+\begin_inset Formula 
+\[
+\alpha=\frac{\exp\left(\theta k\right)}{\exp\left(\theta k\right)+1}-\delta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $0<\delta<\frac{1}{2}$
+\end_inset
+
+ is an adjustment to ensure that even infinite 
+\begin_inset Formula $k$
+\end_inset
+
+ does not guarantee a successful project.
+ In this case, 
+\begin_inset Formula $\lim_{k\to\infty}\alpha=1-\delta$
+\end_inset
+
+.
+ Another appealing feature is that for all 
+\begin_inset Formula $\theta$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha\left(\theta,0\right)=\frac{1}{2}-\delta$
+\end_inset
+
+; the nonnegativity of 
+\begin_inset Formula $k$
+\end_inset
+
+ ensures that this function never falls below zero.
+ 
+\end_layout
+
+\begin_layout Standard
+Next question: is this better? It is certainly simpler.
+ For each 
+\begin_inset Formula $\theta$
+\end_inset
+
+, there are now four allocations: 
+\begin_inset Formula $c_{0}\left(\theta\right),k\left(\theta\right),c_{1}\left(\theta,y\right),c_{1}\left(\theta,0\right)$
+\end_inset
+
+, rather than a continuum of allocations if the project is successful.
+ This should allow for the use of differential equations to solve for allocation
+s, rather than 
+\begin_inset Formula $\texttt{fmincon}$
+\end_inset
+
+, which can be slow and inaccurate.
+ Given that we have decided on using a model with risk, it may be better
+ to make the risk simpler.
+ The goal is to be free from having to use fmincon for everything.
+ 
+\end_layout
+
+\begin_layout Section
+Allocations
+\end_layout
+
+\end_body
+\end_document

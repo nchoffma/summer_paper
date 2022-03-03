@@ -1,0 +1,107 @@
+# Checking derivative matrix 
+
+function foc_k_fd(x, U, μ, θ, Y)
+    
+    c0, c1, k = x
+
+    # FOC vector
+    focs = zeros(eltype(x), 3)
+    focs = [c1 / (β * c0) - k / (θ * c0 ^ 2) * μ - R, 
+        (Y / k * θ ^ (ϵ - 1)) ^ (1.0 / ϵ) + μ / c0 - R,
+        log(c0) + β * log(c1) - U]
+
+    return focs 
+
+end
+
+function newton_k_fd(U, μ, θ, x0, Y)
+    
+    mxit = 500
+    tol = 1e-6
+    diff = 10.0
+    its = 0
+    fail = 0
+
+    while diff > tol && its < mxit
+        focs = foc_k_fd(x0, U, μ, θ, Y)
+        dfocs = ForwardDiff.jacobian(x -> foc_k_fd(x, U, μ, θ, Y), x0)
+        diff = norm(focs, Inf)
+        d = dfocs \ focs 
+        while minimum(x0 - d) .< 0.0
+            d = d / 2.0
+            if maximum(d) < tol
+                fail = 1
+                break
+            end
+        end
+        if fail == 1
+            println("Warning: Newton Failed")
+            # println((U, μ, θ))
+            break
+        end
+
+        x0 = x0 - d 
+        its += 1
+
+    end
+    return x0, fail
+
+end
+
+function fem_resids!(INTR, x0, Y)
+    # Takes in pre-allocated residuals and guess x0,
+    # returns new residuals
+
+    a0 = x0[1:nt]
+    b0 = x0[nt + 1:end]
+
+    for n in 1:ne
+
+        # Get theta values for interval 
+        x1 = tgrid[n]
+        x2 = tgrid[n + 1]
+
+        # Get nodes and weights
+        thq, wq = qgausl(nq, x1, x2)
+        for i in 1:nq
+            
+            # Get weights, lengths, etc.
+            th = thq[i]
+            wth = wq[i]
+            delta_n = x2 - x1 
+            ep = 2.0 * (th - x1) / delta_n - 1.0
+            bs1 = 0.5 * (1.0 - ep)
+            bs2 = 0.5 * (1.0 + ep)
+
+            # Approximations and allocations
+            U = a0[n] * bs1 + a0[n + 1] * bs2
+            mu = b0[n] * bs1 + b0[n + 1] * bs2
+            Upr = (a0[n + 1] - a0[n]) / delta_n
+            mupr = (b0[n + 1] - b0[n]) / delta_n
+            xx = [c0_lf[n] c1_lf[n] klf[n]]'
+            x, ~ = newton_k_fd(U, mu, th, xx, Y)
+            c0, c1, k = x
+
+            # Evauluating and updating residuals 
+            ~, ft, fpt = fdist(th)
+            FU = Upr - k / (th * c0)
+            Fmu = mupr - (λ_1 * c1 / β - fpt / ft * mu - 1.0)
+
+            INTR[n] += bs1 * wth * FU
+            INTR[n + 1] += bs2 * wth * FU
+            INTR[nt + n] += bs1 * wth * Fmu
+            INTR[nt + n + 1] += bs2 * wth * Fmu
+
+        end    
+    end
+    return INTR
+end
+
+x0 = [Ulf; μ_lf]
+resids = zeros(2nt)
+errs_2 = fem_resids!(resids, x0, Yt)
+# plot([errs_2, errs])
+derrs_fd = ForwardDiff.jacobian(x -> fem_resids!(zeros(eltype(x), 2nt), x, Yt), x0);
+
+# norm(derrs - derrs_fd , Inf)
+# heatmap(derrs - derrs_fd)

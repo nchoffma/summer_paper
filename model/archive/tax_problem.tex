@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+\newcommand{\p}{\prime}
+\newcommand{\ev}{\mathbb{E}}
+\newcommand{\lagr}{\mathcal{L}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial #2}}
+
+\begin{document}
+    \begin{flushleft}
+        Optimal Taxation with Heterogeneous Rates of Return \\
+        \today
+    \end{flushleft}
+
+\section{Tax Problem} \label{s1}
+
+In this problem I assume that individuals are indexed by type \( \theta\in\Theta = [\ubar{\theta}, \bar{\theta}] \) and endowed with some initial \( w_0 \). Individuals choose their consumption and savings \( k \), and produce output \( y = \theta k \). Individuals have utility over consumption, and discount the future at rate \( \beta \). The government, unable to observe \( \theta \) or \( k \), can levy a (possibly nonlinear) tax \( T \) on \( \theta k \). 
+
+To begin, denote 
+\begin{align}
+    \U(\theta) &= \max_{k\in[0, w_0]} u(w_0 - k) + \beta u(\theta k- T(\theta k) ) \notag \\
+    &\equiv u(w_0 - k(\theta)) + \beta u(\theta k(\theta- T(\theta k(\theta)) ) \label{bigU}
+\end{align}
+% 
+The envelope condition applied to (\ref{bigU}) gives 
+\begin{equation}
+    \U^\p(\theta) = \beta u^\p (\theta k - T(\theta k))k (1 - T^\p(\theta k)) \label{envU}
+\end{equation}
+% 
+The first-order condition for the individual's problem in (\ref{bigU}), meanwhile, gives 
+\begin{equation}
+    1 - T^\p(\theta k) = \frac{u^\p(w_0 - k)}{\beta\theta u^\p (\theta k - T(\theta k))} \label{focU}
+\end{equation}
+% 
+Combining (\ref{envU}) and (\ref{focU}) gives the individual optimality condition: 
+\begin{equation}
+    \U^\p(\theta) = u^\p(w_0 - k)\frac{k}{\theta} \label{Up}
+\end{equation}
+%
+The government's objective is to choose a tax function \( T(\theta k(\theta)) \) to maximize
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \Psi(\U(\theta))f(\theta)d\theta \label{gov_obj}
+\end{equation}
+where \( \Psi \) is a concave function over utilities representing redistributive motives. The government maximizes (\ref{gov_obj}) subject to (\ref{Up}) and its resource constraint in the second period:
+\begin{equation*}
+    \int_{\ubar{\theta}}^{\bar{\theta}} c(\theta) dF(\theta) \leq \int_{\ubar{\theta}}^{\bar{\theta}} \theta k(\theta) dF(\theta) - E 
+\end{equation*}
+where \( E \) is government expenditures. Note that because \( c(\theta) = \theta k(\theta) - T(\theta k(\theta)) \), the above constraint is equivalent to 
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} T(\theta k(\theta)) \geq E \label{rc}
+\end{equation}
+ I assume no taxes in the first period, so by the definition of \( \U \) in (\ref{bigU}), the resource constraint is guaranteed to hold in the first period. Following \cite{mirrlees1971exploration}, \cite{diamond1998optimal}, and \cite{salanie2011economics}, I formulate the Hamiltonian for the government's problem, with \( \U(\theta) \) as the state and \( k(\theta) \) as the control:
+\begin{equation}
+    \mathcal{H} = \Psi\left( \U(\theta) \right) f(\theta) + \lambda T (\theta k(\theta)) f(\theta) + \mu(\theta) u^\p(w_0 - k(\theta))\frac{k(\theta)}{\theta} 
+\end{equation}
+% 
+The Pontryagin maximization principle gives three conditions: first, \( k(\theta) \) maximizes \( \mathcal{H} \), so 
+\begin{equation*}
+    0 = \pderiv{\mathcal{H}}{k(\theta)}
+\end{equation*}
+and from this,
+\begin{equation}
+    -\lambda\theta^2 f(\theta)T^\p(\theta k(\theta)) = \mu(\theta)\left[ u^\p(w_0 - k(\theta)) - u^{\p\p}(w_0 - k(\theta))k(\theta) \right]
+\end{equation}
+The costate equation gives 
+\begin{equation}
+    \mu^\p(\theta) = -\pderiv{H}{\U(\theta)} = - \Psi^\p(\U(\theta))\label{costate}
+\end{equation}
+The boundary conditions are
+\[\mu(\ubar{\theta}) = \mu(\bar{\theta}) = 0\]
+Integrating (\ref{costate}), along with the boundary condition at \( \bar{\theta} \), gives 
+\begin{equation}
+    \mu(\theta) = -\int_{\theta}^{\bar{\theta}} \Psi^\p \left( \U(t) \right)f(t)dt 
+\end{equation}
+Thus, the optimality condition for this taxation problem is 
+\begin{equation}
+    T^\p(y) = \frac{1}{\lambda\theta^2 f(\theta)} \left( \int_{\theta}^{\bar{\theta}} \Psi^\p \left( \U(t) \right)f(t)dt\right) \left[ u^\p(w_0 - k(\theta)) - u^{\p\p}(w_0 - k(\theta))k(\theta) \right]
+\end{equation}
+This condition needs work on a few dimensions. First, it lacks the formulation for \( \lambda \) in, for example, \cite{diamond1998optimal}. Additionally, it includes the allocations \( k(\theta) \) inside of it, while the optimality conditions derived by \cite{diamond1998optimal} and \cite{salanie2011economics} incorporate elasticities instead. 
+
+\section{Updated Mechanism Design Problem }\label{s2}
+
+Here, I revisit the mechanism design formulation of this problem, which I did not formulate correctly. Here, I assumed that the planner chooses allocations \( y(\theta) \) and \( c_1(\theta) \) to maximize 
+\begin{equation}
+    \int_{\ubar{\theta}}^{\bar{\theta}} \U(\theta)f(\theta)d\theta \label{gov_obj_md}
+\end{equation}
+where 
+\begin{equation}
+    \U(\theta) = u\left( w_0 - \frac{y(\theta)}{\theta} \right) + \beta u(c_1(\theta)) \label{bigU_md}
+\end{equation}
+In section \ref{s1}, I assumed that \( c_1(\theta) = \theta k(\theta) - T(\theta k(\theta)) \). With this definition, along with the assumption that \( \Psi(\U) = \U \), the problems in sections \ref{s1} and \ref{s2} are the same. Note also that the envelope condition applied to (\ref{bigU_md}) gives 
+\begin{align}
+    \U^\p(\theta) &= u^\p\left( w_0 - \frac{y(\theta)}{\theta} \right)\frac{y(\theta)}{\theta^2} \notag \\
+    &= u^\p(w_0 - k)\frac{k}{\theta} 
+\end{align}
+exactly as in (\ref{Up}). The incentive constraints are: 
+\begin{equation}
+    \theta \in \arg\max_{\hat{\theta}} u\left( w_0 - \frac{\hat{\theta} k}{\theta} \right) + \beta u(c_1(\hat{\theta}))\quad \forall \theta\in\Theta \label{icc_md}
+\end{equation}
+The constraints in (\ref{icc_md}) can be interpreted as follows: the planner collects reports \( \hat{\theta} \), and allocates output \( y(\theta) \) and consumption \( c_1(\theta) \). Thus, if an agent of type \( \theta \) claims to be of type \( \hat{\theta} \), she will receive \( c_1(\hat{\theta}) \), but in return, she will be required to produce output \( y(\hat{\theta}) \), requiring investment \( \frac{\hat{\theta}k}{\theta} \). The Hamiltonian for the government's problem is 
+\begin{equation}
+    \mathcal{H} = \left[ u(w_0 - k(\theta)) + \beta u(c_1(\theta)) \right]f(\theta) + \lambda\left[ \theta k(\theta) - c(\theta) \right]f(\theta) + \mu(\theta)\frac{u^\p(w_0 - k(\theta))k(\theta)}{\theta}
+\end{equation}
+
+\bibliographystyle{named}
+\bibliography{summer_paper}
+\end{document}

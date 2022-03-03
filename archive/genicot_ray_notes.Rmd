@@ -1,0 +1,188 @@
+---
+title: "Summary of Genicot and Ray (2017): Aspirations and Inequality"
+author: "Nick Hoffman"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  html_document:
+    toc: true
+  pdf_document:
+    keep_tex: true
+---
+
+## Introduction
+* What role do "aspirations" play in generating growth and income inequality?
+* Three questions
+    1. How do individuals *form* aspirations?
+    1. How do individuals *react to* aspirations?
+    1. How does the behavior of individuals, with reference to aspirations, aggregate?
+* How the authors address these questions
+    1. Aspirations take the form of endogeneous thresholds in the utility function, influenced by individual income and society-wide distribution
+      1. Crossing one of these thresholds generates "bonus" utility
+      1. This theory is embedded into an A-K model of growth
+* Interaction between aspirations and inequality: two environments
+    1. Bounded incomes: steady-state aspirations, no perfect equality
+    1. Sustained growth: intitial conditions determine asymptotic behavior
+        * If initial distribution is relatively equal, incomes converge to BGP
+        * If initial distribution is unequal, income growth rates will _cluster_, leading to forever-increasing inequality
+      
+## Model 
+
+### Agents and Payoffs
+A parent-child pair makes up a dynasty. The parent allocates lifetime income $y$ between consumption $c$ and investment in child's wealth $z$. The payoff to the parent is: 
+\[u(c) + w_0(z) + w_1(e)\]
+where $w_0$ is the intrinsic parental utility from the child's wealth, and $w_1$ the milestone utility from passing a threshold $a$, with $e = \max\{z - a, 0\}$. 
+
+For the purposes of recreating the figures in the paper, I use the specification that the authors use in their examples. Namely,
+
+\begin{align}
+    u(c) &= c^{1 - \sigma} & w_0(z) &= \delta z^{1 - \sigma} & w_1(e) &= \delta \pi e^{1 - \sigma}
+\end{align}
+with $\sigma = 0.65$, discount factor $\delta = 0.95$, and $\pi = 1.1$ the "bonus" utility attained by crossing the threshold $a$. 
+
+The following plot shows the payoff as a function of $z$ and $a$. Here, I set $a$ equal to 1:
+```{r fig1}
+# Parameters
+sig <- 0.65
+del <- 0.95
+pi <- 1.1
+
+# Payoff functions
+util <- function(c) {c ^ (1 - sig)}
+w0 <- function(z) {del * z ^ (1 - sig)}
+w1 <- function(e) {del * pi * e ^ (1 - sig)}
+fig1_payoff <- function(z, a) {
+  w0(z) + w1(max(c(z - a, 0)))
+}
+fig1_payoff <- Vectorize(fig1_payoff, vectorize.args = "z")
+```
+```{r echo=FALSE}
+curve(fig1_payoff(x, a = 1), from = 0, to = 2, 
+      main = "Payoff function", xlab = "z", ylab = "Payoff to parent")
+abline(v = 1, lty = "dashed")
+```
+The jump at $a = 1$ represents the bonus payoff. A change in the level of aspirations will move this "kink" point to the left or right. 
+
+### Formation of Aspirations
+
+The authors assume a flexible format for the aspiration-generating function:
+\[a = \Psi(y,F)\]
+where $y$ is an individual's income and $F$ is the society-wide distribution of incomes. They place the following assumptions on $\Psi$: 
+
+* Regularity: $\Psi$ is continuous and nondecreasing in $y$. 
+* Scale invariance: $\Psi(\lambda y, F^\lambda) = \lambda\Psi(y, F)$ 
+* Range-boundedness: $\min\{y, \min F\} \leq \Psi(y, F) \leq \max(y, \max F)$ 
+* Social monotonicity: $\forall y$, $\Psi(y,F) \leq \Psi(y, F^\prime)$ if $F \leq F^\prime$ in the sense of first-order stochasic dominance. 
+
+### Consumption-Savings Decision with Aspirations
+
+To formalize the problem of a representative parent in this model, define $f(k) = \rho k$, the production function that turns investment $k$ into next-period wealth. Let $k(z) = f^{-1}(z)$ be the inverse, which maps desired next-period wealth into current investment. The parent's problem is now
+\[\max_z u(y - k(z)) + w_0(z) + w_1(\max\{z - a, 0\})\]
+I again use the authors' example, where $f(k) = \rho k$, with $\rho > 1$. 
+
+The chart below illustrates this graphically, following Figure 3 in the paper:
+```{r fig2}
+rho <- 1.01
+prod <- function(z) rho * z
+finv <- function(z) z / rho # called 'k' in the paper
+fig2_cost <- function(y, z){
+  util(y) - util(y - finv(z))
+}
+fig2_cost <- Vectorize(fig2_cost, vectorize.args = "z")
+
+```
+```{r echo=F}
+curve(fig2_cost(y = 2, x), from = 0, to = 2, ylim = c(0, 3), xlab = "z",
+      ylab = "Payoffs and Costs", main = "Costs and Benefits to Investment",
+      col = "red")
+curve(fig1_payoff(x, a = 1), from = 0, to = 2, add = T)
+abline(v = 1, lty = "dashed")
+legend(0, 3, col = c("black", "red"), lty = c(1,1),
+       legend = c(expression(w[0](z) + w[1](e)),
+                  expression(u(y) - u(y - k(z)))))
+```
+
+The red black line shows the payoff to investment $z$ (with $a= 1$), while the red line shows the cost, relative to consuming all of one's income. The objective, then, is to maximize the distance between these two. Because of the concavity of both functions, there will be at most two local maxima of this distance: one to the left of $a$, and one to the right. The authors refer to these points as $z_0$ and $z_1$, respectively. Finding these amounts to solving two first order conditions: 
+\[w_0^\prime(z_0) = \frac{u^\prime(y - k(z_0))}{f^\prime(k(z_0))}\]
+and
+\[w_0^\prime(z_1) + w_1^\prime(z_1 - a) = \frac{u^\prime(y - k(z_1))}{f^\prime(k(z_1))}\]
+
+The parent then chooses whichever $z$ among these two leads to a higher payoff. The following code solves for $z_0$ and $z_1$ as a function of $a$:
+
+```{r fig3}
+# Derivatives
+util_p <- function(c) {(1 - sig) * c ^ -sig}
+w0_p <- function(z) {del * (1 - sig) * z ^ -sig}
+w1_p <- function(e) {del * pi * (1 - sig) * e ^ -sig}
+
+zopt0 <- function(z, y) { # z < a
+  w0_p(z) - (util_p(y - finv(z)) / rho)
+}
+zopt0 <- Vectorize(zopt0, vectorize.args = "z")
+
+zopt1 <- function(z, y, a) { # z > a
+  w0_p(z) + w1_p(z - a) - (util_p(y - finv(z)) / rho)
+}
+zopt1 <- Vectorize(zopt1, vectorize.args = "z")
+
+find_z <- function(z, y, a){
+  # Find the roots
+  z0 = uniroot(zopt0, interval = c(0, 2), y = y, extendInt = "yes")$root
+  z1 = uniroot(zopt1, interval = c(1.5, 1.6), y = y, a = a, extendInt = "yes")$root
+  
+  # Which is better?
+  u0 = util(y - finv(z0)) + w0(z0)
+  u1 = util(y - finv(z1)) + w0(z0) + w1(max(c(z0 - a, 0)))
+  
+  if (u0 > u1) {
+    return(z0)
+  } else {
+    return(z1)
+  }
+}
+
+```
+```{r echo=F}
+
+x <- seq(0, 1.5, length.out = 1000)
+opt_z <- lapply(x, function(x) find_z(y = 2, a = x))
+opt_z <- unlist(opt_z)
+plot(x, opt_z, ylim = c(0, 2), type = "l", 
+     main = "Satisfied and Frustrated Aspirations",
+     xlab = "a", ylab = "z"
+)
+a_ind <- max(which(opt_z > tail(opt_z, 1)))
+a_star <- x[a_ind]
+abline(v = a_star, lty = "dashed")
+```
+
+The chart matches Figure 3 in the paper. The authors demonstrate that, up to a threshold $a^*$, aspirations will be _satisfied_; that is, the chosen $z$ will be greater than aspirations $a$. For aspirations $a>a^*$, however, aspirations will be _frustrated_, with $z<a$. Note that above $a^*$, chosen wealth is insensitive to aspirations. This feature of the model will lead to divergence in growth, between those whose aspirations are frustrated and those whose are satisfied.^[The authors also discuss an extension in which investment _declines_ in aspirations when aspirations are frustrated.]
+
+## Aspirations and Growth
+
+The examples chosen so far for payoff and production functions ($u, w_0, w_1, f$) form the authors' _constant elasticity growth model_, and are chosen such that without aspirations, bequests will be proportional to wealth, and growth will be constant across the wealth distribution. The upshot of this framework is that if growth rates vary across the cross-section of wealth, the variance will be due to aspirations alone.
+
+### Growth Incidence Curve
+
+In order to study the relationship between initial income/wealth distributions and subsequent growth, the authors derive what they term the "growth incidence curve."
+
+The problem for an individual with wealth $y$ and aspirations $a$ is
+
+\[\max_z \left(y - \frac{z}{\rho}\right)^{1 - \sigma} + \delta\left[z^{1 - \sigma} + \pi \left(\max\{z - a, 0\}\right)^{1 - \sigma}\right]\]
+
+Equivalently, let $r\equiv a/y$ (the "aspirations ratio") and $g\equiv z/y$ be the growth rate, and the problem becomes
+
+\[\max_g \left(1 - \frac{g}{\rho}\right)^{1 - \sigma} + \delta\left[g^{1 - \sigma} + \pi \left(\max\{g - r, 0\}\right)^{1 - \sigma}\right]\]
+
+With first-order condition
+
+\[\left(1 - \frac{g(r)}{\rho}\right)^{- \sigma} = \delta\rho\left[g(r)^{- \sigma} + \pi \left(g(r) - r\right)^{-\sigma}\right]\]
+
+so long as $g\geq r$. The result of this derivation is that there is a unique solution $g(r)$, which is strictly increasing in $r$, and thus as long as aspirations are satisfied, they will lead to growth. As in the previous formulation of the problem, we can also take the first-order condition without aspirations:
+
+\[\left(1 - \frac{\underline{g}}{\rho}\right)^{-\sigma} = \delta\rho \underline{g}^{-\sigma} \]
+
+In the case where $\underline{g}< r$, the individual will again choose between $g(r)$ and $\underline{g}$ based on their payoffs. This construction will lead to divergence in growth. 
+
+## Joint Evolution of Aspirations and Wealth Inequality
+
+## Opportunities for Advancement
