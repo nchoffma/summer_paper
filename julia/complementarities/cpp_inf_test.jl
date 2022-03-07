@@ -105,17 +105,17 @@ end
 # Distribution for output 
 function fdist(x)
 
-    # Uniform
-    L = θ_min
-    H = θ_max 
-    cdf = (x - L) / (H - L)
-    pdf = 1. / (H - L)
-    fpx = 0.
+    # # Uniform
+    # L = θ_min
+    # H = θ_max 
+    # cdf = (x - L) / (H - L)
+    # pdf = 1. / (H - L)
+    # fpx = 0.
 
-    # # Truncated normal
-    # cdf = tnorm_cdf(x)
-    # pdf = tnorm_pdf(x)
-    # fpx = tnorm_fprime(x)
+    # Truncated normal
+    cdf = tnorm_cdf(x)
+    pdf = tnorm_pdf(x)
+    fpx = tnorm_fprime(x)
     
     return cdf, pdf, fpx
     
@@ -363,27 +363,14 @@ pH = 0.5
 
 R = 1.5
 
+ctest = (1. / (β * R)) ^ (1. / (1. - β))
+Atest =  ctest /  (1. - β)
+
 # Build space for pbar
 S0 = Chebyshev(pL..pH)
 p0 = points(S0, m_cheb)
 
-# Updated A0
-# at1 = vec(readdlm(solnpath * "a_t1.txt"))
-# at2 = vec(readdlm(solnpath * "a_t2.txt"))
-# at3 = vec(readdlm(solnpath * "a_t3.txt"))
-# at7 = vec(readdlm(solnpath * "a_t7.txt"))
-# at2_pfi = vec(readdlm(solnpath * "a_t2_pfi.txt"))
-# at4_pfi = vec(readdlm(solnpath * "a_t4_pfi.txt"))
-# at5_pfi = vec(readdlm(solnpath * "a_t5_pfi.txt"))
-
-at0 = ones(m_cheb)
-
-# # Convolutions
-# ω = 0.3
-# a1 = ω * at1 + (1. - ω) * ones(m_cheb)
-# a2 = ω * at2 + (1. - ω) * a1
-# a3 = ω * at3 + (1. - ω) * a2
-
+at0 = ones(m_cheb) * Atest
 A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 
 # pt = range(pL, pH, length = 100)
@@ -391,19 +378,20 @@ A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 
 # Testing γ
 
-# A0 case (low β, low pH)
-ip = 1 # γ*∈[ 0.238, 0.239] bkt = (-3.03, -3.02)
+# A0 case (low β, low pH, truncated normal)
+ip = 5 # γ*∈[ 0.416, 0.417] bkt = (-0.13, -0.12)
 pbar = p0[ip]
 
 
-γ = 0.239
+γ = 0.416
 println("γ = $γ")
 
 # test_ums = range(-10., -0., length = 101)
 # testvals = [test_shoot(test_ums[i]) for i in 1:length(test_ums)]
 # display(plot(test_ums, testvals))
 
-bkt = (-3.03, -3.02)
+# bkt = (-0.13, -0.12)
+bkt = (-0.01, 0.)
 stp = round(bkt[2] - bkt[1], digits = 5)
 bkt = find_bracket(um -> tax_shoot(um), bkt0 = bkt, step = stp) 
 Umin_opt = find_zero(x -> tax_shoot(x), bkt)
