@@ -33,7 +33,7 @@ println([λ_0 λ_1])
 
 # alg = DifferentialEquations.CVODE_BDF()   # BAD
 # alg = Rosenbrock23(autodiff = false)        # too slow
-alg = Rodas4(autodiff=false)              # TODO: stry this method
+alg = Rodas4(autodiff=false)              # : try this method
 
 
 # Distribution for θ (Pareto)
