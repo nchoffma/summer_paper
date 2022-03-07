@@ -21,7 +21,7 @@ w = 1.
 
 R = 1.5
 
-# Analitically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
+# Analytically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
 Atest =  ctest /  (1. - β)
 
