@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage[margin = 1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm} % for proof environment
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{setspace}
+\setlist{nolistsep}
+\usepackage[round]{natbib}
+\usepackage{accents}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{setspace}
+\onehalfspacing
+
+\title{Literature Review: Dynamic Optimal Taxation}
+\author{}
+\date{}
+
+\begin{document}
+    
+\paragraph{Summary:} The goal of this document is to summarize previous findings from the literature on dynamic optimal (Mirrleesian) taxation. Within this, there are two sub-goals:
+\begin{enumerate}
+    \item Characterize the existing intuition on dynamic capital (income) taxation, to note what changes when we assume heterogeneous \textit{returns}, rather than labor productivities. 
+    \item Characterize the existing intuition on dynamic labor income taxes, to highlight the similarities and contrasts between the intuitions behind taxing these sources of income. 
+\end{enumerate}
+
+\section{\cite{albanesi2006dynamic}}
+
+\begin{itemize}
+    \item The focus here is mainly on the implementation of constrained-efficient allocations in a decentralized economy. 
+    \item As in other studies, such as \cite{golosov2003optimal} (section \ref{sec:golosov03}), \cite{albanesi2006dynamic} find the optimality of a positive intertemporal (savings) wedge 
+    \begin{itemize}
+        \item Intuition: in order to ensure that the proper labor effort is supplied, savings should be taxed in order to prevent agents from self-insuring against future labor income shocks
+    \end{itemize}
+\end{itemize}
+
+
+\section{\cite{shourideh2014optimal}}
+\begin{itemize}
+    \item A proposition analogous to Proposition 2 in \cite{shourideh2014optimal} appears in our current paper. There are three implications of Proposition 2: 
+    \begin{enumerate}
+        \item The long-run wealth distribution has a Pareto tail
+        \item WEdges independent of history
+        \item Consumption of old related to promised utility in a history-independent way
+    \end{enumerate}
+    Points (2) and (3) do not apply to our model, as we have dynamic complementarities and infinitely-lived agents. Point (1) may apply. 
+    \item Optimal savings tax: subsidize savings of old, tax savings of young 
+    \begin{itemize}
+        \item Savings of young \textit{tightens} the incentive problem, because it offers insurance against negative shock in future 
+        \item Savings of old \textit{relaxes} incentive problem, as it confers more consumption to their descendants, relaxing the descendants' incentive constraint.
+    \end{itemize} 
+    \item Progressive bequest subsidy echoes result in \cite{farhi2010progressive}: should subsidize bequests, which is a distortion, and distort the decisions of more productive agents \textit{less}
+    \begin{itemize}
+        \item Counter to \cite{golosov2003optimal}: in this model, saving \textit{increases} resources in the future (by relaxing the incentive constraint of the future generation), while in the models of labor income, saving \textit{decreases} future resources (through diminished labor effort)
+    \end{itemize}
+\end{itemize}
+
+
+\section{\cite{kocherlakota2005zero}}
+\begin{itemize}
+    \item Optimal wealth tax is zero in expectation, and regressive: high for surprisingly low-skilled agents, and low for surprisingly high-skilled. 
+    \begin{itemize}
+        \item Intuition is the same as before: in order to ensure efficient exertion of labor effort, need to deter agents from carrying a high level of wealth into the next period. 
+    \end{itemize}
+    \item Crucial distinction: because utility is additively separable between consumption and labor, marginal utilities and IMRS are publicly observable: private information does not affect either. In our paper, this is not the case. 
+\end{itemize}
+
+\section{\cite{golosov2003optimal}} \label{sec:golosov03}
+\begin{itemize}
+    \item Main result is \textit{inverse Euler equation}
+    \item Intuition is as usual: savings reduce the dependence of \( t+1 \) consumption on \( t+1 \) skill level, which tightens the incentive problem. Thus, savings should be taxed
+\end{itemize}
+
+\section{\cite{farhi2010progressive}}
+\begin{itemize}
+    \item In dynamic model, \cite{farhi2010progressive} discuss an implementation using linear inheritance taxes (levied on heirs, rather than estates). 
+    \item Nests \cite{kocherlakota2005zero} ``zero expected wealth tax'' result as a special case in which the utility of descendants valued \textit{only} through altruism of parents (\( \nu_t = 0 \))
+    \begin{itemize}
+        \item Otherwise, expected inheritance taxes not zero 
+    \end{itemize}
+    \item Intuition: as in the static model, the ``progressive subsidies'' on bequests follows from insurance motives 
+    \begin{itemize}
+        \item If the planner values utility of future generations in above and beyond altruism of ancestors, she wants to insure them against the risk of being born into a poor dynasty 
+        \item Consumption across generations is \textit{mean-reverting} (think ``squeezing'' consumption from \( t \) to \( t+1 \))
+    \end{itemize}
+\end{itemize}
+
+\bibliographystyle{named}
+\bibliography{dynamic_lit_review}
+
+\end{document}
