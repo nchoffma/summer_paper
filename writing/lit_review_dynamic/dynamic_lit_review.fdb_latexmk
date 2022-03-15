@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex dynamic_lit_review"] 1647288153 "dynamic_lit_review.aux" "dynamic_lit_review.bbl" "dynamic_lit_review" 1647288267
+["bibtex dynamic_lit_review"] 1647355260 "dynamic_lit_review.aux" "dynamic_lit_review.bbl" "dynamic_lit_review" 1647355961
   "/usr/local/texlive/2019/texmf-dist/bibtex/bst/beebe/named.bst" 1136766823 22941 5de9ab1d83bc8b693f08ecd1b7942647 ""
-  "dynamic_lit_review.aux" 1647288153 1454 aba53bb1278b50e5e4f2be0bd197bec0 "pdflatex"
+  "dynamic_lit_review.aux" 1647355395 1704 315ad0132eefc87cef8d9a3367d8896f "pdflatex"
   "dynamic_lit_review.bib" 1647280266 12526 89a1b63c9831942b5d1b899b7c155cca ""
   (generated)
   "dynamic_lit_review.blg"
   "dynamic_lit_review.bbl"
-["pdflatex"] 1647288153 "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.tex" "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.pdf" "dynamic_lit_review" 1647288267
-  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.aux" 1647288153 1454 aba53bb1278b50e5e4f2be0bd197bec0 ""
-  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.tex" 1647288265 5428 4e03a82db78b386cf422ffc80fb76ecb ""
+["pdflatex"] 1647355395 "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.tex" "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.pdf" "dynamic_lit_review" 1647355961
+  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.aux" 1647355395 1704 315ad0132eefc87cef8d9a3367d8896f ""
+  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.tex" 1647355959 6725 9978fe462ac7ee894b25c1cd58146a38 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -91,12 +91,12 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "dynamic_lit_review.aux" 1647288153 1454 aba53bb1278b50e5e4f2be0bd197bec0 "pdflatex"
-  "dynamic_lit_review.bbl" 1647288153 1249 4c80417f8ac1fad751a618ae7062a08f "bibtex dynamic_lit_review"
-  "dynamic_lit_review.tex" 1647288265 5428 4e03a82db78b386cf422ffc80fb76ecb ""
+  "dynamic_lit_review.aux" 1647355395 1704 315ad0132eefc87cef8d9a3367d8896f "pdflatex"
+  "dynamic_lit_review.bbl" 1647355260 1249 4c80417f8ac1fad751a618ae7062a08f "bibtex dynamic_lit_review"
+  "dynamic_lit_review.tex" 1647355959 6725 9978fe462ac7ee894b25c1cd58146a38 ""
   (generated)
-  "dynamic_lit_review.aux"
-  "dynamic_lit_review.log"
-  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.pdf"
   "dynamic_lit_review.pdf"
   "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.log"
+  "/Users/nickhoffman/Documents/Research/summer_paper/writing/lit_review_dynamic/dynamic_lit_review.pdf"
+  "dynamic_lit_review.aux"
+  "dynamic_lit_review.log"

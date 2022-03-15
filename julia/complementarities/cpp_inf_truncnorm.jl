@@ -59,7 +59,7 @@ p0 = points(S0, m_cheb)
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.1
+tsig = 0.3
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -693,4 +693,4 @@ p_τk = plot!(twinx(), tgrid, τk[:, 1],
     legend = :left)
 
 display(plot(p_τb, p_τk, layout = (1, 2) ) )
-savefig(figpath * "inf_wedges.png")
+savefig(figpath * "inf_wedges_norm.png")

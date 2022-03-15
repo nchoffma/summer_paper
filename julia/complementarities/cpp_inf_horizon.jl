@@ -6,13 +6,13 @@ gr()
 println("******** cpp_inf_horizon.jl ********")
 
 # Parameters
-β = 0.8         # discounting
+β = 0.9         # discounting
 θ_min = 1.
 θ_max = 2.
 w = 1.
 ϵ = 4.
 
-R = 1.5
+R = 1.1
 
 # Analitically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
@@ -43,11 +43,11 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-# pH = 0.8  # yes 
+pH = 0.8  # yes 
 # pH = 0.9  # yes
-pH = 1.
+# pH = 1.
 
-m_cheb = 5
+m_cheb = 8
 S0 = Chebyshev(pL..pH)
 p0 = points(S0, m_cheb)
 
@@ -501,13 +501,16 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 
 end
 
-# Ubkt_start = (-0.23, -0.22) # works up to pH = 0.8
-Ubkt_start = (-0.43, -0.42) 
-at0 = ones(m_cheb) * Atest
-@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.416, 0.417), ), 
-    Ubkt_start, gams_to_update = "all");
+Ubkt_start = (-0.23, -0.22) # works up to pH = 0.8
+# Ubkt_start = (-0.43, -0.42) 
+at0 = ones(m_cheb) #* Atest
+@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.216, 0.217), ), 
+    Ubkt_start, gams_to_update = "first");
 Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
+
+# Save solution for future starting guesses 
+
 
 # p̄'
 function pbar_next(wpol)

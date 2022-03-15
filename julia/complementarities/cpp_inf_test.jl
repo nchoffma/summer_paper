@@ -382,6 +382,7 @@ A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 ip = 5 # γ*∈[ 0.416, 0.417] bkt = (-0.13, -0.12)
 pbar = p0[ip]
 
+# 
 
 γ = 0.416
 println("γ = $γ")
