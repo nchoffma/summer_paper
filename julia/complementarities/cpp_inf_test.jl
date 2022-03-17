@@ -15,7 +15,7 @@ gr()
 println("******** cpp_inf_test.jl ********")
 
 # Parameters
-β = 0.8         # discounting
+β = 0.9         # discounting
 θ_min = 1.
 θ_max = 2.
 w = 1.
@@ -105,17 +105,17 @@ end
 # Distribution for output 
 function fdist(x)
 
-    # # Uniform
-    # L = θ_min
-    # H = θ_max 
-    # cdf = (x - L) / (H - L)
-    # pdf = 1. / (H - L)
-    # fpx = 0.
+    # Uniform
+    L = θ_min
+    H = θ_max 
+    cdf = (x - L) / (H - L)
+    pdf = 1. / (H - L)
+    fpx = 0.
 
-    # Truncated normal
-    cdf = tnorm_cdf(x)
-    pdf = tnorm_pdf(x)
-    fpx = tnorm_fprime(x)
+    # # Truncated normal
+    # cdf = tnorm_cdf(x)
+    # pdf = tnorm_pdf(x)
+    # fpx = tnorm_fprime(x)
     
     return cdf, pdf, fpx
     
@@ -359,9 +359,12 @@ end
 
 # State space for p̄
 pL = 0.
-pH = 0.5
+pH = 0.8
 
-R = 1.5
+R = 1.2
+
+ctest = (1. / (β * R)) ^ (1. / (1. - β))
+Atest =  ctest /  (1. - β)
 
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
 Atest =  ctest /  (1. - β)
@@ -378,21 +381,20 @@ A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 
 # Testing γ
 
-# A0 case (low β, low pH, truncated normal)
-ip = 5 # γ*∈[ 0.416, 0.417] bkt = (-0.13, -0.12)
+# A0 case (higher β, low R, unif)
+ip = 1 # γ*∈[0.466, 0.467] bkt = (-0.63, -0.62)
 pbar = p0[ip]
 
 # 
 
-γ = 0.416
+γ = 0.467
 println("γ = $γ")
 
-# test_ums = range(-10., -0., length = 101)
+# test_ums = range(-5., -0., length = 51)
 # testvals = [test_shoot(test_ums[i]) for i in 1:length(test_ums)]
 # display(plot(test_ums, testvals))
 
-# bkt = (-0.13, -0.12)
-bkt = (-0.01, 0.)
+bkt = (-0.63, -0.62)
 stp = round(bkt[2] - bkt[1], digits = 5)
 bkt = find_bracket(um -> tax_shoot(um), bkt0 = bkt, step = stp) 
 Umin_opt = find_zero(x -> tax_shoot(x), bkt)

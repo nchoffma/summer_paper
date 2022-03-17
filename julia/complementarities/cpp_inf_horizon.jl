@@ -6,13 +6,13 @@ gr()
 println("******** cpp_inf_horizon.jl ********")
 
 # Parameters
-β = 0.9         # discounting
+β = 0.8         # discounting
 θ_min = 1.
 θ_max = 2.
 w = 1.
 ϵ = 4.
 
-R = 1.1
+R = 1.5
 
 # Analitically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
@@ -47,7 +47,7 @@ pH = 0.8  # yes
 # pH = 0.9  # yes
 # pH = 1.
 
-m_cheb = 8
+m_cheb = 5
 S0 = Chebyshev(pL..pH)
 p0 = points(S0, m_cheb)
 
@@ -351,7 +351,7 @@ function update_at(At, gam_brackets, ubkt1;
         at1[i] = aupd
 
         if update_ubkt
-            ubkt = ubkt_p .- 0.1 # give some cushion
+            ubkt = ubkt_p .- ucush # give some cushion
         end
         
         if length(gam_brackets) == 1
@@ -460,7 +460,7 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
         # Find the new brackets for U0, γ 
         Usol = log.(csol) + β * wsol 
         Ubkt0 = (floor(Usol[1,1], digits = 2), 
-                ceil.(Usol[1,1], digits = 2)) .- 0.1 # need to ensure we're approaching root from below
+                ceil.(Usol[1,1], digits = 2)) .- ucush # need to ensure we're approaching root from below
 
         gbs_upd = [floor.(gstars, digits = 3) ceil.(gstars, digits = 3)]
 
@@ -502,9 +502,10 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 end
 
 Ubkt_start = (-0.23, -0.22) # works up to pH = 0.8
-# Ubkt_start = (-0.43, -0.42) 
-at0 = ones(m_cheb) #* Atest
-@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.216, 0.217), ), 
+ucush = 0.1 # adjusting how much we move down starting ubkt to approach from below 
+            # 0.1 in the case in notes 
+at0 = ones(m_cheb) * Atest
+@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.416, 0.417), ), 
     Ubkt_start, gams_to_update = "first");
 Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
