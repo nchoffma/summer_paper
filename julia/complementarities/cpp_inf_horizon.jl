@@ -43,8 +43,10 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-pH = 0.8  # yes 
+# pH = 0.8  # yes 
 # pH = 0.9  # yes
+# pH = 0.93
+pH = 0.94
 # pH = 1.
 
 m_cheb = 5
@@ -501,17 +503,28 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 
 end
 
-Ubkt_start = (-0.23, -0.22) # works up to pH = 0.8
+
+# Read in prior solution
+at0 = vec(readdlm(solnpath * "a1c_0.8_1.5_0.94.txt"))
+gs0 = readdlm(solnpath * "gstars_0.8_1.5_0.94.txt") 
+gbks0 = get_gbkts(gs0)
+
+# Ubkt_start = (-0.23, -0.22) # works up to pH = 0.8
+Ubkt_start = (-0.43, -0.42) 
 ucush = 0.1 # adjusting how much we move down starting ubkt to approach from below 
             # 0.1 in the case in notes 
-at0 = ones(m_cheb) * Atest
-@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.416, 0.417), ), 
-    Ubkt_start, gams_to_update = "first");
+# at0 = ones(m_cheb) * Atest
+
+@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, gbks0, 
+    Ubkt_start, gams_to_update = "all");
 Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
 
 # Save solution for future starting guesses 
-
+ac_fname = solnpath * "a1c_" * string(β) * "_" * string(R) * "_" * string(pH) * ".txt"
+gs_fname = solnpath * "gstars_" * string(β) * "_" * string(R) * "_" * string(pH) * ".txt"
+writedlm(ac_fname, a1_c)
+writedlm(gs_fname, gstars_c)
 
 # p̄'
 function pbar_next(wpol)
@@ -561,10 +574,10 @@ pw = plot(tgrid, wsol_c,
 
 figpath = "julia/complementarities/results/"
 display(plot(plot(ppb, pat1), pU, layout = (2,1)))
-# savefig(figpath * "inf_soln.png")
+savefig(figpath * "inf_soln.png")
 
 display(plot(plot(pc, pk), pw, layout = (2, 1)))
-# savefig(figpath * "inf_allocs.png")
+savefig(figpath * "inf_allocs.png")
 
 # Additional plots 
 
@@ -586,9 +599,9 @@ wgrid = range(-10., 10., length = 201)
 pfix = 2 # fix pbar = p0[pfix]
 pbar0 = p0[pfix]
 
-# Calculating E[c(θ',p̄₀⋅p̃(θ))]
-function cprime(it, tp, csol, wsol)
-    # Calculates c(θ',p̄₀⋅p̃(θ))
+# Calculating E[c(θ',p̄₀)]
+function cprime(tp, csol)
+    # Calculates c(θ',p̄₀) for 
     # it is the index for θ
     # tp is the value of θ'
 
@@ -597,14 +610,8 @@ function cprime(it, tp, csol, wsol)
     itp1 = itp + 1
     tpl, tph = tgrid[[itp, itp1]]
 
-    # Chebyshev approximations 
-    ctp = Fun(S0, ApproxFun.transform(S0, csol[itp, :] ))
-    ctp1 = Fun(S0, ApproxFun.transform(S0, csol[itp1, :] ))
-
-    # Evaluate the approximations 
-    ptp = p_tilde(wsol[it, pfix]) * pbar0
-    ctp_ptp = ctp(ptp)
-    ctp1_ptp = ctp1(ptp)
+    # Get the interpolation values
+    ctp_ptp, ctp1_ptp = csol
 
     # Interpolate between them (linear)
     c_int = ctp_ptp + (ctp1_ptp - ctp_ptp) / (tph - tpl) * (tp - tpl)
@@ -613,14 +620,14 @@ function cprime(it, tp, csol, wsol)
 
 end
 
-function cpr_inv_f(it, tp, csol, wsol)
+function cpr_inv_f(tp, csol)
     # Calculates (1. / cprime) * ft, for expectation
 
     Ft, ft, ftp = fdist(tp)
-    return (1. / cprime(it, tp, csol, wsol)) * ft
+    return (1. / cprime(tp, csol)) * ft
 end
 
-function wedges(i, j)
+function wedges(i, j, pfix)
     # Given current values θ (index i) and p̄ (index j),
     # returns τ_k(θ, p̄) and τ_b(θ, p̄)
     # Note: both independent of w separate from p̄
@@ -628,7 +635,7 @@ function wedges(i, j)
     wp = wsol_c[i, pfix]
     cc = csol_c[i, pfix]
     th = tgrid[i]
-    ecprime = gauss_leg(tp -> cpr_inv_f(i, tp, csol_c, wsol_c), 50, θ_min, θ_max)
+    ecprime = gauss_leg(tp -> cpr_inv_f(tp, csol_c), 50, θ_min, θ_max)
     phat = p_hat(tgrid[i], ksol_c[i, pfix])
     
     τ_b = 1. - exp((1. - β) * wp) / (β * R * cc * ecprime)
@@ -639,10 +646,10 @@ function wedges(i, j)
 end
 
 # Savings wedge: depends only on θ
-τb = [wedges(i, 3)[1] for i in 1:nt] # doesn't matter what we put for j
+τb = [wedges(i, 3, 1)[1] for i in 1:nt] # doesn't matter what we put for j
 
 # Investing wedge: depends on θ, pbar
-τk = [wedges(i, j)[2] for i in 1:nt, j in 1:m_cheb]
+τk = [wedges(i, j, 1)[2] for i in 1:nt, j in 1:m_cheb]
 
 p_τb = plot(tgrid, τb,
     title = L"\tau_b(\theta)",
@@ -670,8 +677,9 @@ plot(tgrid, τk,
     legend = false)
 p_τk = plot!(twinx(), tgrid, τk[:, 1],
     xticks = :none,
-    label = L"\tau_k(\theta,\bar{p}_1)\;\textrm{ (Right)}",
+    label = L"\tau_k(\theta,\bar{p}_1)\;\;\textrm{ (Right\;axis)}",
     legend = :left)
+plot!(right_margin = 12Plots.mm)
 
 display(plot(p_τb, p_τk, layout = (1, 2) ) )
 savefig(figpath * "inf_wedges.png")

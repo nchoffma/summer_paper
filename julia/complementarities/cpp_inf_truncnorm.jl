@@ -26,7 +26,7 @@ ctest = (1. / (β * R)) ^ (1. / (1. - β))
 Atest =  ctest /  (1. - β)
 
 # Path to write results 
-solnpath = "julia/complementarities/results/"
+solnpath = "julia/complementarities/results/normal/"
 
 # Infinite horizon
 shft = 1. - β          # shifter (inifinite horizon) on allocations
@@ -50,8 +50,10 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-pH = 0.8  # yes 
-# pH = 1.
+# pH = 0.8  # yes 
+# pH = 0.9 # yes
+# pH = 0.94 # yes
+pH = 1.
 
 m_cheb = 5
 S0 = Chebyshev(pL..pH)
@@ -59,7 +61,7 @@ p0 = points(S0, m_cheb)
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.3
+tsig = 0.2
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -377,7 +379,7 @@ function update_at(At, gam_brackets, ubkt1;
         at1[i] = aupd
 
         if update_ubkt
-            ubkt = ubkt_p .- 0.1 # give some cushion
+            ubkt = ubkt_p .- ucush # give some cushion
         end
         
         if length(gam_brackets) == 1
@@ -486,7 +488,7 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
         # Find the new brackets for U0, γ 
         Usol = log.(csol) + β * wsol 
         Ubkt0 = (floor(Usol[1,1], digits = 2), 
-                ceil.(Usol[1,1], digits = 2)) .- 0.1 # need to ensure we're approaching root from below
+                ceil.(Usol[1,1], digits = 2)) .- ucush # need to ensure we're approaching root from below
 
         gbs_upd = [floor.(gstars, digits = 3) ceil.(gstars, digits = 3)]
 
@@ -525,12 +527,27 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 
 end
 
-Ubkt_start = (-0.33, -0.32)
-at0 = ones(m_cheb) * Atest
-@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, ((0.416, 0.417), ), 
+# Read in prior solution
+at0 = vec(readdlm(solnpath * "norm_a1c_0.8_1.5_0.94_0.2.txt"))
+gs0 = readdlm(solnpath * "norm_gstars_0.8_1.5_0.94_0.2.txt") 
+gbks0 = get_gbkts(gs0) 
+
+# Ubkt_start = (-0.23, -0.22)
+# Ubkt_start = (-0.33, -0.32) # up to pH = 0.94
+Ubkt_start = (-0.43, -0.42) 
+ucush = 0.
+
+# at0 = ones(m_cheb) * Atest
+@time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, gbks0, 
     Ubkt_start, gams_to_update = "all");
 Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
+
+# Save solution for future starting guesses 
+ac_fname = solnpath * "norm_a1c_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * ".txt"
+gs_fname = solnpath * "norm_gstars_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * ".txt"
+writedlm(ac_fname, a1_c)
+writedlm(gs_fname, gstars_c)
 
 # p̄'
 function pbar_next(wpol)
@@ -605,9 +622,9 @@ wgrid = range(-10., 10., length = 201)
 pfix = 2 # fix pbar = p0[pfix]
 pbar0 = p0[pfix]
 
-# Calculating E[c(θ',p̄₀⋅p̃(θ))]
-function cprime(it, tp, csol, wsol)
-    # Calculates c(θ',p̄₀⋅p̃(θ))
+# Calculating E[c(θ',p̄₀)]
+function cprime(tp, csol)
+    # Calculates c(θ',p̄₀) for 
     # it is the index for θ
     # tp is the value of θ'
 
@@ -616,14 +633,8 @@ function cprime(it, tp, csol, wsol)
     itp1 = itp + 1
     tpl, tph = tgrid[[itp, itp1]]
 
-    # Chebyshev approximations 
-    ctp = Fun(S0, ApproxFun.transform(S0, csol[itp, :] ))
-    ctp1 = Fun(S0, ApproxFun.transform(S0, csol[itp1, :] ))
-
-    # Evaluate the approximations 
-    ptp = p_tilde(wsol[it, pfix]) * pbar0
-    ctp_ptp = ctp(ptp)
-    ctp1_ptp = ctp1(ptp)
+    # Get the interpolation values
+    ctp_ptp, ctp1_ptp = csol
 
     # Interpolate between them (linear)
     c_int = ctp_ptp + (ctp1_ptp - ctp_ptp) / (tph - tpl) * (tp - tpl)
@@ -632,14 +643,14 @@ function cprime(it, tp, csol, wsol)
 
 end
 
-function cpr_inv_f(it, tp, csol, wsol)
+function cpr_inv_f(tp, csol)
     # Calculates (1. / cprime) * ft, for expectation
 
     Ft, ft, ftp = fdist(tp)
-    return (1. / cprime(it, tp, csol, wsol)) * ft
+    return (1. / cprime(tp, csol)) * ft
 end
 
-function wedges(i, j)
+function wedges(i, j, pfix)
     # Given current values θ (index i) and p̄ (index j),
     # returns τ_k(θ, p̄) and τ_b(θ, p̄)
     # Note: both independent of w separate from p̄
@@ -647,7 +658,7 @@ function wedges(i, j)
     wp = wsol_c[i, pfix]
     cc = csol_c[i, pfix]
     th = tgrid[i]
-    ecprime = gauss_leg(tp -> cpr_inv_f(i, tp, csol_c, wsol_c), 50, θ_min, θ_max)
+    ecprime = gauss_leg(tp -> cpr_inv_f(tp, csol_c), 50, θ_min, θ_max)
     phat = p_hat(tgrid[i], ksol_c[i, pfix])
     
     τ_b = 1. - exp((1. - β) * wp) / (β * R * cc * ecprime)
@@ -658,39 +669,21 @@ function wedges(i, j)
 end
 
 # Savings wedge: depends only on θ
-τb = [wedges(i, 3)[1] for i in 1:nt] # doesn't matter what we put for j
+τb = [wedges(i, 3, 1)[1] for i in 1:nt] # doesn't matter what we put for j
 
 # Investing wedge: depends on θ, pbar
-τk = [wedges(i, j)[2] for i in 1:nt, j in 1:m_cheb]
+τk = [wedges(i, j, 1)[2] for i in 1:nt, j in 1:m_cheb]
 
-p_τb = plot(tgrid, τb,
-    title = L"\tau_b(\theta)",
-    xlabel = L"\theta",
-    legend = false)
-
-# One way of showing 
-# plot(tgrid, τk[:, 1],
-#     title = L"\tau_k(\theta, \bar{p})",
-#     xlabel = L"\theta",
-#     label = L"\tau_k(\theta,\bar{p}_1)",
-#     legend = :topleft,
-#     ylim = (minimum(τk[:, 1]) - 0.001, maximum(τk[:, 1])) )
-# p_τk = plot!(twinx(), tgrid, τk[:, 4], 
-#     color = :red,
-#     xticks = :none,
-#     label = L"\tau_k(\theta,\bar{p}_4)",
-#     legend = :topright,
-#     ylim = (minimum(τk[:, 4]), maximum(τk[:, 4]) + 0.001 ) ) 
-
-# Another way 
+# Plotting 
 plot(tgrid, τk,
     title = L"\tau_k(\theta, \bar{p})",
     xlabel = L"\theta",
     legend = false)
 p_τk = plot!(twinx(), tgrid, τk[:, 1],
     xticks = :none,
-    label = L"\tau_k(\theta,\bar{p}_1)\;\textrm{ (Right)}",
+    label = L"\tau_k(\theta,\bar{p}_1)\;\;\textrm{ (Right\;axis)}",
     legend = :left)
+plot!(right_margin = 12Plots.mm)
 
 display(plot(p_τb, p_τk, layout = (1, 2) ) )
 savefig(figpath * "inf_wedges_norm.png")
