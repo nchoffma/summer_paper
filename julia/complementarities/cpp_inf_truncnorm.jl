@@ -19,7 +19,7 @@ println("******** cpp_inf_horizon.jl ********")
 w = 1.
 ϵ = 4.
 
-R = 1.5
+R = 1.14
 
 # Analytically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
@@ -50,10 +50,11 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-# pH = 0.8  # yes 
-# pH = 0.9 # yes
+pH = 0.8  # yes 
+# pH = 0.9  # yes
 # pH = 0.94 # yes
-pH = 1.
+# pH = 0.95 # no 
+# pH = 1.   # no
 
 m_cheb = 5
 S0 = Chebyshev(pL..pH)
@@ -374,8 +375,9 @@ function update_at(At, gam_brackets, ubkt1;
         gams[i] = gstar
         gpath, csol[:, i], wsol[:, i], ksol[:, i], aupd, musol[:, i], ubkt_p = eval_pkc(gstar, 
             p0[i], At, ubkt, return_all = true, extrap = extp_t)
-        println("pbar value $i: γ* = $gstar, Ubkt = $ubkt_p")
-        # println(ubkt_p)
+        gprint = round(gstar, digits = 4)
+        ubprint = round.(ubkt_p, digits = 4)
+        println("pbar value $i: γ* = $gprint, Ubkt = $ubprint")
         at1[i] = aupd
 
         if update_ubkt
@@ -462,7 +464,6 @@ end
 # Iteration
 function iterate_at(a0, gam_bkt0, Ubkt0; 
     updateU = true,
-    pfi = true,
     npfi = 25,
     gams_to_update = "first")
 
@@ -492,12 +493,6 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 
         gbs_upd = [floor.(gstars, digits = 3) ceil.(gstars, digits = 3)]
 
-        # if its > 1
-        #     gams_to_update = "first"
-        # else
-        #     gams_to_update = "all"
-        # end # update all only after we've gotten somewhat close
-
         if gams_to_update == "first"
             gam_bkt0 = (Tuple(gbs_upd[1,:]), )
         elseif gams_to_update == "all"
@@ -506,8 +501,7 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
             error("gams_to_update must be one of 'first' or 'all'. ")
         end
 
-        # PFI, if desired
-        if pfi
+        if npfi > 0
             println("Going to PFI")
             Ubkt_pfi = (floor(Usol[1,1], digits = 2), 
                 ceil.(Usol[1,1], digits = 2))
@@ -517,6 +511,14 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
         # Evaluate convergence
         norm_A = norm(a1 - a0, Inf) 
         println("norm_A = $norm_A")
+        if norm_A > 0.2
+            rdA = round.(a1, digits = 4)
+            println("a1: $rdA")
+        end
+
+        if npfi == 0 && norm_A < 1e-3 # go to PFI once we're very close
+            npfi = 25
+        end
 
         a0 = copy(a1)
         its += 1
@@ -528,18 +530,26 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 end
 
 # Read in prior solution
-at0 = vec(readdlm(solnpath * "norm_a1c_0.8_1.5_0.94_0.2.txt"))
-gs0 = readdlm(solnpath * "norm_gstars_0.8_1.5_0.94_0.2.txt") 
-gbks0 = get_gbkts(gs0) 
+at0 = vec(readdlm(solnpath * "norm_a1c_0.8_1.17_0.8_0.2.txt"))
+gs0 = readdlm(solnpath * "norm_gstars_0.8_1.17_0.8_0.2.txt") 
+
+if length(at0) != m_cheb
+    println("Interpolating starting guess")
+    A0s = Fun(S0, ApproxFun.transform(S0, at0))
+    at0 = A0s.(p0)
+    gbks0 = (Tuple(gs0[1,:]), )
+else
+    gbks0 = get_gbkts(gs0) 
+end
 
 # Ubkt_start = (-0.23, -0.22)
-# Ubkt_start = (-0.33, -0.32) # up to pH = 0.94
-Ubkt_start = (-0.43, -0.42) 
+Ubkt_start = (-0.33, -0.32) # up to pH = 0.94
+# Ubkt_start = (-0.53, -0.52) 
 ucush = 0.
 
 # at0 = ones(m_cheb) * Atest
 @time gstars_c, csol_c, wsol_c, ksol_c, a1_c = iterate_at(at0, gbks0, 
-    Ubkt_start, gams_to_update = "all");
+    Ubkt_start, gams_to_update = "all", npfi = 0);
 Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
 
@@ -673,6 +683,11 @@ end
 
 # Investing wedge: depends on θ, pbar
 τk = [wedges(i, j, 1)[2] for i in 1:nt, j in 1:m_cheb]
+
+p_τb = plot(tgrid, τb,
+    title = L"\tau_b(\theta)",
+    xlabel = L"\theta",
+    legend = false);
 
 # Plotting 
 plot(tgrid, τk,
