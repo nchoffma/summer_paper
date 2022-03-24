@@ -48,7 +48,7 @@
     \item A proposition analogous to Proposition 2 in \cite{shourideh2014optimal} appears in our current paper. There are three implications of Proposition 2: 
     \begin{enumerate}
         \item The long-run wealth distribution has a Pareto tail
-        \item Wedges independent of history
+        \item WE*edges independent of history
         \item Consumption of old related to promised utility in a history-independent way
     \end{enumerate}
     Points (2) and (3) do not apply to our model, as we have dynamic complementarities and infinitely-lived agents. Point (1) may apply. 
@@ -77,6 +77,7 @@
 \begin{itemize}
     \item Main result is \textit{inverse Euler equation}
     \item Intuition is as usual: savings reduce the dependence of \( t+1 \) consumption on \( t+1 \) skill level, which tightens the incentive problem. Thus, savings should be taxed.
+    \item 
 \end{itemize}
 
 \section{\cite{farhi2010progressive}}
@@ -90,6 +91,44 @@
     \begin{itemize}
         \item If the planner values utility of future generations in above and beyond altruism of ancestors, she wants to insure them against the risk of being born into a poor dynasty 
         \item Consumption across generations is \textit{mean-reverting} (think ``squeezing'' consumption from \( t \) to \( t+1 \))
+    \end{itemize}
+\end{itemize}
+
+\section{\cite{albanesi2006optimal}}
+\begin{itemize}
+    \item Individual intertemporal wedge on entrepreneurial capital is given by 
+    \begin{align*}
+        IW_{K}&=\beta E_{1}u^{\prime}\left(c_{1}^{*}\left(x\right)\right)\left(1+x\right)-u^{\prime}\left(c_{0}^{*}\right)\\&=IW+\beta Cov_{1}\left(u^{\prime}\left(c_{1}^{*}\left(x\right)\right),x\right)
+    \end{align*}
+    We know that \( Cov_{1}\left(u^{\prime}\left(c_{1}^{*}\left(x\right)\right),x\right)<0 \), so the above shows that \( IW_{K}<IW \), and can take either sign. 
+    \item The first term is the marginal benefit of a small increase in entrepreneurial capital, and the second is the marginal cost. 
+    \item So, if \( IW_{K}<0 \), then the marginal benefit outweighs the marginal cost, whereas if \( IW_{K}>0 \), the reverse is true. 
+    \item  \( IW_{K}>0 \): there is a shadow cost to increasing entrepreneurial capital, as the additional capital tightens the entrepreneurs incentive constraint (adverse effect on incentives)
+    \item \( IW_{K}<0 \): there is a shadow benefit to increasing capital, as it relaxes the entrepreneur's incentive constraint. 
+    \item The wedge \( IW_K \) can be further decomposed: 
+    \begin{equation*}
+        IW_{K}=\mu\left(\pi\left(1\right)-\pi\left(0\right)\right)\beta\left\{ \underbrace{\left[u^{\prime}\left(c_{1}^{*}\left(\underline{x}\right)\right)-u^{\prime}\left(c_{1}^{*}\left(\overline{x}\right)\right)\right]\left(1-x\right)}_{\text{Wealth Effect}}-\underbrace{\left(\overline{x}-\underline{x}\right)u^{\prime}\left(c_{1}^{*}\left(\underline{x}\right)\right)}_{\text{Subs. Effect}}\right\} 
+    \end{equation*} 
+    \item The wealth effect captures the negative effect of capital on incentives: additional wealth increases consumption in the bad state, thereby providing insurance and reducing incentives
+    \begin{itemize}
+        \item Determined by the difference in marginal utilities across good and bad states
+    \end{itemize} 
+    \item The substitution effect captures the positive effect of capital on incentives: additional effort increases the likelihood of a good return, which increases effort at higher levels of capital
+    \begin{itemize}
+        \item Driven by difference in returns \( \left(\overline{x}-\underline{x}\right) \)
+    \end{itemize} 
+    \item \textbf{Our Model}: we do have wedges \( \tau_k \) that can take either sign!
+\end{itemize}
+\section{\cite{scheuer2014entrepreneurial}}
+Main interest is in \( \S 5 \): Entrepreneurial Taxation with Credit Market Frictions
+\begin{itemize}
+    \item Pooling equilibrium in the credit market leads to cross-subsidization, which in turn leads to too many low-skilled and too few high-skilled types selecting into entrepreneurship 
+    \item Regressive profit tax can correct for this, as it raises the returns to entrepreneurship for higher types. 
+    \item \textbf{Our paper}: We don't have the selection effect (all types have \( \theta p(\theta) > R\)), nor do we have these pooling contracts with the possibility of bankruptcy. 
+    \begin{itemize}
+        \item What we may have, though, is a mix of over- and under-supplying of capital (intensive rather than extensive margin) 
+        \item It is possible that in the absence of taxes, high types would over-invest, and low types would under-invest, throwing off the pricing schedule 
+        \item It could be that due to complimentarities, the planner wants to ``squeeze'' investment choices across \( \Theta \), as in \cite{farhi2010progressive}
     \end{itemize}
 \end{itemize}
 
