@@ -21,7 +21,7 @@ println("******** cpp_inf_test.jl ********")
 w = 1.
 ϵ = 4.
 
-solnpath = "julia/complementarities/results/"
+solnpath = "julia/complementarities/results/normal/"
 m_cheb = 5
 
 # Autaurky allocations
@@ -89,7 +89,7 @@ end
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.2
+tsig = 0.15
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -105,17 +105,17 @@ end
 # Distribution for output 
 function fdist(x)
 
-    # Uniform
-    L = θ_min
-    H = θ_max 
-    cdf = (x - L) / (H - L)
-    pdf = 1. / (H - L)
-    fpx = 0.
+    # # Uniform
+    # L = θ_min
+    # H = θ_max 
+    # cdf = (x - L) / (H - L)
+    # pdf = 1. / (H - L)
+    # fpx = 0.
 
-    # # Truncated normal
-    # cdf = tnorm_cdf(x)
-    # pdf = tnorm_pdf(x)
-    # fpx = tnorm_fprime(x)
+    # Truncated normal
+    cdf = tnorm_cdf(x)
+    pdf = tnorm_pdf(x)
+    fpx = tnorm_fprime(x)
     
     return cdf, pdf, fpx
     
@@ -359,12 +359,9 @@ end
 
 # State space for p̄
 pL = 0.
-pH = 0.8
+pH = 0.9
 
-R = 1.2
-
-ctest = (1. / (β * R)) ^ (1. / (1. - β))
-Atest =  ctest /  (1. - β)
+R = 1.1
 
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
 Atest =  ctest /  (1. - β)
@@ -373,7 +370,12 @@ Atest =  ctest /  (1. - β)
 S0 = Chebyshev(pL..pH)
 p0 = points(S0, m_cheb)
 
-at0 = ones(m_cheb) * Atest
+# at0 = ones(m_cheb) * Atest
+
+
+at0 = vec(readdlm(solnpath * "norm_a1c_0.9_1.1_0.8_0.16.txt"))
+gs0 = readdlm(solnpath * "norm_gstars_0.9_1.1_0.8_0.16.txt") 
+
 A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 
 # pt = range(pL, pH, length = 100)
@@ -381,22 +383,25 @@ A0 = Fun(S0, ApproxFun.transform(S0, at0)) # this is just 1 everywhere
 
 # Testing γ
 
-# A0 case (higher β, low R, unif)
-ip = 1 # γ*∈[0.466, 0.467] bkt = (-0.63, -0.62)
+# A0 case (higher β, low R, norm, higher pH)
+# ip = 1 # γ*∈[0.6, 0.601] bkt = (-0.63, -0.62)
+# ip = 2 # γ*∈[0.846, 0.847] bkt = (-0.63, -0.62)
+ip = 3 # γ*∈[0.846, 0.847] bkt = (-0.63, -0.62)
 pbar = p0[ip]
 
-# 
-
-γ = 0.467
+γ = 1.
 println("γ = $γ")
 
-# test_ums = range(-5., -0., length = 51)
+# test_ums = range(-2., -0., length = 11)
 # testvals = [test_shoot(test_ums[i]) for i in 1:length(test_ums)]
 # display(plot(test_ums, testvals))
 
-bkt = (-0.63, -0.62)
+# bkt = (-0.63, -0.62)
+bkt = (-0.16, -0.15)
+# bkt = (-0.02, -0.01)
 stp = round(bkt[2] - bkt[1], digits = 5)
 bkt = find_bracket(um -> tax_shoot(um), bkt0 = bkt, step = stp) 
+println("Bracket found")
 Umin_opt = find_zero(x -> tax_shoot(x), bkt)
 
 u0 = [Umin_opt 0.0]

@@ -13,13 +13,13 @@ gr()
 println("******** cpp_inf_horizon.jl ********")
 
 # Parameters
-β = 0.8         # discounting
+β = 0.9         # discounting
 θ_min = 1.
 θ_max = 2.
 w = 1.
 ϵ = 4.
 
-R = 1.14
+R = 1.1
 
 # Analytically, c(θ,0) = ctest, and A(0) = ctest / (1. - β)
 ctest = (1. / (β * R)) ^ (1. / (1. - β))
@@ -51,10 +51,6 @@ pL = 0.     # absorbing barrier
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
 pH = 0.8  # yes 
-# pH = 0.9  # yes
-# pH = 0.94 # yes
-# pH = 0.95 # no 
-# pH = 1.   # no
 
 m_cheb = 5
 S0 = Chebyshev(pL..pH)
@@ -62,7 +58,7 @@ p0 = points(S0, m_cheb)
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.2
+tsig = 0.16
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -476,7 +472,7 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
     norm_A = 10.
     tol = 1e-6
     its = 0
-    mxit = 100
+    mxit = 1000
 
     while norm_A > tol && its < mxit
         println("Iteration $its")
@@ -516,9 +512,9 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
             println("a1: $rdA")
         end
 
-        if npfi == 0 && norm_A < 1e-3 # go to PFI once we're very close
-            npfi = 25
-        end
+        # if npfi == 0 && norm_A < 1e-3 # go to PFI once we're very close
+        #     npfi = 25
+        # end
 
         a0 = copy(a1)
         its += 1
@@ -530,8 +526,8 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 end
 
 # Read in prior solution
-at0 = vec(readdlm(solnpath * "norm_a1c_0.8_1.17_0.8_0.2.txt"))
-gs0 = readdlm(solnpath * "norm_gstars_0.8_1.17_0.8_0.2.txt") 
+at0 = vec(readdlm(solnpath * "norm_a1c_0.9_1.1_0.8_0.16.txt"))
+gs0 = readdlm(solnpath * "norm_gstars_0.9_1.1_0.8_0.16.txt") 
 
 if length(at0) != m_cheb
     println("Interpolating starting guess")
@@ -542,9 +538,17 @@ else
     gbks0 = get_gbkts(gs0) 
 end
 
+# gbks0 = (
+#     (0.47, 0.471),
+#     (0.652, 0.653),
+#     (0.815, 0.816),
+#     (0.855, 0.856),
+#     (0.856, 0.857)
+# )
+
 # Ubkt_start = (-0.23, -0.22)
-Ubkt_start = (-0.33, -0.32) # up to pH = 0.94
-# Ubkt_start = (-0.53, -0.52) 
+# Ubkt_start = (-0.33, -0.32) # up to pH = 0.94
+Ubkt_start = (-0.43, -0.42) 
 ucush = 0.
 
 # at0 = ones(m_cheb) * Atest
@@ -629,7 +633,7 @@ savefig(figpath * "inf_rors_tnorm.png")
 
 # Wedges and allocations with w≠0
 wgrid = range(-10., 10., length = 201)
-pfix = 2 # fix pbar = p0[pfix]
+pfix = 2 # fix p̄₀ = p0[pfix]
 pbar0 = p0[pfix]
 
 # Calculating E[c(θ',p̄₀)]
