@@ -5,5 +5,9 @@
 \beamer@slide {fig:static_allocs}{15}
 \beamer@slide {fig:static_wedges}{16}
 \beamer@slide {fig:determs}{17}
-\beamer@slide {eq:dyn_plan}{20}
-\beamer@slide {prop:vf_homog}{27}
+\beamer@slide {fig:squeeze}{18}
+\beamer@slide {eq:dyn_plan}{23}
+\beamer@slide {prop:vf_homog}{29}
+\beamer@slide {fig:inf_allocs}{34}
+\beamer@slide {fig:inf_rors}{36}
+\beamer@slide {fig:inf_wedges}{37}

@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: taxation_rg_2022.aux
+The style file: named.bst
+Database file #1: summer_paper_rg.bib
+Warning--empty journal in gerritsen2020optimal
+You've used 13 entries,
+            2439 wiz_defined-function locations,
+            633 strings with 6534 characters,
+and the built_in function-call counts, 4676 in all, are:
+= -- 496
+> -- 173
+< -- 0
++ -- 58
+- -- 56
+* -- 392
+:= -- 787
+add.period$ -- 38
+call.type$ -- 13
+change.case$ -- 82
+chr.to.int$ -- 13
+cite$ -- 14
+duplicate$ -- 171
+empty$ -- 347
+format.name$ -- 71
+if$ -- 928
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 67
+num.names$ -- 39
+pop$ -- 54
+preamble$ -- 1
+purify$ -- 93
+quote$ -- 0
+skip$ -- 139
+stack$ -- 0
+substring$ -- 277
+swap$ -- 23
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 104
+warning$ -- 1
+while$ -- 44
+width$ -- 18
+write$ -- 166
+(There was 1 warning)
