@@ -1,0 +1,806 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Deriving Optimal Tax Formulas
+\end_layout
+
+\begin_layout Standard
+Taken from Appendix B of Retirement Financing (Shourideh and Hosseini, 2019)
+\end_layout
+
+\begin_layout Section
+Model
+\end_layout
+
+\begin_layout Standard
+The model is two-period OLG, where individuals live for at most two periods.
+ Individual preferences have the form 
+\begin_inset Formula 
+\[
+U\left(c_{1},c_{2},\frac{y}{\theta}\right)=u\left(c_{1}\right)+\beta\left(\theta\right)P\left(\theta\right)u\left(c_{2}\right)-v\left(y/\theta\right)
+\]
+
+\end_inset
+
+Note that discount factor 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and probability of survival 
+\begin_inset Formula $P$
+\end_inset
+
+ are both functions of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Production takes place according to 
+\begin_inset Formula $F\left(K,L\right)$
+\end_inset
+
+, and th popoulation 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ grows at rate 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The individual's problem is 
+\begin_inset Formula 
+\begin{align*}
+\max & U\left(c_{1},c_{2},y/\theta\right)\\
+ & \text{s.t.}\\
+c_{1}+a & =w_{t}y-T_{y}\left(w_{t}y\right)\\
+c_{2} & =\left(1+r_{t+1}\right)a-T_{a}\left(\left(1+r_{t+1}\right)a,w_{t}y\right)
+\end{align*}
+
+\end_inset
+
+Where 
+\begin_inset Formula $T_{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $T_{a}$
+\end_inset
+
+ are first- and second-period taxes.
+ Note that this implies incomplete annuity markets: all individuals earn
+ rate 
+\begin_inset Formula $r_{t+1}$
+\end_inset
+
+ on their assets, irrespective of their heterogenous survival probabilities.
+ 
+\end_layout
+
+\begin_layout Standard
+Market-clearing requires 
+\begin_inset Formula 
+\begin{align*}
+\underbrace{N_{t}\int c_{1,t}\left(\theta\right)dH\left(\theta\right)+N_{t-1}\int P\left(\theta\right)c_{2,t-1}\left(\theta\right)dH\left(\theta\right)}_{C_{t}}+K_{t+1} & =F\left(K_{t},\underbrace{N_{t}\int y_{t}\left(\theta\right)dH\left(\theta\right)}_{L_{t}}\right)+K_{t}\\
+K_{t} & =N_{t}\int q_{t}a_{t}\left(\theta\right)dH\left(\theta\right)
+\end{align*}
+
+\end_inset
+
+Here we assume no depreciation (
+\begin_inset Formula $\delta=0$
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Section
+Intuitive Derivation of Tax-Smoothing Formulas (Appendix B)
+\end_layout
+
+\begin_layout Subsection
+No Income Effect
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Overall Idea
+\end_layout
+
+\begin_layout Plain Layout
+The analysis in this appendix underpins Proposition two, which outlines
+ a test of Pareto optimality for the tax code.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume that preferences have no income effect (i.e., linear in first-period
+ consumption).
+ Here, 
+\begin_inset Formula 
+\[
+U\left(c_{1},c_{2},y/\theta\right)=c_{1}+\beta\left(\theta\right)P\left(\theta\right)u\left(c_{1}\right)-v\left(y/\theta\right)
+\]
+
+\end_inset
+
+Consider a tax schedule 
+\begin_inset Formula $T_{y}\left(y\right),T_{a}\left(a\right)$
+\end_inset
+
+ and suppose that both taxes are paid in the first period.
+ Let 
+\begin_inset Formula $\left\{ y\left(\theta\right),a\left(\theta\right)\right\} $
+\end_inset
+
+ denote the choices induced by this tax schedule.
+ We assume that 
+\begin_inset Formula $y$
+\end_inset
+
+ and 
+\begin_inset Formula $a$
+\end_inset
+
+ are one-to-one functions of 
+\begin_inset Formula $\theta$
+\end_inset
+
+, i.e.
+ no bunching.
+ This implies that 
+\begin_inset Formula $y^{\prime}\left(\theta\right)>0$
+\end_inset
+
+ and 
+\begin_inset Formula $a^{\prime}\left(\theta\right)>0$
+\end_inset
+
+.
+ 
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Saez Perturbations
+\end_layout
+
+\begin_layout Plain Layout
+The idea here is the following: we take some income level 
+\begin_inset Formula $y^{*}$
+\end_inset
+
+, and for a very small 
+\begin_inset Formula $dy^{*}$
+\end_inset
+
+, increase marginal tax rates 
+\begin_inset Formula $\tau=T^{\prime}\left(y\right)$
+\end_inset
+
+ in the interval 
+\begin_inset Formula $\left[y^{*},y^{*}+dy\right]$
+\end_inset
+
+ by 
+\begin_inset Formula $d\tau$
+\end_inset
+
+.
+ For 
+\begin_inset Formula $dy$
+\end_inset
+
+, 
+\begin_inset Formula $d\tau$
+\end_inset
+
+ small enough, the tax is essentially linear, so everything becomes easier.
+ There is no change for taxpayers below 
+\begin_inset Formula $y^{*}$
+\end_inset
+
+.
+ Taxpayers with 
+\begin_inset Formula $y\in\left[y^{*},y^{*}+dy\right]$
+\end_inset
+
+ pay 
+\begin_inset Formula $d\tau\left(y-y^{*}\right)$
+\end_inset
+
+ in additional taxes.
+ Taxpayers with 
+\begin_inset Formula $y>y^{*}+dy$
+\end_inset
+
+ pay 
+\begin_inset Formula $d\tau dy$
+\end_inset
+
+ in additional taxes.
+ Note that for taxpayers in this range, their additional taxes are independent
+ of their income 
+\begin_inset Formula $y$
+\end_inset
+
+ (
+\begin_inset Formula $d\tau$
+\end_inset
+
+ and 
+\begin_inset Formula $dy$
+\end_inset
+
+ are exogenous).
+ So, as long as there are no income effects, their labor-leisure choice
+ does not change.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+This perturbation engenders three changes in tax receipts:
+\end_layout
+
+\begin_layout Enumerate
+Mechanical: the change in marginal tax rates changes tax receipts automatically,
+ holding behaviours fixed.
+ Saez presents this as a 
+\begin_inset Quotes eld
+\end_inset
+
+mechanical effect net of welfare loss.
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+Behavioral: for those with types 
+\begin_inset Formula $\theta$
+\end_inset
+
+ such that under the original tax code, 
+\begin_inset Formula $y\left(\theta\right)\in\left[y^{*},y^{*}+dy\right]$
+\end_inset
+
+, optimal labor-leisure choices will change.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Income: those with types 
+\begin_inset Formula $\theta$
+\end_inset
+
+ such that 
+\begin_inset Formula $y\left(\theta\right)>y^{*}+dy$
+\end_inset
+
+, will see their incomes change, so if preferences allow for income effects,
+ the labor-leisure choices of these types will be altered as well.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+The idea is that at the optimum, these changes cannot lead to a welfare
+ improvement.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Also, note that if our type is 
+\begin_inset Formula $\theta$
+\end_inset
+
+, then 
+\begin_inset Formula $y$
+\end_inset
+
+ is really the function 
+\begin_inset Formula $y\left(\theta\right)$
+\end_inset
+
+, which again, if 
+\begin_inset Formula $dy$
+\end_inset
+
+ is sufficiently small, is linear.
+ Thus, we have 
+\begin_inset Formula $dy=y^{\prime}\left(\theta\right)d\theta$
+\end_inset
+
+, and thus 
+\begin_inset Formula $d\theta=\frac{dy}{y^{\prime}\left(\theta\right)}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now consider a perturbation of the tax functions given by 
+\begin_inset Formula $T_{y}\left(y\right)+\delta T_{y}\left(y\right)$
+\end_inset
+
+, 
+\begin_inset Formula $T_{a}\left(a\right)+\delta T_{a}\left(a\right)$
+\end_inset
+
+ where 
+\begin_inset Formula 
+\begin{align*}
+\delta T_{y}\left(y\right) & =\begin{cases}
+0 & y\le y\left(\theta\right)\\
+d\tau_{y}\left(y-y\left(\theta\right)\right) & y\in\left[y\left(\theta\right),y\left(\theta\right)+dy\right]\\
+d\tau_{y}dy & y\ge y\left(\theta\right)+dy
+\end{cases}\\
+\delta T_{a}\left(a\right) & =\begin{cases}
+0 & a\le a\left(\theta\right)\\
+d\tau_{a}\left(a-a\left(\theta\right)\right) & a\in\left[a\left(\theta\right),a\left(\theta\right)+da\right]\\
+d\tau_{a}da & a\ge a\left(\theta\right)+da
+\end{cases}
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $d\tau_{y},d\tau_{a},dy,da$
+\end_inset
+
+ are sufficiently small real numbers, and 
+\begin_inset Formula $\theta\in\left[\underline{\theta},\overline{\theta}\right]$
+\end_inset
+
+ is the cutoff type.
+ As in Saez's original derivation, there are three effects: a mechanical
+ effect on tax receipts, a behavioral effect for those with 
+\begin_inset Formula $y$
+\end_inset
+
+ or 
+\begin_inset Formula $a$
+\end_inset
+
+ in the affected ranges, and a welfare effect.
+ 
+\end_layout
+
+\begin_layout Standard
+To derive these effects, first let's think of who is affected.
+ For those of type 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ with 
+\begin_inset Formula $\hat{\theta}\ge\max\left\{ \theta+\frac{dy}{y^{\prime}\left(\theta\right)},\theta+\frac{da}{a^{\prime}\left(\theta\right)}\right\} $
+\end_inset
+
+, their after-tax income is decreased, but their decisions will not change.
+ For these individuals, they receive utility 
+\begin_inset Formula 
+\[
+c_{1}-T_{y}\left(y\right)-T_{a}\left(a\right)+\beta\left(\theta\right)P\left(\theta\right)u\left(c_{2}\right)-v\left(\frac{y}{\theta}\right)
+\]
+
+\end_inset
+
+Note that, because taxes are asessed in the first period and utility is
+ quasi-linear, their utility simply decreases by 
+\begin_inset Formula $d\tau_{y}dy+d\tau_{a}da$
+\end_inset
+
+—the change in their tax bill under the perturbation.
+ 
+\end_layout
+
+\begin_layout Standard
+Those with types 
+\begin_inset Formula $\hat{\theta}\in\left[\theta,\max\left\{ \theta+\frac{dy}{y^{\prime}\left(\theta\right)},\theta+\frac{da}{a^{\prime}\left(\theta\right)}\right\} \right]$
+\end_inset
+
+ will also see changes.
+ However, only their marginal taxes change, and thus the change in their
+ utilities is of higher order than 
+\begin_inset Formula $d\tau_{y}dy$
+\end_inset
+
+ and 
+\begin_inset Formula $d\tau_{a}da$
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+What does this mean? Why is this? What does it give us? 
+\end_layout
+
+\begin_layout Plain Layout
+What I think: these types 
+\emph on
+will
+\emph default
+ change their behavior, but the changes will be so small, that the effect
+ on utilities (for the welfare effect below) will be negligible.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+More formally: these are changes to their 
+\emph on
+marginal
+\emph default
+ taxes, so on any income and assets above 
+\begin_inset Formula $y\left(\theta\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $a\left(\theta\right)$
+\end_inset
+
+, respectively.
+ So, the change in behavior is very small, and the change in their utility
+ smaller still.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The mechanical effect is 
+\begin_inset Formula 
+\[
+d\tau_{y}dy\int_{\theta}^{\overline{\theta}}f\left(\hat{\theta}\right)d\hat{\theta}+d\tau_{a}da\int_{\theta}^{\overline{\theta}}f\left(\hat{\theta}\right)d\hat{\theta}
+\]
+
+\end_inset
+
+This is simply the change in the tax receipts for all of the agents in the
+ relative categories.
+ One thing to note is that this includes the agents with 
+\begin_inset Formula $\hat{\theta}\in\left[\theta,\max\left\{ \theta+\frac{dy}{y^{\prime}\left(\theta\right)},\theta+\frac{da}{a^{\prime}\left(\theta\right)}\right\} \right]$
+\end_inset
+
+, for whom the mechanical effect is smaller.
+ The idea is that as 
+\begin_inset Formula $da$
+\end_inset
+
+ and 
+\begin_inset Formula $dy$
+\end_inset
+
+ become small, the change converges to the above integral.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+welfare
+\emph default
+ effect is given by 
+\begin_inset Formula 
+\[
+-d\tau_{y}dy\int_{\theta}^{\overline{\theta}}\mathcal{W}\left(\hat{\theta}\right)dF\left(\hat{\theta}\right)-d\tau_{a}da\int_{\theta}^{\overline{\theta}}\mathcal{W}\left(\hat{\theta}\right)dF\left(\hat{\theta}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathcal{W}\left(\theta\right)$
+\end_inset
+
+ is the social marginal value of giving one unit of income to an individual
+ of type 
+\begin_inset Formula $\theta$
+\end_inset
+
+ (this is similar to 
+\begin_inset Formula $\overline{g}$
+\end_inset
+
+ in Saez).
+ This makes sense: each person in 
+\begin_inset Formula $\left[\theta,\overline{\theta}\right]$
+\end_inset
+
+ decreases their utility by 
+\begin_inset Formula $d\tau_{y}dy+d\tau_{a}da$
+\end_inset
+
+, so the above represents the welfare-weighted utility loss.
+\end_layout
+
+\begin_layout Standard
+Here is the trick: we now define 
+\begin_inset Formula $d\tau_{a}=-d\tau_{y}$
+\end_inset
+
+, and 
+\begin_inset Formula $da=dy$
+\end_inset
+
+.
+ Thus, the welfare and mechanical effects of the tax change are both zero,
+ and the only effect is behavioral, within the interval 
+\begin_inset Formula $\hat{\theta}\in\left[\theta,\max\left\{ \theta+\frac{dy}{y^{\prime}\left(\theta\right)},\theta+\frac{da}{a^{\prime}\left(\theta\right)}\right\} \right]$
+\end_inset
+
+.
+ Additionally, because these preferences have no income effect, the earnings
+ tax perturbation 
+\begin_inset Formula $\delta T_{y}\left(y\right)$
+\end_inset
+
+ only effects earnings, and the savings tax perturbation 
+\begin_inset Formula $\delta T_{a}\left(a\right)$
+\end_inset
+
+ only effects savings behavior; there is no cross-elasticity.
+ 
+\end_layout
+
+\begin_layout Standard
+With small enough 
+\begin_inset Formula $dy$
+\end_inset
+
+, as noted above, the set of types who change their earnings behavtion is
+ given by 
+\begin_inset Formula 
+\[
+\hat{\theta}\in\left[\theta,\theta+\frac{dy}{y^{\prime}\left(\theta\right)}\right]
+\]
+
+\end_inset
+
+and their change in earnings must satisfy
+\begin_inset Formula 
+\[
+1-T_{y}^{\prime}\left(y\left(\hat{\theta}\right)+\delta y\right)-d\tau_{y}=\frac{1}{\hat{\theta}}v^{\prime}\left(\frac{y\left(\hat{\theta}\right)+\delta y}{\hat{\theta}}\right)
+\]
+
+\end_inset
+
+Where does this come from? Consider the household's problem with just a
+ tax on labor: 
+\begin_inset Formula 
+\begin{align*}
+\max\  & c_{1}+\beta\left(\theta\right)P\left(\theta\right)u\left(c_{2}\right)-v\left(y/\theta\right)\\
+ & \text{s.t.}\\
+c_{1}+a & =y-T\left(y\right)\\
+c_{2} & =\left(1+r\right)a
+\end{align*}
+
+\end_inset
+
+Substituting, the problem becomes 
+\begin_inset Formula 
+\begin{align*}
+\max\  & y-T\left(y\right)-a+\beta\left(\theta\right)P\left(\theta\right)u\left(\left(1+r\right)a\right)-v\left(y/\theta\right)
+\end{align*}
+
+\end_inset
+
+The FOC for 
+\begin_inset Formula $y$
+\end_inset
+
+ is 
+\begin_inset Formula 
+\[
+1-T_{y}^{\prime}\left(y\right)=\frac{1}{\theta}v^{\prime}\left(\frac{y}{\theta}\right)
+\]
+
+\end_inset
+
+This is where the above condition comes from.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Question: what is 
+\begin_inset Formula $\delta y$
+\end_inset
+
+? 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next we differentiate both sides of the equality 
+\begin_inset Formula 
+\[
+1-T_{y}^{\prime}\left(y\left(\hat{\theta}\right)+\delta y\right)-d\tau_{y}=\frac{1}{\hat{\theta}}v^{\prime}\left(\frac{y\left(\hat{\theta}\right)+\delta y}{\hat{\theta}}\right)
+\]
+
+\end_inset
+
+w/r/t 
+\begin_inset Formula $y$
+\end_inset
+
+ and write 
+\begin_inset Formula 
+\[
+-T_{y}^{\prime\prime}\left(y\left(\hat{\theta}\right)\right)\delta y-d\tau_{y}=\frac{1}{\hat{\theta}^{2}}v^{\prime\prime}\left(\frac{y\left(\hat{\theta}\right)}{\hat{\theta}}\right)\delta y
+\]
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Where does this come from? If we are differentiating w/r/t 
+\begin_inset Formula $y$
+\end_inset
+
+, where does 
+\begin_inset Formula $\delta y$
+\end_inset
+
+ come from? Why does 
+\begin_inset Formula $d\tau_{y}$
+\end_inset
+
+ remain? 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

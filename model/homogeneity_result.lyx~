@@ -109,7 +109,7 @@ where
 
 \end_inset
 
- is the sequence of utilities and promised utilities, respectively.
+is the sequence of utilities and promised utilities, respectively.
  The feasible set 
 \begin_inset Formula $\Gamma$
 \end_inset
@@ -691,7 +691,7 @@ So,
  The state evolves according to 
 \begin_inset Formula 
 \[
-\overline{p}_{t+1}\left(\theta^{t}\right)=\overline{p}_{t}\left(\theta^{t-1}\right)\underbrace{\exp\left(-\frac{1-\beta}{\varepsilon\left(1-\beta^{T+1}\right)}\frac{1-\beta^{T}}{1-\beta^{T+1}}w_{t}^{\prime}\left(\theta_{t}\right)\right)}_{\tilde{p}_{t}\left(\theta_{t}\right)}
+\overline{p}_{t+1}\left(\theta^{t}\right)=\overline{p}_{t}\left(\theta^{t-1}\right)\underbrace{\exp\left(-\frac{1}{\varepsilon}\frac{1-\beta}{1-\beta^{T+1}}\frac{1-\beta^{T}}{1-\beta^{T+1}}w_{t}^{\prime}\left(\theta_{t}\right)\right)}_{\tilde{p}_{t}\left(\theta_{t}\right)}
 \]
 
 \end_inset

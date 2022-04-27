@@ -39,7 +39,7 @@ c1_lf = tgrid .* klf
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.2
+tsig = 0.3
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -312,9 +312,11 @@ function clear_pkc(γ)
     return pkc # want to zero this out 
 end
 
-# clear_pkc(0.65) # γ*∈ [0.8543, 0.8544]
+# clear_pkc(0.856) 
+# ϵ = 4., γ*∈ [0.855, 0.856] (tsig = 3.) 
+# ϵ = 6.,  γ*∈ [0.798, 0.7985] (tsig = 3.) 
 
-γ_star = find_zero(clear_pkc, (0.86, 0.8601),
+γ_star = find_zero(clear_pkc, (0.855, 0.856),
     atol = 1e-6, rtol = 1e-6,
     xatol = 1e-6, xrtol = 1e-6) 
 
@@ -390,6 +392,12 @@ cdf_returns = cdf_thetap.(tgrid)
 plot(tgrid, [tcdf.(tgrid) cdf_returns],
     label = [L"\Pr(\theta < X)" L"\Pr(\theta p(\theta) < X)"],
     legend = :bottomright)
-savefig(solnpath * "/static_cdfs.png")
+savefig(solnpath * "/static_cdfs_e4_s3.png")
 
-plot(tgrid, thetap .* k)
+
+# Write CDF, k, wedges, RoR data 
+output_path = "julia/complementarities/static_eps_exps/e4/"
+writedlm(output_path * "ksol.txt", k)
+writedlm(output_path * "rors.txt", thetap)
+writedlm(output_path * "wedges.txt", [τ_k τ_b])
+writedlm(output_path * "ror_cdf.txt", cdf_returns)

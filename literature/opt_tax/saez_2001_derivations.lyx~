@@ -1,0 +1,1146 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+theorems-ams
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1in
+\topmargin 1in
+\rightmargin 1in
+\bottommargin 1in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Deriving Optimal Tax Formulas Using Elasticities
+\end_layout
+
+\begin_layout Standard
+Notes taken from Paradisi (2016), Saez (2001)
+\end_layout
+
+\begin_layout Section
+Elasticity Concepts 
+\end_layout
+
+\begin_layout Standard
+The general problem is 
+\begin_inset Formula 
+\begin{align*}
+\max\  & u\left(c,n\right)\\
+ & \text{s.t.}\\
+c & =wn+I & \lambda
+\end{align*}
+
+\end_inset
+
+The FOCs are 
+\begin_inset Formula 
+\begin{align*}
+u_{c} & =\lambda\\
+u_{n} & =-\lambda w
+\end{align*}
+
+\end_inset
+
+Combining gives 
+\begin_inset Formula 
+\[
+-\frac{u_{n}}{u_{c}}=w
+\]
+
+\end_inset
+
+the standard 
+\begin_inset Formula $MRS=w$
+\end_inset
+
+ case.
+ 
+\end_layout
+
+\begin_layout Standard
+Substituting the budget constraint 
+\begin_inset Formula $c=wn+I$
+\end_inset
+
+, the above becomes 
+\begin_inset Formula 
+\[
+-u_{n}\left(wn+I,n\right)=wu_{c}\left(wn+I,n\right)
+\]
+
+\end_inset
+
+Totally differentiating yields 
+\begin_inset Formula 
+\begin{align*}
+-u_{nc}\left(n+w\frac{\partial n}{\partial w}\right)-u_{nn}\frac{\partial n}{\partial w} & =u_{c}+w\left(u_{cc}\left(n+w\frac{\partial n}{\partial w}\right)+u_{cn}\frac{\partial n}{\partial w}\right)\\
+\frac{\partial n}{\partial w}\left(-u_{nc}w-u_{nn}-w^{2}u_{cc}-wu_{cn}\right) & =u_{c}+wu_{cc}n+u_{nc}n\\
+\frac{\partial n}{\partial w} & =-\frac{u_{c}+n\left(u_{nc}+wu_{cc}\right)}{u_{nn}+2wu_{nc}+w^{2}u_{cc}}
+\end{align*}
+
+\end_inset
+
+The denominator is the second-order condition for the problem, which is
+ negative in the case of a maximum.
+ Thus, we see that 
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial n}{\partial w}\propto u_{c}+n\left(u_{nc}+wu_{cc}\right)\label{eq:dndw}
+\end{equation}
+
+\end_inset
+
+The first term is the substitution effect, which is proportional to the
+ marginal utility of consumption.
+ The second is the income effect, which depends on the cross-utility (which
+ determines how changes in consumption affect labor disutility), and 
+\begin_inset Formula $u_{cc}$
+\end_inset
+
+ which determines concavity of utility in consumption.
+ The more concave, the faster 
+\emph on
+marginal
+\emph default
+ utility of consumption declines in wealth.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Elasticity in the Quasilinear Case
+\end_layout
+
+\begin_layout Plain Layout
+Consider the household's problem 
+\begin_inset Formula 
+\begin{align*}
+\max\  & c-\frac{n^{1+\frac{1}{\varepsilon}}}{1+\frac{1}{\varepsilon}}\\
+ & \text{s.t.}\\
+c & =wn+I
+\end{align*}
+
+\end_inset
+
+Note that preferences are quasilinear, so there will not be income effects.
+ The FOC is 
+\begin_inset Formula 
+\[
+n^{1/\varepsilon}=w
+\]
+
+\end_inset
+
+Taking logs gives 
+\begin_inset Formula 
+\[
+\frac{1}{\varepsilon}\ln n=\ln w
+\]
+
+\end_inset
+
+One form for the 
+\emph on
+uncompensated
+\emph default
+ elasticity of labor supply (w/r/t wage 
+\begin_inset Formula $w$
+\end_inset
+
+) is 
+\begin_inset Formula 
+\[
+\epsilon_{n,w}^{u}=\frac{\partial\ln n}{\partial\ln w}=\varepsilon
+\]
+
+\end_inset
+
+This is fairly obvious, given the form for preferences.
+ Additionally, because there are no income effects, the slutsky equation
+ gives 
+\begin_inset Formula $\epsilon_{w,n}^{u}=\epsilon_{w,n}^{c}$
+\end_inset
+
+.
+ We can see this in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:dndw"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+: with these preferences, 
+\begin_inset Formula $u_{nc}=u_{cn}=u_{cc}=0$
+\end_inset
+
+, so we have 
+\begin_inset Formula 
+\[
+\frac{\partial n}{\partial w}\propto u_{c}
+\]
+
+\end_inset
+
+That is, we only have substitution effects.
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Compensated Elasticity
+\end_layout
+
+\begin_layout Standard
+Recall the Slutsky Equation: 
+\begin_inset Formula 
+\[
+\frac{\partial n}{\partial w}=\frac{\partial n}{\partial w}^{c}+\frac{\partial n}{\partial I}n
+\]
+
+\end_inset
+
+Thus, to derive compensated elasticity, we can use the result in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:dndw"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and the Slutsky eqn.
+ Recall the optimality condition: 
+\begin_inset Formula 
+\[
+-u_{n}\left(wn+I,n\right)=wu_{c}\left(wn+I,n\right)
+\]
+
+\end_inset
+
+Totally differentiating w/r/t 
+\begin_inset Formula $I$
+\end_inset
+
+ gives 
+\begin_inset Formula 
+\begin{align*}
+-u_{nc}\left(w\frac{\partial n}{\partial I}+1\right)-u_{nn}\frac{\partial n}{\partial I} & =wu_{cc}\left(w\frac{\partial n}{\partial I}+1\right)+wu_{cn}\frac{\partial n}{\partial I}\\
+\frac{\partial n}{\partial I}\left(-u_{nc}w-u_{nn}-w^{2}u_{cc}-wu_{cn}\right) & =wu_{cc}+u_{nc}\\
+\frac{\partial n}{\partial I} & =-\frac{wu_{cc}+u_{nc}}{w^{2}u_{cc}+2wu_{cn}+u_{nn}}
+\end{align*}
+
+\end_inset
+
+Thus, we have 
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial n^{c}}{\partial w} & =\frac{\partial n}{\partial w}-\frac{\partial n}{\partial I}n\\
+ & =-\frac{u_{c}+n\left(u_{nc}+wu_{cc}\right)}{u_{nn}+2wu_{nc}+w^{2}u_{cc}}+\frac{n\left(wu_{cc}+u_{nc}\right)}{w^{2}u_{cc}+2wu_{cn}+u_{nn}}\\
+ & =-\frac{u_{c}}{w^{2}u_{cc}+2wu_{cn}+u_{nn}}
+\end{align*}
+
+\end_inset
+
+Note that using the same argument about the denominator as above, we can
+ see
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial n}{\partial w} & \propto u_{c}+n\left(u_{nc}+wu_{cc}\right)\\
+\frac{\partial n^{c}}{\partial w} & \propto u_{c}
+\end{align*}
+
+\end_inset
+
+The 
+\emph on
+compensated
+\emph default
+ elasticity captures only substitution effects (this is where its name comes
+ from).
+ 
+\end_layout
+
+\begin_layout Subsection
+Frisch (
+\begin_inset Formula $\lambda$
+\end_inset
+
+-constant) Elasticity
+\end_layout
+
+\begin_layout Standard
+This is the final elasticity concept.
+ Recall the FOCs: 
+\begin_inset Formula 
+\begin{align*}
+u_{c} & =\lambda\\
+u_{n} & =-\lambda w
+\end{align*}
+
+\end_inset
+
+Totally differentiating this system w/r/t 
+\begin_inset Formula $w$
+\end_inset
+
+, we get 
+\begin_inset Formula 
+\begin{align*}
+u_{cc}\frac{\partial c}{\partial w}+u_{cn}\frac{\partial n}{\partial w} & =0\\
+u_{nc}\frac{\partial c}{\partial w}+u_{nn}\frac{\partial n}{\partial w} & =-\lambda
+\end{align*}
+
+\end_inset
+
+In matrix form, 
+\begin_inset Formula 
+\[
+\begin{bmatrix}u_{cc} & u_{nc}\\
+u_{nc} & u_{nn}
+\end{bmatrix}\begin{bmatrix}\frac{\partial c}{\partial w}\\
+\frac{\partial n}{\partial w}
+\end{bmatrix}=\begin{bmatrix}0\\
+-\lambda
+\end{bmatrix}
+\]
+
+\end_inset
+
+Inverting gives 
+\begin_inset Formula 
+\begin{align*}
+\begin{bmatrix}\frac{\partial c}{\partial w}\\
+\frac{\partial n}{\partial w}
+\end{bmatrix} & =\begin{bmatrix}u_{cc} & u_{nc}\\
+u_{nc} & u_{nn}
+\end{bmatrix}^{-1}\begin{bmatrix}0\\
+-\lambda
+\end{bmatrix}\\
+\begin{bmatrix}\frac{\partial c}{\partial w}\\
+\frac{\partial n}{\partial w}
+\end{bmatrix} & =\frac{1}{u_{cc}u_{nn}-u_{cn}^{2}}\begin{bmatrix}u_{nn} & -u_{nc}\\
+-u_{nc} & u_{cc}
+\end{bmatrix}\begin{bmatrix}0\\
+-\lambda
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+using the rule for inverting a symmetric matrix.
+ This implies that 
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial c^{F}}{\partial w} & =\frac{\lambda u_{nc}}{u_{cc}u_{nn}-u_{cn}^{2}}\\
+\frac{\partial n^{F}}{\partial w} & =\frac{-\lambda u_{cc}}{u_{cc}u_{nn}-u_{cn}^{2}}
+\end{align*}
+
+\end_inset
+
+Also, note that from the original FOCs, 
+\begin_inset Formula 
+\[
+\lambda=u_{c}=-\frac{u_{n}}{w}
+\]
+
+\end_inset
+
+So, this is the elasticity holding 
+\emph on
+marginal utility of consumption 
+\emph default
+constant.
+ 
+\end_layout
+
+\begin_layout Subsection
+Saez Elasticities
+\end_layout
+
+\begin_layout Standard
+Saez (2001) defines elasticities in the following way.
+ Indivduals have preferences 
+\begin_inset Formula 
+\[
+u=u\left(c,z\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $u_{c}>0$
+\end_inset
+
+ and 
+\begin_inset Formula $u_{z}<0$
+\end_inset
+
+, 
+\begin_inset Formula $z$
+\end_inset
+
+ being the earnings.
+ The individual faces the budget constraint 
+\begin_inset Formula 
+\[
+c=\left(1-\tau\right)z+R
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\tau$
+\end_inset
+
+ is the marginal tax rate and 
+\begin_inset Formula $R$
+\end_inset
+
+ the non-labor income or wealth.
+ The problem after substitution is 
+\begin_inset Formula 
+\[
+\max_{z}\ u\left(\left(1-\tau\right)z+R,z\right)
+\]
+
+\end_inset
+
+and the optimality condition is 
+\begin_inset Formula 
+\[
+\left(1-\tau\right)u_{c}+u_{z}=0
+\]
+
+\end_inset
+
+which defines a Marshallian (uncompensated) demand function 
+\begin_inset Formula $z\left(1-\tau,R\right)$
+\end_inset
+
+.
+ Thus, the 
+\emph on
+uncompensated 
+\emph default
+elasticity is 
+\begin_inset Formula 
+\[
+\zeta^{u}=\frac{1-\tau}{z}\frac{\partial z}{\partial\left(1-\tau\right)}
+\]
+
+\end_inset
+
+just as above, but with 
+\begin_inset Formula $n$
+\end_inset
+
+ replaced with 
+\begin_inset Formula $z$
+\end_inset
+
+ and 
+\begin_inset Formula $w$
+\end_inset
+
+ with 
+\begin_inset Formula $1-\tau$
+\end_inset
+
+.
+ Income effects are given by 
+\begin_inset Formula 
+\[
+\eta=\left(1-\tau\right)\frac{\partial z}{\partial R}
+\]
+
+\end_inset
+
+Note that above we had income effects given by 
+\begin_inset Formula $\frac{\partial n}{\partial I}n$
+\end_inset
+
+.
+ The difference arises because here we are studying the elasticity of income
+ 
+\begin_inset Formula $z$
+\end_inset
+
+ which has cost 
+\begin_inset Formula $1-\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+compensated 
+\emph default
+elasticity is defined by 
+\begin_inset Formula 
+\[
+\zeta^{c}=\frac{1-\tau}{z}\frac{\partial z}{\partial\left(1-\tau\right)}\big|_{u}
+\]
+
+\end_inset
+
+That is, the partial of 
+\begin_inset Formula $z^{c}$
+\end_inset
+
+, the Hicksian (compensated) demand w/r/t 
+\begin_inset Formula $1-\tau$
+\end_inset
+
+, at the level 
+\begin_inset Formula $u$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Optimal Top Income Taxation
+\end_layout
+
+\begin_layout Standard
+This is the opening exercise from Saez (2001).
+ Suppose the government wants to set a constant marginal rate 
+\begin_inset Formula $\tau$
+\end_inset
+
+ for income above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+.
+ The average income above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+ is denoted 
+\begin_inset Formula $z\left(1-\tau\right)$
+\end_inset
+
+—that is, it depends on the tax rate.
+ The uncompenstated elasticity of 
+\begin_inset Formula $z$
+\end_inset
+
+ for top earners is assumed constant, and is equal to 
+\begin_inset Formula $\varepsilon_{z,1-\tau}$
+\end_inset
+
+.
+ This tax has three effects: 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Mechanical: 
+\series default
+With inelastic labor supply, when 
+\begin_inset Formula $\tau$
+\end_inset
+
+ increases there is a mechanical increase in revenues of the form 
+\begin_inset Formula 
+\[
+dM=d\tau\left(z-z^{*}\right)
+\]
+
+\end_inset
+
+This is easy to see: the change in tax paid by an individual with 
+\begin_inset Formula $\hat{z}>z^{*}$
+\end_inset
+
+ is 
+\begin_inset Formula $d\tau\left(\hat{z}-z^{*}\right)$
+\end_inset
+
+; averaging this over the population (and imposing Saez's normalization
+ of the mass of individuals above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+ to one) gives the above formula.
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Behavioral: 
+\series default
+Earners with 
+\begin_inset Formula $\hat{z}>z^{*}$
+\end_inset
+
+ respond by changing their labor supply.
+ In particular, they will choose to work less, resulting in a revenue loss.
+ This loss can be derived as 
+\begin_inset Formula 
+\[
+dB=\tau dz
+\]
+
+\end_inset
+
+The intuition is that the revenue loss is equal to the 
+\emph on
+existing
+\emph default
+ tax rate, times the change in average incomes above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+.
+ Deriving further: 
+\begin_inset Formula 
+\begin{align*}
+dB & =\tau dz\\
+ & =-\tau\frac{dz}{d\left(1-\tau\right)}d\tau\\
+ & =-\frac{\tau}{1-\tau}\frac{1-\tau}{z}z\frac{dz}{d\left(1-\tau\right)}d\tau\\
+ & =-\frac{\tau}{1-\tau}\varepsilon_{z,1-\tau}zd\tau
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Welfare: 
+\series default
+Here we assume that the social 
+\emph on
+marginal 
+\emph default
+welfare weight for earners above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+ is constant, and denoted by 
+\begin_inset Formula $\overline{g}$
+\end_inset
+
+.
+ The interpretation of 
+\begin_inset Formula $\overline{g}$
+\end_inset
+
+, from Saez, is that the government is indifferent between 
+\begin_inset Formula $\overline{g}$
+\end_inset
+
+ additional dollars in revenues and one more dollar of consumption to earners
+ above 
+\begin_inset Formula $z^{*}$
+\end_inset
+
+.
+ The Welfare effect, then, is similar to the mechanical effect: 
+\begin_inset Formula 
+\[
+dW=-d\tau\overline{g}\left(z-z^{*}\right)
+\]
+
+\end_inset
+
+This comes from the definition of 
+\begin_inset Formula $\overline{g}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Note: from item 2, the change in the tax code also triggers a behavioral
+ response.
+ We ignore this here due to an envelope theorem argument: if the tax change
+ is small, workers reoptimize at the margin, and their utilities are unaffected
+ (or the changes are negligible).
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+In equilibrium, we must have 
+\begin_inset Formula 
+\[
+dM+dB+dW=d\tau\left[\left(1-\overline{g}\right)\left(z-z^{*}\right)--\frac{\tau}{1-\tau}\varepsilon_{z,1-\tau}z\right]=0
+\]
+
+\end_inset
+
+We can rearrange here to find the optimal 
+\begin_inset Formula $\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Section
+Optimal Taxes with Income Effects
+\end_layout
+
+\begin_layout Standard
+Here, we assume that the individuals in the economy are heterogenous w/r/t
+ ability 
+\begin_inset Formula $n$
+\end_inset
+
+ and can work 
+\begin_inset Formula $l_{n}$
+\end_inset
+
+ hours to earn 
+\begin_inset Formula $z_{n}=nl_{n}$
+\end_inset
+
+ (that is, the efficiency wage is 1).
+ The labor supply can be written as a Walrasian demand function 
+\begin_inset Formula $l_{n}\left(w_{n},R_{n}\right)$
+\end_inset
+
+.
+ Here, 
+\begin_inset Formula 
+\[
+w_{n}=n\left(1-T^{\prime}\right)
+\]
+
+\end_inset
+
+is the net-of-tax wage that the worker earns (
+\begin_inset Formula $T$
+\end_inset
+
+ is the tax function, 
+\begin_inset Formula $T^{\prime}$
+\end_inset
+
+ its derivative) and 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+ is virtual (non-labor) income.
+ We can define 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+ under the assumption that the tax is linear and tangent to the tax schedule
+ at 
+\begin_inset Formula $z_{n}$
+\end_inset
+
+, that is, 
+\begin_inset Formula 
+\[
+c=\left(1-T^{\prime}\right)nl_{n}+R_{n}
+\]
+
+\end_inset
+
+In the consumer's budget constraint, 
+\begin_inset Formula 
+\[
+c=nl_{n}-T\left(nl_{n}\right)
+\]
+
+\end_inset
+
+so we can write the above as 
+\begin_inset Formula 
+\begin{align*}
+nl_{n}-T\left(nl_{n}\right) & =\left(1-T^{\prime}\right)nl_{n}+R_{n}\\
+ & \Downarrow\\
+R_{n} & =nl_{n}-T\left(nl_{n}\right)-\left(1-T^{\prime}\right)nl_{n}
+\end{align*}
+
+\end_inset
+
+It is useful to think about this object 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+.
+ Although the worker does not earn non-labor income, we use this to capture
+ the fact that these tax rates are 
+\emph on
+marginal
+\emph default
+.
+ In this way, we can link the total consumption to the net-of-tax wage 
+\begin_inset Formula $\left(1-T^{\prime}\right)n$
+\end_inset
+
+, and study the response of 
+\begin_inset Formula $c$
+\end_inset
+
+ to changes in 
+\emph on
+marginal
+\emph default
+ rates 
+\begin_inset Formula $T^{\prime}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Now, following the above, we can write the uncompensated elasticity and
+ income effect parameters as 
+\begin_inset Formula 
+\begin{align*}
+\zeta^{u} & =\frac{1-T^{\prime}}{l_{n}}\frac{\partial l_{n}}{\partial\left(1-T^{\prime}\right)}\\
+\eta & =\frac{\partial l_{n}}{\partial R_{n}}\left(1-T^{\prime}\right)
+\end{align*}
+
+\end_inset
+
+From the Slutsky equation, 
+\begin_inset Formula 
+\begin{align*}
+\zeta^{u} & =\zeta^{c}+\eta\\
+ & \Downarrow\\
+\zeta^{c} & =\zeta^{u}-\eta
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we derive another result.
+ The Walrasian demand function is 
+\begin_inset Formula 
+\[
+l_{n}\left(w_{n},R_{n}\right)=l_{n}\left(n\left(1-T^{\prime}\right),nl_{n}-T\left(nl_{n}\right)-\left(1-T^{\prime}\right)nl_{n}\right)
+\]
+
+\end_inset
+
+Here, we see the dependence on 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ Differentiating gives
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Note that Paradesi denotes 
+\begin_inset Formula $\dot{x}_{n}\equiv dx/dn$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\frac{dl_{n}}{dn}=\frac{\partial l_{n}}{\partial w_{n}}\left[\left(1-T^{\prime}\right)-nT^{\prime\prime}\left(n\frac{dl_{n}}{dn}+l_{n}\right)\right]+\frac{\partial l_{n}}{\partial R_{n}}\left(n\frac{dl_{n}}{dn}+l_{n}\right)\left(T^{\prime\prime}nl_{n}\right)
+\]
+
+\end_inset
+
+Note that these use the fact that 
+\begin_inset Formula $T^{\prime}=T^{\prime}\left(nl_{n}\right)$
+\end_inset
+
+.
+ Rearranging, using the fact that 
+\begin_inset Formula $1-T^{\prime}=w_{n}/n$
+\end_inset
+
+ gives 
+\begin_inset Formula 
+\begin{align*}
+\frac{dl_{n}}{dn} & =\frac{\partial l_{n}}{\partial w_{n}}\left(1-T^{\prime}\right)+nT^{\prime\prime}\left(n\frac{dl_{n}}{dn}+l_{n}\right)\left(-\frac{\partial l_{n}}{\partial w_{n}}+l_{n}\frac{\partial l_{n}}{\partial R_{n}}\right)\\
+ & =\frac{\partial l_{n}}{\partial w_{n}}\frac{w_{n}}{l_{n}}\frac{l_{n}}{n}+\left[w_{n}\frac{\partial l_{n}}{\partial R_{n}}-\frac{w_{n}}{l_{n}}\frac{\partial l_{n}}{\partial w_{n}}\right]\frac{l_{n}T^{\prime\prime}}{1-T^{\prime}}\left[l_{n}+n\frac{dl_{n}}{dn}\right]
+\end{align*}
+
+\end_inset
+
+Now, note the following: 
+\begin_inset Formula 
+\begin{align*}
+\frac{dz_{n}}{dn} & =\frac{d}{dn}\left(nl_{n}\right)=l_{n}+n\frac{dl_{n}}{d_{n}}\\
+\zeta_{n}^{u} & =\frac{\partial l_{n}}{\partial w_{n}}\frac{w_{n}}{l_{n}}\\
+ & =\frac{\partial l_{n}}{\partial\left(1-T^{\prime}\right)}\frac{1-T^{\prime}}{l_{n}}\\
+\zeta_{n}^{c} & =\zeta_{n}^{u}-\eta\\
+ & =\frac{1-T^{\prime}}{l_{n}}\frac{\partial l_{n}}{\partial\left(1-T^{\prime}\right)}-\frac{\partial l_{n}}{\partial R_{n}}\left(1-T^{\prime}\right)
+\end{align*}
+
+\end_inset
+
+Thus, we can write 
+\begin_inset Formula 
+\[
+\frac{dl_{n}}{dn}=\zeta_{n}^{u}\frac{l_{n}}{n}-\frac{dz_{n}}{d_{n}}\frac{l_{n}T^{\prime\prime}}{1-T^{\prime}}\zeta_{n}^{c}
+\]
+
+\end_inset
+
+Using this, we can write 
+\begin_inset Formula 
+\[
+\frac{dz_{n}/d_{n}}{z_{n}}=\frac{l_{n}+n\left(dl_{n}/d_{n}\right)}{nl_{n}}=\frac{dl_{n}/d_{n}}{l_{n}}+\frac{1}{n}
+\]
+
+\end_inset
+
+Combining this with the above, we have 
+\begin_inset Formula 
+\begin{align}
+\frac{dl_{n}/d_{n}}{l_{n}} & =\frac{\zeta_{n}^{u}}{n}-\frac{dz_{n}}{dn}\frac{T^{\prime\prime}}{1-T^{\prime}}\zeta_{n}^{c}=\frac{dz_{n}/dn}{z_{n}}-\frac{1}{n}\nonumber \\
+ & \Downarrow\nonumber \\
+\frac{dz_{n}/dn}{z_{n}} & =\frac{1+\zeta_{n}^{u}}{n}-\frac{dz_{n}}{dn}\frac{T^{\prime\prime}}{1-T^{\prime}}\zeta_{n}^{c}\label{eq:pct_z}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we can consider the perturbation.
+ We modify the tax code by raising the 
+\emph on
+marginal 
+\emph default
+rate on a neighborhood 
+\begin_inset Formula $\left[z^{*},z^{*}+dz\right]$
+\end_inset
+
+.
+ This will have three effects:
+\end_layout
+
+\begin_layout Enumerate
+A mechanical effect: more tax receipts given constant behavior
+\end_layout
+
+\begin_layout Enumerate
+A welfare effect: the additional tax receipts reduce utility for those affected
+\end_layout
+
+\begin_layout Enumerate
+A behavioral effect, broken down into two responses:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Workers with 
+\begin_inset Formula $\hat{z}\in\left[z^{*},z^{*}+dz\right]$
+\end_inset
+
+ will have substitution effects
+\end_layout
+
+\begin_layout Enumerate
+Workers with 
+\begin_inset Formula $\hat{z}>z^{*}+dz$
+\end_inset
+
+ will have income effects.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph
+Mechanical and Welfare Effects
+\end_layout
+
+\begin_layout Standard
+Every taxpayer with 
+\begin_inset Formula $\hat{z}>z^{*}$
+\end_inset
+
+ will pay an additional 
+\begin_inset Formula $dzd\tau$
+\end_inset
+
+ in taxes.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+This is based on the fact that for small perturbations, we can treat the
+ tax schedule as if it were linear.
+ Thus, before they paid 
+\begin_inset Formula $\tau\left(z-z^{*}\right)$
+\end_inset
+
+, now they pay 
+\begin_inset Formula $\left(\tau+d\tau\right)\left(z-z^{*}\right)$
+\end_inset
+
+, the difference being 
+\begin_inset Formula $dzd\tau$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+ The welfare losses from these additional tax receipts are valued according
+ to the social marginal welfare weights 
+\begin_inset Formula $g\left(z\right)$
+\end_inset
+
+.
+ Thus, the mechanical effect of this change on government revenue will be
+ 
+\begin_inset Formula $dzd\tau$
+\end_inset
+
+, and the welfare 
+\emph on
+loss
+\emph default
+ will be 
+\begin_inset Formula $g\left(z\right)dzd\tau$
+\end_inset
+
+.
+ Thus, the 
+\emph on
+net-of-welfare
+\emph default
+ mechanical gain is 
+\begin_inset Formula 
+\[
+M=dzd\tau\int_{z^{*}}^{\infty}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

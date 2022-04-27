@@ -18,6 +18,8 @@ println("******** cpp_inf_horizon.jl ********")
 θ_max = 2.
 w = 1.
 ϵ = 4.
+# ϵ = 5.9 # highest successful is 5.8
+# ϵ = 5.8
 
 R = 1.1
 
@@ -26,7 +28,8 @@ ctest = (1. / (β * R)) ^ (1. / (1. - β))
 Atest =  ctest /  (1. - β)
 
 # Path to write results 
-solnpath = "julia/complementarities/results/normal/"
+solnpath = "julia/complementarities/results/normal/eps_experiments/"
+# solnpath = "julia/complementarities/results/normal/"
 
 # Infinite horizon
 shft = 1. - β          # shifter (inifinite horizon) on allocations
@@ -50,9 +53,9 @@ pL = 0.     # absorbing barrier
 # pH = 0.5  # works here
 # pH = 0.6  # here too 
 # pH = 0.7  # yes
-# pH = 0.8  # yes 
-# pH = 0.87 # yes
-pH = 0.9  # yes
+pH = 0.8  # yes 
+# pH = 0.9 # yes
+# pH = 0.9  # yes
 # pH = 0.91 # no
 
 m_cheb = 5
@@ -61,7 +64,7 @@ p0 = points(S0, m_cheb)
 
 # Functions for truncated normal dist 
 tmean = (θ_max + θ_min) / 2
-tsig = 0.25
+tsig = 0.3
 function tnorm_pdf(x)
     pdf.(truncated(Normal(tmean, tsig), θ_min, θ_max), x)
 end
@@ -515,7 +518,7 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
             println("a1: $rdA")
         end
 
-        # if npfi == 0 && norm_A < 1e-3 # go to PFI once we're very close
+        # if npfi == 0 && norm_A < 1e-4 # go to PFI once we're very close
         #     npfi = 25
         # end
 
@@ -529,8 +532,8 @@ function iterate_at(a0, gam_bkt0, Ubkt0;
 end
 
 # Read in prior solution
-at0 = vec(readdlm(solnpath * "norm_a1c_0.9_1.1_0.9_0.24.txt"))
-gs0 = readdlm(solnpath * "norm_gstars_0.9_1.1_0.9_0.24.txt") 
+at0 = vec(readdlm(solnpath * "norm_a1c_0.9_1.1_0.8_0.3_4.0.txt"))
+gs0 = readdlm(solnpath * "norm_gstars_0.9_1.1_0.8_0.3_4.0.txt") 
 
 if length(at0) != m_cheb
     println("Interpolating starting guess")
@@ -544,11 +547,11 @@ end
 
 # Ubkt_start = (-0.23, -0.22)
 # Ubkt_start = (-0.33, -0.32) 
-# Ubkt_start = (-0.43, -0.42) 
-# Ubkt_start = (-0.63, -0.62) 
+# Ubkt_start = (-0.47, -0.46) 
+Ubkt_start = (-0.63, -0.62) 
 # Ubkt_start = (-0.83, -0.82) 
-Ubkt_start = (-0.99, -0.98) 
-# Ubkt_start = (-1.03, -1.02) 
+# Ubkt_start = (-0.99, -0.98) 
+# Ubkt_start = (-1.36, -1.35) 
 
 ucush = 0.
 
@@ -559,8 +562,8 @@ Usol_c = log.(csol_c) + β * wsol_c
 Ac = Fun(S0, ApproxFun.transform(S0, a1_c))
 
 # Save solution for future starting guesses 
-ac_fname = solnpath * "norm_a1c_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * ".txt"
-gs_fname = solnpath * "norm_gstars_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * ".txt"
+ac_fname = solnpath * "norm_a1c_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * "_" * string(ϵ) * ".txt"
+gs_fname = solnpath * "norm_gstars_" * string(β) * "_" * string(R) * "_" * string(pH) * "_" * string(tsig) * "_" * string(ϵ) * ".txt"
 writedlm(ac_fname, a1_c)
 writedlm(gs_fname, gstars_c)
 
@@ -610,7 +613,7 @@ pw = plot(tgrid, wsol_c,
     xlab = L"\theta",
     legend = false);
 
-figpath = "julia/complementarities/results/"
+figpath = "julia/complementarities/results/normal/eps_experiments/figures/eps4/"
 display(plot(plot(ppb, pat1), pU, layout = (2,1)))
 savefig(figpath * "inf_soln_tnorm.png")
 
@@ -719,6 +722,14 @@ p_τk = plot(tgrid, τk,
 display(plot(p_τb, p_τk, layout = (1, 2) ) )
 savefig(figpath * "inf_wedges_norm.png")
 
+# Save k, w', RoR, wedges for comparison plots 
+writedlm(figpath * "csol_c.txt", csol_c)
+writedlm(figpath * "ksol_c.txt", ksol_c)
+writedlm(figpath * "wsol_c.txt", wsol_c)
+writedlm(figpath * "RoRs.txt", RoRs)
+writedlm(figpath * "tk.txt", τk)
+writedlm(figpath * "tb.txt", τb)
+
 # plot(tgrid, [τb[:, 3] τk[:, 3]]) # same pattern as static in all cases
 
 # Sample paths for wedges 
@@ -751,7 +762,15 @@ function polfuns_smooth(th, pb)
     k_cheb_l = Fun(S0, ApproxFun.transform(S0, ksol_c[it, :]))
     k_cheb_h = Fun(S0, ApproxFun.transform(S0, ksol_c[it1, :]))
     k_l = k_cheb_l(pb)
+    if k_l < 0.
+        k_l = k_cheb_l(0.)
+    end
     k_h = k_cheb_h(pb)
+    if k_h < 0.
+        k_h = k_cheb_h(0.)
+    end
+    # If these dip below zero bc of added curvature, assume all the low guys
+    # invest the same 
 
     w_cheb_l = Fun(S0, ApproxFun.transform(S0, wsol_c[it, :]))
     w_cheb_h = Fun(S0, ApproxFun.transform(S0, wsol_c[it1, :]))
@@ -771,6 +790,7 @@ function wedges_smooth(th, pb)
     # Gets wedges for any (th, pb combination)
 
     c, k, wp = polfuns_smooth(th, pb)
+    
     pbp = pb * p_tilde(wp)
 
     function cpr_inv_f_th(tp)
@@ -780,6 +800,10 @@ function wedges_smooth(th, pb)
     end
 
     ecprime = gauss_leg(cpr_inv_f_th, 50, θ_min, θ_max)
+    if k<0.
+        println([th, pb])
+        error("k<0")
+    end
     phat = p_hat(th, k)
 
     τ_b = 1. - exp((1. - β) * wp) / (β * R * c * ecprime)
@@ -831,6 +855,10 @@ function sim_wedges(capT, pb_start)
             pbpath[i + 1] = pbpath[i] * p_tilde(wp)
         end
         
+        if mod(i, 1_000) == 0
+            println("t = $i")
+        end
+
     end
 
     return tbpath, tkpath, pbpath, cpath, kpath, wp_path, wpath, rorpath
@@ -864,8 +892,8 @@ end
 
 # Sim with various pstart, see where it ends up
 # Do same for wedges
-pb_starts = 0.05:0.1:0.85
-capT = 3_000
+pb_starts = range(0.05, pH, length = 8)
+capT = 15_000
 
 println("Simulating Paths")
 @elapsed tb_paths, tk_paths, pb_paths, c_paths, k_paths, 
@@ -956,5 +984,11 @@ display(
 )
 savefig(figpath * "time_paths_allocs.png")
 
-# wgrid = range(-80, 25, length = 100)
-# plot(wgrid, p_tilde.(wgrid))
+# plot(p_tilde.(pb_paths)) 
+psamp = vec(pb_paths[5000:end, :])
+writedlm(solnpath * "psamp.txt", psamp)
+
+using KernelDensity
+kd = kde(psamp)
+pspace = range(0.46, 0.48, length = 10_000)
+plot(pspace, x -> pdf(kd, x))
