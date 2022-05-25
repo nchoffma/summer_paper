@@ -255,18 +255,20 @@ function test_shoot(Um)
     return ep
 end
 
-# tax_shoot(3.)
+# tax_shoot(0.735)
 
 # Testing 
-cpts0 = ones(m_cheb) 
+cpts0 = copy(wp0)
+# cpts0 = -wp0
 C0 = Fun(S0, ApproxFun.transform(S0, cpts0))
 
 ip = 1
 wstar = wp0[ip]
 
-γ = 1.
+# γ = 1. # can get some results with U0≈0.7
+γ = 2.
 println("γ = $γ")
 
-test_ums = range(-20., 20., length = 41)
+test_ums = range(0.5, 0.8, length = 31)
 testvals = [test_shoot(test_ums[i]) for i in 1:length(test_ums)]
-display(plot(test_ums, testvals))
+display(plot(test_ums, testvals, size = (1000, 1000)))
