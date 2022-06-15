@@ -36,7 +36,7 @@ end
 
 function par_inv(F)
     # Inverse of Uniform CDF 
-    # For a given CDF value (F), calcluates the x that delivers 
+    # For a given CDF value (F), calcluates the x that delivers F
     L = θ_min
     H = θ_max 
     x = F * (H - L) + L
@@ -292,8 +292,9 @@ end
 R = λ_0 / λ_1
 
 # Y0 = 1.
-Y0 = 0.26410989
-a0, b0, errs  = fem_newton(Y0, ω = 0.7)
+# Y0 = 0.26410989 # works with ω <= 0.7
+# Y0 = 0.24996683
+# a0, b0, errs  = fem_newton(Y0, ω = 0.5)
 
 function opt_allocs(U, mu, Y)
     # Given values for U and mu (as well as output Y), calculates
@@ -313,16 +314,13 @@ end
 c0, c1, k = opt_allocs(a0, b0, Y0);
 
 # Calculating updated Y 
-# Idea: if the aggregate Y over the portion of the distribution is consistent 
-# with the FOCs of those types, we have a close enough approximation
-
 function calc_agg_y(kpath)
     # Given allocations k(theta) for theta in the (truncated) grid,
     # calculates aggregate Y 
     
     # k function
     tgridi = range(tmin, tmax, length = nt)
-    kfunc = CubicSplineInterpolation(tgridi, kpath)
+    kfunc = LinearInterpolation(tgridi, kpath)
     function ces_integrand(t)
         kt = kfunc(t)
         Ft, ft, fpt = fdist(t) ./ bigF
@@ -332,59 +330,62 @@ function calc_agg_y(kpath)
     ynew = gauss_leg(t -> ces_integrand(t), 100, tmin, tmax) ^ (ϵ / (ϵ - 1.))
 end
 
-Y1 = calc_agg_y(k)
-@printf " Y1       = %10.8f\n" Y1
-@printf "|Y0 - Y1| = %10.8f\n" abs(Y0 - Y1)
+# Y1 = calc_agg_y(k)
+# @printf " Y1       = %10.8f\n" Y1
+# @printf "|Y0 - Y1| = %10.8f\n" abs(Y0 - Y1)
 
-# # Function to iterate on Y 
-# function solve_model(Y0)
-#     # Solves the model, given starting guess for Y 
+# Function to iterate on Y 
+function solve_model(Y0; 
+    ω_Y = 1.,               # Dampening on Y
+    ω_inner = 1.)           # Dampening on inner loop
+
+    # Solves the model, given starting guess for Y 
         
-#     Y1 = copy(Y0)
-#     a0 = zeros(nt)
-#     b0 = zeros(nt)
-#     mxit = 250
-#     its = 1
-#     diff = 10.0
-#     tol = 1e-5
+    Y1 = copy(Y0)
+    a0 = zeros(nt)
+    b0 = zeros(nt)
+    mxit = 250
+    its = 1
+    diff = 10.0
+    tol = 1e-5
 
-#     print("\nSolving for Y \n")
-#     print("-----------------------------\n")
-#     print(" its     diff         y1\n")
-#     print("-----------------------------\n")
+    print("\nSolving for Y \n")
+    print("-----------------------------\n")
+    print(" its     diff         y1\n")
+    print("-----------------------------\n")
 
-#     while diff > tol && its < mxit
+    while diff > tol && its < mxit
 
-#         a0, b0, errs  = fem_newton(Y0, ω = 0.9)
-#         c0p, c1p, kp = opt_allocs(a0, b0, Y0)
-#         Y1 = calc_agg_y(kp)
-#         diff = abs(Y0 - Y1)
+        a0, b0, errs  = fem_newton(Y0, ω = ω_inner)
+        c0p, c1p, kp = opt_allocs(a0, b0, Y0)
+        Y1 = calc_agg_y(kp)
+        diff = abs(Y0 - Y1)
         
-#         if mod(its, 5) == 0
-#             @printf("%3d %12.8f %12.8f\n", its, diff, Y1)
-#         end
-#         if diff > 0.01
-#             ω = 1.2 # a bit of acceleration, may make it unstable
-#         else
-#             ω = 1.0
-#         end
+        if mod(its, 1) == 0
+            @printf("%3d %12.8f %12.8f\n", its, diff, Y1)
+        end
+        # if diff > 0.01
+        #     ω = 1.2 # a bit of acceleration, may make it unstable
+        # else
+        #     ω = 1.0
+        # end
 
-#         Y0 = ω * Y1 + (1. - ω) * Y0
-#         its += 1
-#     end
-#     c0s, c1s, ks = opt_allocs(a0, b0, Y1);
+        Y0 = ω_Y * Y1 + (1. - ω_Y) * Y0
+        its += 1
+    end
+    c0s, c1s, ks = opt_allocs(a0, b0, Y1);
 
-#     return Y1, a0, b0, c0s, c1s, ks
+    return Y1, a0, b0, c0s, c1s, ks
 
-# end
+end
 
-# # Multipliers
-# λ_0 = 1.9491874662622317
-# λ_1 = 1.2727276699236132
-# R = λ_0 / λ_1
+# Multipliers
+λ_0 = 1.9491874662622317
+λ_1 = 1.2727276699236132
+R = λ_0 / λ_1
 
-# Y0 = 1.
-# @time Y1, a0, b0, c0, c1, k = solve_model(Y0);
+Y0 = 0.26410989
+@time Y1, a0, b0, c0, c1, k = solve_model(Y0, ω_Y = 0.2, ω_inner = 0.4);
 
 # # Wedges and plotting
 # τ_k = 1. .- c1 ./ (c0 .* β) .* (tgrid .^ ((1. - ϵ) / ϵ)) .* 
