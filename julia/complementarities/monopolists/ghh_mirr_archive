@@ -1,0 +1,79 @@
+# Gradient and Hessian 
+function c_con_j!(j, x)
+    # Unpack 
+    c = x[1:2]
+    l = x[3:4]
+    wp = x[5:6]
+
+    # marginal utitlies
+    upl = 1 / (c[1] - 0.5 * l[2] ^ 2)
+    uph = (c[2] - 0.5 * l[2] ^ 2)
+
+    # First constraint 
+    j[1, 1] = upl
+    j[1, 2] = uph
+    j[1, 3] = -1 * l[1] * upl
+    j[1, 4] = -1 * l[2] * uph
+    j[1, 5] = β 
+    j[1, 6] = β 
+
+    # Second constraint 
+    j[2, 1] = -j[1, 1]
+    j[2, 2] = j[1, 2]
+    j[2, 3] = -j[1, 3]
+    j[2, 4] = j[1, 4]
+    j[2, 5] = -β
+    j[2, 6] = β
+
+    # Third constraint
+    j[3, :] = -j[2, :]
+
+    j[1, :] *= 0.5
+    j    
+end
+
+# TODO: Two issues here
+#   1) Fix theta issue in jacobian, hessian 
+#   2) Derivative of constraints depends on max condition 
+
+function c_con_h!(h, x, λ)
+    # Unpack 
+    c = x[1:2]
+    l = x[3:4]
+    wp = x[5:6]
+
+    upl2 = 1. / ((c[1] - 0.5 * l[1] ^ 2) ^ 2)
+    uph2 = 1. / ((c[2] - 0.5 * l[2] ^ 2) ^ 2)
+
+    # First constraint 
+    h[1, 1] += λ[1] * -0.5 * upl2
+    h[1, 3] += λ[1] * 0.5 * l[1] * upl2 
+    h[2, 2] += λ[1] * -0.5 * uph2 
+    h[2, 4] += λ[1] * 0.5 * uph2 
+    h[3, 1] += λ[1] * 0.5 * l[1] * upl2 
+    h[3, 3] += λ[1] * -0.5 * ((c[1] + 0.5 * l[1] ^ 2) * upl2)
+    h[4, 2] += λ[1] * 0.5 * l[2] * uph2 
+    h[4, 4] += λ[1] * -0.5 * ((c[2] + 0.5 * l[2] ^ 2) * uph2)
+
+    # Second constraint
+    h[1, 1] += λ[2] * upl2
+    h[1, 3] += λ[2] * -l[1] * upl2 
+    h[2, 2] += λ[2] * -uph2 
+    h[2, 4] += λ[2] * l[2] * uph2 
+    h[3, 1] += λ[2] * -l[1] * upl2
+    h[3, 3] += λ[2] * ((c[1] + 0.5 * l[1] ^ 2) * upl2)
+    h[4, 2] += λ[2] * l[2] * uph2 
+    h[4, 4] += λ[2] * -((c[2] + 0.5 * l[2] ^ 2) * uph2)
+
+    # Third constraint 
+    h[1, 1] += λ[3] * -upl2 
+    h[1, 3] += λ[3] * l[1] * upl2
+    h[2, 2] += λ[3] * uph2
+    h[2, 4] += λ[3] * -l[2] * uph2 
+    h[3, 1] += λ[3] * l[1] * uph2 
+    h[3, 3] += λ[3] * -((c[1] + 0.5 * l[1] ^ 2) * upl2)
+    h[4, 2] += λ[3] * -l[2] * uph2
+    h[4, 4] += λ[3] * ((c[2] + 0.5 * l[2] ^ 2) * uph2)
+    h
+
+end
